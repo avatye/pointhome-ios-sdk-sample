@@ -1,0 +1,36 @@
+
+/* Class = "UIButton"; configuration.title = "AdCash Banner320X50"; ObjectID = "C1Y-gE-cYs"; */
+"C1Y-gE-cYs.configuration.title" = "AdCash Banner320X50";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "C1Y-gE-cYs"; */
+"C1Y-gE-cYs.normalTitle" = "Button";
+
+/* Class = "UIButton"; configuration.title = "AdCash Banner320X100"; ObjectID = "SB0-Tc-9qQ"; */
+"SB0-Tc-9qQ.configuration.title" = "AdCash Banner320X100";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "SB0-Tc-9qQ"; */
+"SB0-Tc-9qQ.normalTitle" = "Button";
+
+/* Class = "UIButton"; configuration.title = "AdCash Banner300X250"; ObjectID = "UX5-2A-GOX"; */
+"UX5-2A-GOX.configuration.title" = "AdCash Banner300X250";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "UX5-2A-GOX"; */
+"UX5-2A-GOX.normalTitle" = "Button";
+
+/* Class = "UIButton"; configuration.title = "PointHome OPEN"; ObjectID = "ZZi-UU-36u"; */
+"ZZi-UU-36u.configuration.title" = "PointHome OPEN";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "ZZi-UU-36u"; */
+"ZZi-UU-36u.normalTitle" = "Button";
+
+/* Class = "UIButton"; configuration.title = "PointHome Buzz Native Feed"; ObjectID = "kvu-k6-6Kp"; */
+"kvu-k6-6Kp.configuration.title" = "PointHome Buzz Native Feed";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "kvu-k6-6Kp"; */
+"kvu-k6-6Kp.normalTitle" = "Button";
+
+/* Class = "UIButton"; configuration.title = "AdCash Interstitial"; ObjectID = "zxs-9C-4F3"; */
+"zxs-9C-4F3.configuration.title" = "AdCash Interstitial";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "zxs-9C-4F3"; */
+"zxs-9C-4F3.normalTitle" = "Button";
