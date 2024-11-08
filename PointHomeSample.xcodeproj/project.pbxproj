@@ -308,6 +308,8 @@
 				0BEB3F3F2A60ED0A005C1C04 /* Resources */,
 				0B44DF902C04BB8F00E29BD6 /* Embed Foundation Extensions */,
 				0B8355A52C2BFB3400003692 /* Embed Frameworks */,
+				AF0DE388F419074CA696AA3F /* [CP] Embed Pods Frameworks */,
+				D353C1DA6F9EAB1387BAB8BB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -367,6 +369,40 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		AF0DE388F419074CA696AA3F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PointHomeSample/Pods-PointHomeSample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PointHomeSample/Pods-PointHomeSample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PointHomeSample/Pods-PointHomeSample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D353C1DA6F9EAB1387BAB8BB /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PointHomeSample/Pods-PointHomeSample-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PointHomeSample/Pods-PointHomeSample-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PointHomeSample/Pods-PointHomeSample-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		EBE53729BD4BE793663C93A1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
