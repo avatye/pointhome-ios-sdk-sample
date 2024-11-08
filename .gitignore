@@ -86,7 +86,7 @@ fastlane/test_output
 
 # iOSInjectionProject/
 
-PointHomeSample/Adapter/
-PointHomeSample/PointHomeSample-Bridging-Header.h
+#PointHomeSample/Adapter/
+#PointHomeSample/PointHomeSample-Bridging-Header.h
 
 # End of https://www.toptal.com/developers/gitignore/api/swift
