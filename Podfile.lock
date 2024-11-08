@@ -91,10 +91,12 @@ PODS:
   - VungleAds (7.1.0)
 
 DEPENDENCIES:
-  - AvatyeAdCash (from `../PointHomeSdk/sdk-ad-library-ios-src/`)
-  - PointHome (from `../sdk-pointhome-spc-ios/`)
+  - PointHome (= 1.4.13)
 
 SPEC REPOS:
+  https://dl.cloudsmith.io/public/avatye/ios-sdk/cocoapods/index.git:
+    - AvatyeAdCash
+    - PointHome
   https://github.com/CocoaPods/Specs.git:
     - AdPopcornSSP
     - Ads-Global
@@ -110,17 +112,11 @@ SPEC REPOS:
     - UnityAds
     - VungleAds
 
-EXTERNAL SOURCES:
-  AvatyeAdCash:
-    :path: "../PointHomeSdk/sdk-ad-library-ios-src/"
-  PointHome:
-    :path: "../sdk-pointhome-spc-ios/"
-
 SPEC CHECKSUMS:
   AdPopcornSSP: 8aa02645424f48898fe3336d43b928517c57a9df
   Ads-Global: 11bc88ca4ac46b71a30ca98c52470b1a08f16dd4
   AppLovinSDK: 15679e9f576a4d8662e1dc537c9a4ed47d3292a5
-  AvatyeAdCash: 508c20d0036ec2fdd7b8d6f083e1f889574d3e9b
+  AvatyeAdCash: 3497e3919858eb265fb08d52ed0c657587fb4620
   BURelyFoundation_Global: 69696b7441e6a765a9a88c291820d8c3e5ffc7b4
   BuzzAdBenefitSDK: c9619aa3b532ef683cf73694b2bbb4142db00963
   BuzzBoosterSDK: bc486a05184bda029f2fcb6ff6abd097ef3dc92d
@@ -129,10 +125,10 @@ SPEC CHECKSUMS:
   KissXML: 5c8e0f2e8b9f071d3e1ae123dec3eb5da615c10c
   NAMSDK: a1029c4e4f8699cbb60fa2aae4c2a74bbdbc039e
   Naver-Ads-Services: 3bb81fb94a346166c47c4332076fa6ffffa0a282
-  PointHome: e94dbedda5dc8024c4ab6401fdd92b418f0089f9
+  PointHome: d592ca0c641f45f4c471b645556a03a455917cc6
   UnityAds: 358547edbd4c923cd03462289b8813d0ef91999e
   VungleAds: e13f0ea8facb05d5511e31c5abcced79a82409e7
 
-PODFILE CHECKSUM: 1325b180ee019e6c86f13cce8946227c990107fc
+PODFILE CHECKSUM: 65c2a49156d23a8f229d3b996fab1185262cfee1
 
-COCOAPODS: 1.15.2
+COCOAPODS: 1.16.2
