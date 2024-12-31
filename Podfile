@@ -10,11 +10,11 @@ target 'SPCTestSample' do
   # Pods for SPCTestSample
 #  pod 'AvatyeAdCash', :path => '../PointHomeSdk/sdk-ad-library-ios-src/'
 #  pod 'AvatyePointHome', :path => '../AvatyeFrameworks/sdk-point-home-ios-src/'
-  pod 'PointHome', :path => '../sdk-pointhome-spc-ios/'
+#  pod 'PointHome', :path => '../sdk-pointhome-spc-ios/'
   
 #  pod 'AdPopcornSSP', '2.6.2'
   
-#  pod 'PointHome', '1.4.13'
+  pod 'PointHome', '1.4.13'
 
 end
 
