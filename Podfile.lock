@@ -82,8 +82,8 @@ PODS:
     - Naver-Ads-Services (~> 1.0.8)
   - NAMSDK/MediationNDA (7.5.3):
     - NAMSDK/GFPSDK
-  - Naver-Ads-Services (1.0.8)
-  - PointHome (1.4.13):
+  - Naver-Ads-Services (1.0.9)
+  - PointHome (1.4.15):
     - AvatyeAdCash (= 1.0.22)
     - AvatyeAdCash/Ads (= 1.0.22)
     - BuzzvilSDK (= 5.9.7)
@@ -91,7 +91,7 @@ PODS:
   - VungleAds (7.1.0)
 
 DEPENDENCIES:
-  - PointHome (= 1.4.13)
+  - PointHome (= 1.4.15)
 
 SPEC REPOS:
   https://dl.cloudsmith.io/public/avatye/ios-sdk/cocoapods/index.git:
@@ -124,11 +124,11 @@ SPEC CHECKSUMS:
   BuzzvilSDK: d45b79e5437b133083815487dd4e03de0cb080e0
   KissXML: 5c8e0f2e8b9f071d3e1ae123dec3eb5da615c10c
   NAMSDK: a1029c4e4f8699cbb60fa2aae4c2a74bbdbc039e
-  Naver-Ads-Services: 3bb81fb94a346166c47c4332076fa6ffffa0a282
-  PointHome: d592ca0c641f45f4c471b645556a03a455917cc6
+  Naver-Ads-Services: 3982a914de84655b96dbb71404e276ef120d6167
+  PointHome: b8a1eab6b7a61fa79776790e17fd7789515036f4
   UnityAds: 358547edbd4c923cd03462289b8813d0ef91999e
   VungleAds: e13f0ea8facb05d5511e31c5abcced79a82409e7
 
-PODFILE CHECKSUM: 65c2a49156d23a8f229d3b996fab1185262cfee1
+PODFILE CHECKSUM: bba150ded7259d584e87aab926556578750359ee
 
 COCOAPODS: 1.16.2

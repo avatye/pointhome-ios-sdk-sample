@@ -14,7 +14,7 @@ target 'SPCTestSample' do
   
 #  pod 'AdPopcornSSP', '2.6.2'
   
-  pod 'PointHome', '1.4.13'
+  pod 'PointHome', '1.4.15'
 
 end
 

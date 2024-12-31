@@ -53,7 +53,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func openBtnAction(_ sender: Any) {
-        PointHome.openService(rootVC: self, userKey: "12313") { result in
+        PointHome.openService(rootVC: self, userKey: uuid) { result in
             switch result {
             case .success(let t):
                 print("t \(t)")
