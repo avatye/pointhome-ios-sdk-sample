@@ -5,7 +5,7 @@
 //  Created by mick on 2019. 3. 19..
 //  Copyright (c) 2019년 igaworks All rights reserved.
 
-// compatible with UnityAds v4.9.2
+// compatible with UnityAds v4.12.2
 #import "UnityAdsAdapter.h"
 
 static inline NSString *SSPErrorString(SSPErrorCode code)

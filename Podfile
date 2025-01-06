@@ -11,40 +11,41 @@ target 'PointHomeSample' do
   # Comment the next line if you don't want to use dynamic frameworks
 
   # Pods for PointHomeSample
+  
 #  pod 'AdCashFramework', :path => '../AvatyeFrameworks/sdk-ad-library-ios-src/'
 #  pod 'AvatyePointHome', :path => '../AvatyeFrameworks/sdk-point-home-ios-src'
 
     # AvatyePointHome cloudsmith Test
-  pod 'AvatyePointHome', '1.7.11'
+  pod 'AvatyePointHome', '1.7.14'
 #  pod 'AdPopcornSSP', '2.6.5'
 
-#pod 'AvatyeAdCash', :path => '../AvatyeFrameworks/sdk_adcash_ios/'
-#pod 'AvatyePointHome', :path => '../AvatyeFrameworks/sdk_pointhome_ios'
+#  pod 'AvatyeAdCash', :path => '../AvatyeFrameworks/sdk_adcash_ios/'
+#  pod 'AvatyePointHome', :path => '../AvatyeFrameworks/sdk_pointhome_ios'
 
     # mediation
-  pod "NAMSDK" , '7.5.3'
-  pod "NAMSDK/MediationNDA", '7.5.3'
+  pod "NAMSDK" , '7.10.1'
+  pod "NAMSDK/MediationNDA", '7.10.1'
 
   # AppLovin
-  pod 'AppLovinSDK', '12.0.0'
+  pod 'AppLovinSDK', '13.0.1'
   # Pangle
-  pod 'Ads-Global', '5.6.0.5'
+  pod 'Ads-Global', '6.2.0.5'
   # UnityAds
-  pod 'UnityAds', '4.9.2'
+  pod 'UnityAds', '4.12.2'
   # Vungle
-  pod "VungleAds", '7.1.0'
+  pod "VungleAds", '7.4.1'
   # Mintegral
-  pod 'MintegralAdSDK', '7.5.0'
+  pod 'MintegralAdSDK', '7.7.1'
   # FaceBook Audience Network
   pod 'FBAudienceNetwork', '6.14.0'
   # GoogleAds / AdMob
-  pod 'Google-Mobile-Ads-SDK', '10.13.0'
+#  pod 'Google-Mobile-Ads-SDK', '10.13.0'
   # Fyber
   pod 'FairBidSDK', '3.47.0'
   # cauly
-#  pod 'CaulySDK', :git => 'https://github.com/cauly/CaulySDK_iOS.git', :tag => '3.1.22'
+  pod 'CaulySDK', :git => 'https://github.com/cauly/CaulySDK_iOS.git', :tag => '3.1.22'
 
-#  pod 'AdFitSDK'
+  pod 'AdFitSDK', '~> 3.14.0'
 
     # 기타
 #  pod 'BuzzvilSDK', '= 5.3.1'

@@ -6,7 +6,7 @@
 //  Copyright © 2022 AdPopcorn. All rights reserved.
 //
 
-// compatible with AppLovin v12.0.0
+// compatible with AppLovin v13.0.1
 #import "AppLovinAdapter.h"
 
 static inline NSString *SSPErrorString(SSPErrorCode code)
@@ -51,6 +51,7 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
     NSTimer *networkScheduleTimer;
     NSInteger adNetworkNo;
     BOOL _isRewardVerified;
+    BOOL _isMute;
 }
 
 - (void)addAlignCenterConstraint;
@@ -116,6 +117,11 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
 - (BOOL)isSupportInterstitialVideoAd
 {
     return YES;
+}
+
+- (void)setMute:(bool)mute
+{
+    _isMute = mute;
 }
 
 - (void)loadAd
@@ -256,6 +262,8 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
     }
     else if (_adType == SSPRewardVideoAdType)
     {
+        if(_isMute)
+            [ALSdk shared].settings.muted = YES;
         // Check to see if an ad is ready before attempting to show
         if ( [rewardVideoAd isReadyForDisplay] )
         {
@@ -274,6 +282,8 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
     }
     else if (_adType == SSPInterstitialVideoAdType)
     {
+        if(_isMute)
+            [ALSdk shared].settings.muted = YES;
         [ALInterstitialAd shared].adDisplayDelegate = self;
         [ALInterstitialAd shared].adVideoPlaybackDelegate = self;
         [[ALInterstitialAd shared] showAd:interstitialVideoAd];

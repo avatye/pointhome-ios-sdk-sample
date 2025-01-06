@@ -15,6 +15,7 @@ class PHSelectInit{
     var modTage: Int = 0
     var tag: Int = 0
     var testMode: Bool = false
+    var acceptUser: Bool = true
     
     var appId: String? = nil
     var appSecretKey: String? = nil
@@ -104,7 +105,6 @@ class SelectViewController: UIViewController, UITextFieldDelegate{
             PHSelectInit.shared.testMode = false
         }
     }
-    
     
     @objc private func radioButton(_ sender: UIButton){
         print("태그 번호 : ", sender.tag)

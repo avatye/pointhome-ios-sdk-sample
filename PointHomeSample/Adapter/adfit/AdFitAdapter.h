@@ -9,9 +9,9 @@
 #import <AdFitSDK/AdFitSDK-Swift.h>
 
 // Using pod install / unity
-#import <AdPopcornSSP/AdPopcornSSPAdapter.h>
+//#import <AdPopcornSSP/AdPopcornSSPAdapter.h>
 // else
-//#import "AdPopcornSSPAdapter.h"
+#import "AdPopcornSSPAdapter.h"
 
 @interface AdFitAdapter : AdPopcornSSPAdapter
 {
@@ -28,6 +28,9 @@
 @property (nonatomic) CGFloat bizBoardInfoIconBottomConstant;
 @property (nonatomic) CGFloat bizBoardInfoIconLeftConstant;
 @property (nonatomic) CGFloat bizBoardInfoIconRightConstant;
-@end
+@property (nonatomic, unsafe_unretained) BOOL useBizBoardTemplate;
 
+// For Manaual Native
+@property (strong, nonatomic) UIView *adfitNativeAdUIView;
+@end
 

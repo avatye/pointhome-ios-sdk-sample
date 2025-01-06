@@ -6,7 +6,7 @@
 //  Copyright (c) 2019년 igaworks All rights reserved.
 //
 
-// compatible with Mintegral v7.5.1
+// compatible with Mintegral v7.7.1
 #import "MintegralAdapter.h"
 
 static inline NSString *SSPErrorString(SSPErrorCode code)
@@ -59,6 +59,7 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
     
     MTGNativeAdManager *mtgNativeAdManager;
     APMintegralNativeAdRenderer *mintegralNativeAdRenderer;
+    BOOL _isMute;
 }
 @end
 
@@ -136,6 +137,11 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
     return YES;
 }
 
+- (void)setMute:(bool)mute
+{
+    _isMute = mute;
+}
+
 - (void)loadAd
 {
     NSLog(@"MintegralAdapter : loadAd");
@@ -211,6 +217,12 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
             _mintegralUnitId = [_integrationKey valueForKey:@"MintegralUnitId"];
             _mintegralPlacementId = [_integrationKey valueForKey:@"MintegralPlacementId"];
             _mintegralRewardId = [_integrationKey valueForKey:@"MintegralRewardId"];
+            
+            if(_isMute)
+            {
+                [MTGRewardAdManager sharedInstance].playVideoMute = YES;
+            }
+            
             [[MTGRewardAdManager sharedInstance] loadVideoWithPlacementId:_mintegralPlacementId unitId:_mintegralUnitId delegate:self];
         }
         else
@@ -232,6 +244,11 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
             if(!ivAdManager)
             {
                 ivAdManager = [[MTGInterstitialVideoAdManager alloc] initWithPlacementId:_mintegralPlacementId unitId:_mintegralUnitId delegate:self];
+            }
+            
+            if(_isMute)
+            {
+                [ivAdManager setPlayVideoMute:YES];
             }
             ivAdManager.delegate = self;
             [ivAdManager loadAd];

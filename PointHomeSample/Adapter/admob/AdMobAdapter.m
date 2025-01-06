@@ -6,7 +6,7 @@
 //  Copyright (c) 2017년 igaworks All rights reserved.
 //
 
-// compatible with AdMob v10.13.0
+// compatible with AdMob v11.10.0
 #import "AdMobAdapter.h"
 
 static inline NSString *SSPErrorString(SSPErrorCode code)

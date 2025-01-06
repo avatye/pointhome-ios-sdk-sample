@@ -9,6 +9,7 @@
 #define PointHomeSample_Bridging_Header_h
 
 #import "NAMAdapter.h"
+#import "CaulyAdapter.h"
 
 #endif /* PointHomeSample_Bridging_Header_h */
 

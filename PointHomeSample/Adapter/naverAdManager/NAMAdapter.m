@@ -6,7 +6,7 @@
 //  Copyright (c) 2022년 adpopcorn All rights reserved.
 //
 
-// compatible with NAMManger v6.8.2
+// compatible with NAMManger v7.10.1
 #import "NAMAdapter.h"
 
 static inline NSString *SSPErrorString(SSPErrorCode code)
@@ -53,8 +53,10 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
     NSTimer *networkScheduleTimer;
     NSInteger adNetworkNo;
     GFPNativeSimpleAdView *gfpNativeSimpleAdVew;
+    int _closeBtnType, _adGravity;
+    UILabel *_closeLabel;
+    UITapGestureRecognizer *_closeGestureRecognizer;
 }
-- (void)addAlignCenterConstraint;
 @end
 
 @implementation NAMAdapter
@@ -65,12 +67,13 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
 @synthesize bannerView = _bannerView;
 @synthesize adpopcornSSPNativeAd = _adpopcornSSPNativeAd;
 @synthesize adpopcornSSPReactNativeAd = _adpopcornSSPReactNativeAd;
+@synthesize modalRootView = _modalRootView;
 
 - (instancetype)init
 {
     self = [super init];
     if (self){}
-    adNetworkNo = 21;
+    adNetworkNo = 22;
     return self;
 }
 
@@ -117,6 +120,15 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
     _adpopcornSSPReactNativeAd = reactNativeAd;
 }
 
+- (void)setModalAdViewController:(UIViewController *)viewController rootView:(UIView *)modalRootView gravity:(int)adGravity closeBtnType:(int)closeBtnType
+{
+    _viewController = viewController;
+    _adType = SSPModalAdType;
+    _modalRootView = modalRootView;
+    _adGravity = adGravity;
+    _closeBtnType = closeBtnType;
+}
+
 - (BOOL)isSupportInterstitialAd
 {
     return NO;
@@ -135,6 +147,11 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
 - (BOOL)isSupportInterstitialVideoAd
 {
     return NO;
+}
+
+- (BOOL)isSupportModalAd
+{
+    return YES;
 }
 
 - (void)loadAd
@@ -188,7 +205,11 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
             
             adLoader = [[GFPAdLoader alloc] initWithUnitID:adUnitID rootViewController:_viewController adParam:adParam];
             
+            GFPNativeSimpleAdRenderingSetting *simpleRenderingSetting = [[GFPNativeSimpleAdRenderingSetting alloc] init];
+            simpleRenderingSetting.adChoicesPositionInFullAdView = YES;
+            
             GFPAdNativeSimpleOptions *nativeSimpleOptions =  [[GFPAdNativeSimpleOptions alloc] init];
+            nativeSimpleOptions.simpleAdRenderingSetting = simpleRenderingSetting;
             [adLoader setNativeSimpleDelegate:self nativeSimpleOptions:nativeSimpleOptions];
             
             adLoader.delegate = self;
@@ -214,7 +235,10 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
             
             adLoader = [[GFPAdLoader alloc] initWithUnitID:adUnitID rootViewController:_viewController adParam:adParam];
             
+            GFPNativeSimpleAdRenderingSetting *simpleRenderingSetting = [[GFPNativeSimpleAdRenderingSetting alloc] init];
+            simpleRenderingSetting.adChoicesPositionInFullAdView = YES;
             GFPAdNativeSimpleOptions *nativeSimpleOptions =  [[GFPAdNativeSimpleOptions alloc] init];
+            nativeSimpleOptions.simpleAdRenderingSetting = simpleRenderingSetting;
             [adLoader setNativeSimpleDelegate:self nativeSimpleOptions:nativeSimpleOptions];
             
             adLoader.delegate = self;
@@ -230,10 +254,61 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
             [self closeAd];
         }
     }
+    else if (_adType == SSPModalAdType)
+    {
+        if (_integrationKey != nil)
+        {
+            NSString *adUnitID = [_integrationKey valueForKey:@"NamUnitId"];
+            NSLog(@"NAMAdapter SSPModalAdType adUnitID : %@", adUnitID);
+            GFPAdParam *adParam = [[GFPAdParam alloc] init];
+            adLoader = [[GFPAdLoader alloc] initWithUnitID:adUnitID rootViewController:_viewController adParam:adParam];
+                    
+            GFPAdBannerOptions *bannerOptions = [[GFPAdBannerOptions alloc] init];
+            bannerOptions.layoutType = GFPBannerViewLayoutTypeFixed;
+            [adLoader setBannerDelegate:self bannerOptions:bannerOptions];
+            
+            // 광고 요청
+            adLoader.delegate = self;
+            [adLoader loadAd];
+            
+            // 닫기 버튼
+            _closeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 200, [UIScreen mainScreen].bounds.size.width, 20.0f)];
+            
+            _closeLabel.textColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:1.0f]; //206.0f, 212.0f, 218.0f
+            if(_closeBtnType == 0) //
+            {
+                _closeLabel.text = @"광고 닫기";
+            }
+            else
+            {
+                _closeLabel.text = @"오늘 그만 보기";
+            }
+            _closeLabel.textAlignment = NSTextAlignmentRight;
+            _closeLabel.hidden = YES;
+            
+            _closeLabel.userInteractionEnabled = YES;
+            _closeGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickCloseBtn)];
+            [_closeLabel addGestureRecognizer:_closeGestureRecognizer];
+            [_modalRootView addSubview:_closeLabel];
+        }
+        else
+        {
+          if ([_delegate respondsToSelector:@selector(AdPopcornSSPAdapterBannerViewLoadFailError:adapter:)])
+          {
+            [_delegate AdPopcornSSPAdapterBannerViewLoadFailError:[AdPopcornSSPError errorWithDomain:kAdPopcornSSPErrorDomain code:AdPopcornSSPMediationInvalidIntegrationKey userInfo:@{NSLocalizedDescriptionKey: SSPErrorString(AdPopcornSSPMediationInvalidIntegrationKey)}] adapter:self];
+          }
+          
+          [self closeAd];
+        }
+    }
 }
 
 - (void)showAd
 {
+    if (_adType == SSPModalAdType)
+    {
+        _modalRootView.hidden = NO;
+    }
 }
 
 - (void)closeAd
@@ -244,6 +319,18 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
         [gfpBannerView removeFromSuperview];
         gfpBannerView.delegate = nil;
         gfpBannerView = nil;
+    }
+    else if(_adType == SSPModalAdType)
+    {
+        [gfpModalBannerView removeFromSuperview];
+        gfpModalBannerView.delegate = nil;
+        gfpModalBannerView = nil;
+        
+        [_closeLabel removeFromSuperview];
+        [_closeLabel removeGestureRecognizer:_closeGestureRecognizer];
+        _closeLabel = nil;
+        
+        _modalRootView.hidden = YES;
     }
     else if(_adType == SSPReactNativeAdType)
     {
@@ -270,22 +357,104 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
     [superview addConstraint:[NSLayoutConstraint constraintWithItem:gfpBannerView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:superview attribute:NSLayoutAttributeWidth multiplier:0.0 constant:gfpBannerView.frame.size.width]];
 }
 
+- (void)modalAdAlignCenterConstraint
+{
+    // add constraints
+    UIView *superview = _modalRootView;
+    [gfpModalBannerView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [_closeLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
+    
+    // modal ad width
+    [superview addConstraint:[NSLayoutConstraint constraintWithItem:gfpModalBannerView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:superview attribute:NSLayoutAttributeWidth multiplier:0.0 constant:gfpModalBannerView.frame.size.width]];
+    
+    // modal ad height
+    [superview addConstraint:[NSLayoutConstraint constraintWithItem:gfpModalBannerView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:superview attribute:NSLayoutAttributeHeight multiplier:0.0 constant:gfpModalBannerView.frame.size.height]];
+    
+    // modal ad center x
+    [superview addConstraint: [NSLayoutConstraint constraintWithItem:gfpModalBannerView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:superview attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
+    
+    // 0 : Bottom, 1: Center
+    if(_adGravity == 1) // Center
+    {
+        [superview addConstraint: [NSLayoutConstraint constraintWithItem:gfpModalBannerView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:superview attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
+        
+        [superview addConstraint: [NSLayoutConstraint constraintWithItem:gfpModalBannerView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:superview attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
+        
+        [superview addConstraint: [NSLayoutConstraint constraintWithItem:_closeLabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:superview attribute:NSLayoutAttributeCenterY multiplier:1 constant:-(gfpModalBannerView.frame.size.height/2) - 20.0f]];
+    }
+    else // Bottom
+    {
+        CGFloat bottomAreaHeight = [self getSafeBottomAreaHeight];
+        [superview addConstraint: [NSLayoutConstraint constraintWithItem:gfpModalBannerView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:superview attribute:NSLayoutAttributeBottom multiplier:1 constant:-bottomAreaHeight]];
+        
+        [superview addConstraint: [NSLayoutConstraint constraintWithItem:_closeLabel attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:superview attribute:NSLayoutAttributeBottom multiplier:1 constant:(-gfpModalBannerView.frame.size.height - 5.0f - bottomAreaHeight)]];
+    }
+    
+    [superview addConstraint:[NSLayoutConstraint
+                                      constraintWithItem:_closeLabel
+                                      attribute:NSLayoutAttributeRight
+                                      relatedBy:NSLayoutRelationEqual
+                                      toItem:superview
+                                      attribute:NSLayoutAttributeRight
+                                      multiplier:1.0
+                                      constant:-16]];
+}
+
+
+- (CGFloat)getSafeBottomAreaHeight
+{
+    if (@available(iOS 11.0, *)) {
+        return [UIApplication sharedApplication].keyWindow.safeAreaInsets.bottom;
+    } else {
+        // Fallback on earlier versions
+        return 0;
+    }
+}
+
+-(void)clickCloseBtn
+{
+    NSLog(@"NAMAdapter clickCloseBtn");
+    if(_adType == SSPModalAdType)
+    {
+        if ([_delegate respondsToSelector:@selector(AdPopcornSSPAdapterModalAdClosed:)])
+        {
+            [_delegate AdPopcornSSPAdapterModalAdClosed:self];
+        }
+        [self closeAd];
+    }
+}
+
 #pragma mark - GFPAdLoaderDelegate
 - (void)adLoader:(GFPAdLoader *)unifiedAdLoader didReceiveBannerAd:(GFPBannerView *)bannerView {
     NSLog(@"NAMAdapter didReceiveBannerAd : %@", bannerView);
     
-    gfpBannerView = bannerView;
-    [_bannerView addSubview:bannerView];
-
-    if(_bannerView != nil)
+    if(_adType == SSPAdBannerType)
     {
-        _bannerView.frame = CGRectMake(_bannerView.frame.origin.x, _bannerView.frame.origin.y, gfpBannerView.frame.size.width, gfpBannerView.frame.size.height);
-        [self addAlignCenterConstraint];
+        gfpBannerView = bannerView;
+        [_bannerView addSubview:bannerView];
+
+        if(_bannerView != nil)
+        {
+            _bannerView.frame = CGRectMake(_bannerView.frame.origin.x, _bannerView.frame.origin.y, gfpBannerView.frame.size.width, gfpBannerView.frame.size.height);
+            [self addAlignCenterConstraint];
+        }
+
+        if ([_delegate respondsToSelector:@selector(AdPopcornSSPAdapterBannerViewLoadSuccess:)])
+        {
+            [_delegate AdPopcornSSPAdapterBannerViewLoadSuccess:self];
+        }
     }
-
-    if ([_delegate respondsToSelector:@selector(AdPopcornSSPAdapterBannerViewLoadSuccess:)])
+    else if(_adType == SSPModalAdType)
     {
-        [_delegate AdPopcornSSPAdapterBannerViewLoadSuccess:self];
+        _closeLabel.hidden = NO;
+        gfpModalBannerView = bannerView;
+        [_modalRootView addSubview:gfpModalBannerView];
+        [self modalAdAlignCenterConstraint];
+
+        if ([_delegate respondsToSelector:@selector(AdPopcornSSPAdapterModalAdLoadSuccess:)])
+        {
+            [_delegate AdPopcornSSPAdapterModalAdLoadSuccess:self];
+        }
     }
 }
 
@@ -327,7 +496,7 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
         frame.origin.x = 0;
         frame.origin.y = 0;
         _adpopcornSSPReactNativeAd.frame = frame;
-      
+        
         gfpNativeSimpleAdVew = [[NSBundle mainBundle] loadNibNamed:@"GFPNativeSimpleAdView" owner:nil options:nil].firstObject;
         gfpNativeSimpleAdVew.frame = CGRectMake(0, 0, _adpopcornSSPReactNativeAd.frame.size.width, _adpopcornSSPReactNativeAd.frame.size.height);
         [gfpNativeSimpleAdVew layoutIfNeeded];
@@ -348,7 +517,7 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
 }
 
 - (void)adLoader:(GFPAdLoader *)unifiedAdLoader didFailWithError:(GFPError *)error responseInfo:(GFPLoadResponseInfo *)responseInfo {
-    NSLog(@"NAMAdapter didFailWithError1");
+    NSLog(@"NAMAdapter didFailWithError : %@", error);
     if(_adType == SSPAdBannerType)
     {
         if ([_delegate respondsToSelector:@selector(AdPopcornSSPAdapterBannerViewLoadFailError:adapter:)])
@@ -372,6 +541,13 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
             [_delegate AdPopcornSSPAdapterReactNativeAdLoadFailError:error adapter:self];
         }
     }
+    else if(_adType == SSPModalAdType)
+    {
+        if ([_delegate respondsToSelector:@selector(AdPopcornSSPAdapterModalAdLoadFailError:adapter:)])
+        {
+            [_delegate AdPopcornSSPAdapterModalAdLoadFailError:error adapter:self];
+        }
+    }
 }
 
 #pragma mark - GFPBannerViewDelegate
@@ -388,14 +564,31 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
 - (void)bannerAdWasSeen:(GFPBannerView *)bannerView
 {
     NSLog(@"NAMAdapter bannerAdWasSeen");
+    if(_adType == SSPModalAdType)
+    {
+        if ([_delegate respondsToSelector:@selector(AdPopcornSSPAdapterModalAdShowSuccess:)])
+        {
+            [_delegate AdPopcornSSPAdapterModalAdShowSuccess:self];
+        }
+    }
 }
 
 - (void)bannerAdWasClicked:(GFPBannerView *)bannerView
 {
     NSLog(@"NAMAdapter bannerAdWasClicked");
-    if ([_delegate respondsToSelector:@selector(AdPopcornSSPAdapterBannerViewClicked:)])
+    if(_adType == SSPAdBannerType)
     {
-        [_delegate AdPopcornSSPAdapterBannerViewClicked:self];
+        if ([_delegate respondsToSelector:@selector(AdPopcornSSPAdapterBannerViewClicked:)])
+        {
+            [_delegate AdPopcornSSPAdapterBannerViewClicked:self];
+        }
+    }
+    else if(_adType == SSPModalAdType)
+    {
+        if ([_delegate respondsToSelector:@selector(AdPopcornSSPAdapterModalAdClicked:)])
+        {
+            [_delegate AdPopcornSSPAdapterModalAdClicked:self];
+        }
     }
 }
 
@@ -446,7 +639,7 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
 - (void)nativeSimpleAd:(GFPNativeSimpleAd *)nativeSimpleAd didFailWithError:(GFPError *)error
 {
     // Rendering error
-    NSLog(@"NAMAdapter GFPNativeSimpleAdDelegate didFailWithError");
+    NSLog(@"NAMAdapter GFPNativeSimpleAdDelegate didFailWithError : %@", error);
     if(_adType == SSPNativeAdType)
     {
         if ([_delegate respondsToSelector:@selector(AdPopcornSSPAdapterNativeAdLoadFailError:adapter:)])
@@ -466,7 +659,6 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
     NSLog(@"NAMAdapter GFPNativeSimpleAdDelegate didChangeMediaViewSizeWith : %f, %f", size.width, size.height);
     if(_adType == SSPReactNativeAdType)
     {
-        gfpNativeSimpleAdVew.frame = CGRectMake(0, 0, size.width, size.height);
         if ([_delegate respondsToSelector:@selector(AdPopcornSSPAdapterReactNativeAdSizeChanged:adSize:)])
         {
             [_delegate AdPopcornSSPAdapterReactNativeAdSizeChanged:self adSize:size];

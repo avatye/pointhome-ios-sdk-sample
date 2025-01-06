@@ -38,13 +38,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        let appId = "bd969bec6d80480fa2c28945e195cf5e"
-        let appSecretKey = "1b09ec06154848ce"
+        let appId = "7686ed203d5546f093f5be626833a24d"
+        let appSecretKey = "994bb30d95f840fb"
         
         // mult appID
         AvatyePH.initialize(appId: appId, appSecretKey: appSecretKey, logLevel: .debug)
         
-        AdCashInit.setting(appId: "68b388c0247e45c3afde2f14066d1d66", appSecretKey: "a6df264fbd6d4fec", logLevel: .debug)
+        AdCashInit.setting(appId: appId, appSecretKey: appSecretKey, logLevel: .debug)
         
         // test appId
 //        AvatyePH.initialize(appId: "1cd2e20a33e941dd942940ac03891562", appSecretKey: "c4b642121ee94d01",logLevel: .debug)
@@ -75,15 +75,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
             // Fallback on earlier versions
         }
         
-//        if let adSetting = CaulyAdSetting.global() {
-//            CaulyAdSetting.setLogLevel(CaulyLogLevelDebug)
-//            adSetting.appId = "868410196"
-//            adSetting.appCode = "wAsKi1r6"
-//            adSetting.animType = CaulyAnimNone
-//            adSetting.closeOnLanding = true
-//        } else {
-//            print("Cauly Setting none")
-//        }
+        if let adSetting = CaulyAdSetting.global() {
+            CaulyAdSetting.setLogLevel(CaulyLogLevelDebug)
+            adSetting.appId = "868410196"
+            adSetting.appCode = "wAsKi1r6"
+            adSetting.animType = CaulyAnimNone
+            adSetting.closeOnLanding = true
+        } else {
+            print("Cauly Setting none")
+        }
 
         #if canImport(GFPSDK)
         GFPAdManager.setup(withPublisherCd: "7976096509", target: self) { error in
@@ -96,10 +96,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         #endif
         
         #if canImport(AppLovinSDK)
-        ALSdk.shared()?.mediationProvider = "max"
-        ALSdk.shared()?.userIdentifier = "123"
-        ALSdk.shared()?.settings.isMuted = true
-        ALSdk.initializeSdk()
+        let sdkKey = "nPNmWdnX7aDsJQd7yPG7w-rzdTAJJ3qcBNpgSoWzDrm4bUMSmHZJsv-2XRTSiOItVTm7FWZ7PrkUEKeVvlomd1"
+        let initConfig = ALSdkInitializationConfiguration(sdkKey: sdkKey) { builder in
+            builder.mediationProvider = ALMediationProviderMAX
+        }
+        ALSdk.shared().initialize(with: initConfig) { sdkConfig in
+        }
         #endif
         
         #if canImport(PAGAdSDK)

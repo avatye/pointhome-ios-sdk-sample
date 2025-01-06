@@ -6,7 +6,7 @@
 //  Copyright (c) 2020년 igaworks All rights reserved.
 //
 
-// compatible with Pangle v5.6.0.5
+// compatible with Pangle v6.2.0.5
 #import "PangleAdapter.h"
 
 static inline NSString *SSPErrorString(SSPErrorCode code)
@@ -55,6 +55,9 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
     NSString *pangleAppId, *panglePlacementId;
     NSTimer *networkScheduleTimer;
     NSInteger adNetworkNo;
+    NSMutableArray *_impTrackersListArray, *_clickTrackersListArray;
+    NSString *_biddingData;
+    BOOL _isInAppBidding;
 }
 
 @end
@@ -114,6 +117,19 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
 - (BOOL)isSupportInterstitialVideoAd
 {
     return YES;
+}
+
+- (void)setBiddingData:(NSString *)biddingData impressionList:(NSMutableArray *)impTrackersListArray clickList: (NSMutableArray *)clickTrackersListArray
+{
+    _biddingData = biddingData;
+    _impTrackersListArray = impTrackersListArray;
+    _clickTrackersListArray =  clickTrackersListArray;
+}
+
+- (void)setInAppBiddingMode:(bool)isInAppBiddingMode
+{
+    _isInAppBidding = isInAppBiddingMode;
+    NSLog(@"PangleAdapter setInAppBiddingMode : %d", _isInAppBidding);
 }
 
 - (void)loadAd
@@ -177,12 +193,24 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
         _isCurrentRunningAdapter = YES;
         if (_integrationKey != nil)
         {
-            pangleAppId = [_integrationKey valueForKey:@"PangleAppId"];
-            panglePlacementId = [_integrationKey valueForKey:@"PanglePlacementId"];
+            if(_isInAppBidding)
+            {
+                pangleAppId = @"";
+                panglePlacementId = [_integrationKey valueForKey:@"pangle_placement_id"];
+            }
+            else
+            {
+                pangleAppId = [_integrationKey valueForKey:@"PangleAppId"];
+                panglePlacementId = [_integrationKey valueForKey:@"PanglePlacementId"];
+            }
             
             //It is required to generate a new BURewardedVideoAd object each time calling the loadAdData method to request the latest rewarded video ad. Please do not reuse the local cache rewarded video ad.
             
             PAGRewardedRequest *request = [PAGRewardedRequest request];
+            if(_isInAppBidding)
+            {
+                request.adString = _biddingData;
+            }
             [PAGRewardedAd loadAdWithSlotID:panglePlacementId request:request completionHandler:^(PAGRewardedAd * _Nullable rewardedAd, NSError * _Nullable error) {
                 if (error) {
                     NSLog(@"PangleAdapter RV load fail : %@",error);
@@ -220,11 +248,22 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
         NSLog(@"PangleAdapter %@ : SSPInterstitialVideoAdType loadAd", self);
         if (_integrationKey != nil)
         {
-            pangleAppId = [_integrationKey valueForKey:@"PangleAppId"];
-            panglePlacementId = [_integrationKey valueForKey:@"PanglePlacementId"];
-            
+            if(_isInAppBidding)
+            {
+                pangleAppId = @"";
+                panglePlacementId = [_integrationKey valueForKey:@"pangle_placement_id"];
+            }
+            else
+            {
+                pangleAppId = [_integrationKey valueForKey:@"PangleAppId"];
+                panglePlacementId = [_integrationKey valueForKey:@"PanglePlacementId"];
+            }
             //It is required to generate a new BURewardedVideoAd object each time calling the loadAdData method to request the latest rewarded video ad. Please do not reuse the local cache rewarded video ad.
             PAGInterstitialRequest *request = [PAGInterstitialRequest request];
+            if(_isInAppBidding)
+            {
+                request.adString = _biddingData;
+            }
             [PAGLInterstitialAd loadAdWithSlotID:panglePlacementId request:request completionHandler:^(PAGLInterstitialAd * _Nullable interstitialAd, NSError * _Nullable error) {
                     if (error) {
                         NSLog(@"PangleAdapter IV load fail : %@",error);
@@ -324,9 +363,14 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
         [networkScheduleTimer invalidate];
 }
 
+- (NSString *)getBiddingToken
+{
+    return [PAGSdk getBiddingToken:nil];
+}
+
 #pragma mark PAGRewardedAdDelegate, PAGLInterstitialAdDelegate
-- (void)adDidShow:(PAGRewardedAd *)ad {
-    NSLog(@"PangleAdapter adDidShow");
+- (void)adDidShow:(id<PAGAdProtocol>)ad {
+    NSLog(@"PangleAdapter adDidShow : %d", _adType);
     if(_adType == SSPRewardVideoAdType)
     {
         if (_isCurrentRunningAdapter && [_delegate respondsToSelector:@selector(AdPopcornSSPAdapterRewardVideoAdShowSuccess:)])
@@ -341,14 +385,28 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
             [_delegate AdPopcornSSPAdapterInterstitialVideoAdShowSuccess:self];
         }
     }
+    for(NSString *url in _impTrackersListArray)
+    {
+        if ([_delegate respondsToSelector:@selector(impClickTracking:)])
+        {
+            [_delegate impClickTracking:url];
+        }
+    }
 }
 
-- (void)adDidClick:(PAGRewardedAd *)ad {
-    NSLog(@"PangleAdapter adDidClick");
+- (void)adDidClick:(id<PAGAdProtocol>)ad {
+    NSLog(@"PangleAdapter adDidClick : %d", _adType);
+    for(NSString *url in _clickTrackersListArray)
+    {
+        if ([_delegate respondsToSelector:@selector(impClickTracking:)])
+        {
+            [_delegate impClickTracking:url];
+        }
+    }
 }
 
-- (void)adDidDismiss:(PAGRewardedAd *)ad {
-    NSLog(@"PangleAdapter adDidDismiss");
+- (void)adDidDismiss:(id<PAGAdProtocol>)ad {
+    NSLog(@"PangleAdapter adDidDismiss : %d", _adType);
     if(_adType == SSPRewardVideoAdType)
     {
         if ([_delegate respondsToSelector:@selector(AdPopcornSSPAdapterRewardVideoAdClose:)])

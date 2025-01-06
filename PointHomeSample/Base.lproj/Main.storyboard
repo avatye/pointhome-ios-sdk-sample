@@ -9,6 +9,46 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Collection View Controller-->
+        <scene sceneID="u8z-G9-SHm">
+            <objects>
+                <viewController id="t0I-mn-Sdr" customClass="CollectionViewController" customModule="PointHomeSample" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5Jh-AE-ndz">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="D1s-uP-lMt">
+                                <rect key="frame" x="0.0" y="268" width="414" height="200"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="5B6-72-WTv"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="jxf-O1-8Tf">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="oxc-Jw-sGh"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="oxc-Jw-sGh" firstAttribute="trailing" secondItem="D1s-uP-lMt" secondAttribute="trailing" id="SXA-zl-eW5"/>
+                            <constraint firstItem="D1s-uP-lMt" firstAttribute="leading" secondItem="oxc-Jw-sGh" secondAttribute="leading" id="g02-2E-LO8"/>
+                            <constraint firstItem="D1s-uP-lMt" firstAttribute="centerY" secondItem="5Jh-AE-ndz" secondAttribute="centerY" id="zlw-Fc-Q8x"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="hax-FC-SQa"/>
+                    <connections>
+                        <outlet property="pointHomeCollectionView" destination="D1s-uP-lMt" id="AjP-ih-xoj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wdr-Fd-kFa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3078" y="-680"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -81,6 +121,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ppv-cw-0Go">
+                                <rect key="frame" x="290" y="289" width="75" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <connections>
+                                    <segue destination="t0I-mn-Sdr" kind="show" id="Lb9-hV-MNY"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="S7x-Uv-i5Y"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -101,11 +149,13 @@
                             <constraint firstItem="HLH-iL-ZkD" firstAttribute="top" secondItem="oV9-gF-7MQ" secondAttribute="bottom" constant="20" id="byW-Ec-C5y"/>
                             <constraint firstItem="oV9-gF-7MQ" firstAttribute="top" secondItem="00N-hu-S1z" secondAttribute="bottom" constant="20" id="g5D-lu-CrR"/>
                             <constraint firstItem="S7x-Uv-i5Y" firstAttribute="trailing" secondItem="HLH-iL-ZkD" secondAttribute="trailing" constant="10" id="geq-lt-GQA"/>
+                            <constraint firstItem="Ppv-cw-0Go" firstAttribute="leading" secondItem="66K-HA-S4H" secondAttribute="trailing" constant="20" id="jZ7-vd-S3Y"/>
                             <constraint firstItem="oV9-gF-7MQ" firstAttribute="leading" secondItem="S7x-Uv-i5Y" secondAttribute="leading" constant="10" id="ja6-ZP-Jbz"/>
                             <constraint firstItem="cYV-pj-N88" firstAttribute="top" secondItem="S7x-Uv-i5Y" secondAttribute="top" constant="30" id="kze-Xn-i9G"/>
                             <constraint firstItem="wcO-YY-Zb8" firstAttribute="top" secondItem="6kl-F1-e1r" secondAttribute="bottom" constant="30" id="lRq-us-qsF"/>
                             <constraint firstItem="hFk-Lf-h0l" firstAttribute="top" secondItem="66K-HA-S4H" secondAttribute="bottom" constant="30" id="val-Wo-fA5"/>
                             <constraint firstItem="6kl-F1-e1r" firstAttribute="top" secondItem="cYV-pj-N88" secondAttribute="bottom" constant="30" id="xHs-jU-OXp"/>
+                            <constraint firstItem="Ppv-cw-0Go" firstAttribute="centerY" secondItem="66K-HA-S4H" secondAttribute="centerY" id="yfL-zu-Fgp"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="6Fy-g6-STS"/>
@@ -411,22 +461,8 @@
                     <view key="view" contentMode="scaleToFill" id="qKM-6o-XOz">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ry6-VD-9Qc">
-                                <rect key="frame" x="169.66666666666666" y="671" width="75" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                                <connections>
-                                    <action selector="dashBtnAction:" destination="PUb-VY-rOt" eventType="touchUpInside" id="usI-th-hAE"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="dKj-do-6OE"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="Ry6-VD-9Qc" firstAttribute="centerX" secondItem="qKM-6o-XOz" secondAttribute="centerX" id="gpX-SB-Gem"/>
-                            <constraint firstItem="dKj-do-6OE" firstAttribute="bottom" secondItem="Ry6-VD-9Qc" secondAttribute="bottom" constant="30" id="m3W-fq-3o5"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="hvW-b3-zfa"/>
                 </viewController>

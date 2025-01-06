@@ -16,12 +16,15 @@ class AdCashController: UIViewController{
     @IBOutlet weak var appSecretKeyLabel: UILabel!
     @IBOutlet weak var ApIdLabel: UILabel!
     
-    let appId: String = "6626e5f80d3b4642a5ed2638dcc20f38"
-    let appSecretKey: String = "a01ff9b3d5d54068"
-    let APID: String = "4598b895-a213-4e06-b6ef-602eb4f33eb2"
-    let InterAPID: String = "2e1868bd-fe27-4065-af83-94ac5641683b"
+    let appId: String = "1cd2e20a33e941dd942940ac03891562"
+    let appSecretKey: String = "c4b642121ee94d01"
+    let APID: String = "55782ef7-68ac-4c1a-9342-929fe671fbbb"
+    let InterAPID: String = "f43acc7d-273c-4747-a2d4-9a35bad705a09"
     let nativeAPID: String = "f499d84a-9a2c-464a-8c1b-ffd6e4d2392d"
     
+    let adCashAppId: String = "0ff121d0b7b24d04b27b0efa9d162656"
+    let adCashAppSecretKey: String = "9f30be8f57b34e44"
+    let adCashBanner: String = "1a652ca9-8fbb-4b64-b13c-af431319e549"
     
     var bannerLoader: BannerAdLoader! = nil
     
@@ -33,33 +36,16 @@ class AdCashController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.appIdLabel.text = "appId: \(appId)"
-        self.appSecretKeyLabel.text = "appSecretKey: \(appSecretKey)"
-        self.ApIdLabel.text = "APID: \(APID)"
         
-//        bannerLoader = BannerAdLoader(rootVC: self, placementId: APID, size: .DYNAMIC)
-//            .setConfig(appId: appId, appSecretKey: appSecretKey)
-//        bannerLoader.delegate = self
-//        
-//        bannerLoader.setNAMNative { adPopcornSSPNativeAd, nib in
-//            
-//            if let xibView = nib.instantiate(withOwner: nil, options: nil).first as? GFPNativeSimpleAdView {
-//                print("xibView instantiate  success \(xibView)")
-//                let apNAMNativeAdRenderer = APNAMNativeAdRenderer()
-//                apNAMNativeAdRenderer.namNativeSimpleAdView = xibView
-//                adPopcornSSPNativeAd.setNAMRenderer(apNAMNativeAdRenderer, superView: xibView)
-//            }else{
-//                print("xibView instantiate failed")
-//            }
-//
-//        }
+        self.appIdLabel.text = "appId: \(adCashAppId)"
+        self.appSecretKeyLabel.text = "appSecretKey: \(adCashAppSecretKey)"
+        self.ApIdLabel.text = "APID: \(adCashBanner)"
         
-        bannerAdView = BannerAdView(frame: .zero).setConfig(appId: appId, appSecretKey: appSecretKey)
-        bannerAdView.setBannerAd(rootVC: self, placementId: APID, size: .DYNAMIC)
-        bannerAdView.delegate = self
+        bannerLoader = BannerAdLoader(rootVC: self, placementId: adCashBanner, size: .DYNAMIC)
+            .setConfig(appId: adCashAppId, appSecretKey: adCashAppSecretKey)
+        bannerLoader.delegate = self
         
-        bannerAdView.setNAMNative { adPopcornSSPNativeAd, nib in
-
+        bannerLoader.setNAMNative { adPopcornSSPNativeAd, nib in
             if let xibView = nib.instantiate(withOwner: nil, options: nil).first as? GFPNativeSimpleAdView {
                 print("xibView instantiate  success \(xibView)")
                 let apNAMNativeAdRenderer = APNAMNativeAdRenderer()
@@ -68,25 +54,51 @@ class AdCashController: UIViewController{
             }else{
                 print("xibView instantiate failed")
             }
-
         }
+//        bannerLoader.setNAMNative(type: .Image, width: 200) { adPopcornSSPNativeAd, view in
+//            guard let xibView = view as? GFPNativeSimpleAdView else{
+//                print("Failed to cast UIView to GFPNativeSimpleAdView")
+//                return
+//            }
+//            print("xibView frame \(xibView.frame.width) \(xibView.frame.height)")
+//            let apNAMNativeAdRenderer = APNAMNativeAdRenderer()
+//            apNAMNativeAdRenderer.namNativeSimpleAdView = xibView
+//            adPopcornSSPNativeAd.setNAMRenderer(apNAMNativeAdRenderer, superView: xibView)
+//        }
+        
+        
+        bannerAdView = BannerAdView(frame: .zero).setConfig(appId: adCashAppId, appSecretKey: adCashAppSecretKey)
+        bannerAdView.setBannerAd(rootVC: self, placementId: adCashBanner, size: .DYNAMIC)
+        bannerAdView.delegate = self
+        
+//        bannerAdView.setNAMNAtive(type: .Smart, width: 200) { adPopcornSSPNativeAd, view in
+//            guard let xibView = view as? GFPNativeSimpleAdView else{
+//                print("Failed to cast UIView to GFPNativeSimpleAdView")
+//                return
+//            }
+//            print("xibView frame \(xibView.frame.width) \(xibView.frame.height)")
+//            let apNAMNativeAdRenderer = APNAMNativeAdRenderer()
+//            apNAMNativeAdRenderer.namNativeSimpleAdView = xibView
+//            adPopcornSSPNativeAd.setNAMRenderer(apNAMNativeAdRenderer, superView: xibView)
+//        }
         
         self.bannerView.addSubview(self.bannerAdView)
         
         
         interLoader = InterstitialAdLoader(placementId: InterAPID, rootViewController: self)
-//            .setConfig(appId: appId, appSecretKey: appSecretKey)
+            .setConfig(appId: appId, appSecretKey: appSecretKey)
         interLoader.delegate = self
     
     }
     
     @IBAction func requsetAdBtnAction(_ sender: Any) {
-//        bannerLoader.requestAd()
-        bannerAdView.requestAd()
+        bannerLoader.requestAd()
+//        bannerAdView.requestAd()
     }
     
     @IBAction func testBtnAction(_ sender: Any) {
-        interLoader.requestAd()
+//        bannerAdView.requestAd()
+        bannerLoader.removeAd()
     }
     
 
@@ -114,7 +126,7 @@ extension AdCashController: BannerAdLoaderDelegate{
     func onBannerLoaded(_ apid: String, adView: UIView, size: CGSize) {
         print("adCashController adCash frame onBannerLoaded size \(size)")
         
-        self.view.addSubview(adView)
+        self.bannerView.addSubview(adView)
         
 //        adView.frame = CGRect(x: 0, y: 0, width: ewidth, height: eheight)
     
@@ -123,13 +135,14 @@ extension AdCashController: BannerAdLoaderDelegate{
         NSLayoutConstraint.activate([
             adView.widthAnchor.constraint(equalToConstant: size.width),
             adView.heightAnchor.constraint(equalToConstant: size.height),
-            adView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            adView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+            adView.centerXAnchor.constraint(equalTo: self.bannerView.centerXAnchor),
+            adView.centerYAnchor.constraint(equalTo: self.bannerView.centerYAnchor)
         ])
         print("bannerView frame point \(self.bannerView.frame.origin.x) \(self.bannerView.frame.origin.y)")
         
         print("adView frame point \(adView.frame.origin.x) \(adView.frame.origin.y)")
         print("adView frame size \(adView.frame.width) \(adView.frame.height)")
+        adView.backgroundColor = .gray
     }
     
     func onBannerClicked(_ apid: String) {
@@ -152,7 +165,6 @@ extension AdCashController: BannerAdLoaderDelegate{
 extension AdCashController: InterstitialAdDelegate{
     func onInterstitalLoaded(_ apid: String) {
         print("adCashController interstitial Loaded")
-        
     }
     
     func onInterstitalOpened(_ apid: String) {
@@ -175,6 +187,9 @@ extension AdCashController: InterstitialAdDelegate{
 extension AdCashController: BannerAdWidgetDelegate{
     func onBannerLoaded(_ apid: String) {
         print("adCashController adCash bannerView Loader")
+        
+        print("bannerView size \(self.bannerAdView.frame.size)")
+//        self.bannerAdView.backgroundColor = .black
     }
     
     

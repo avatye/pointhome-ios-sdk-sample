@@ -6,10 +6,7 @@
 //  Copyright (c) 2017년 igaworks All rights reserved.
 //
 
-#import "Cauly.h"
-#import "CaulyAdView.h"
-#import "CaulyInterstitialAd.h"
-#import "CaulyAdSetting.h"
+@import CaulySDK;
 
 // Using pod install / unity
 #import <AdPopcornSSP/AdPopcornSSPAdapter.h>

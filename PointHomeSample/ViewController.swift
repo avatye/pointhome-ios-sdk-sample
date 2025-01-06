@@ -118,7 +118,7 @@ class ViewController: UIViewController{
                 if PHSelectInit.shared.userKey == "" {
                     PHSelectInit.shared.userKey = nil
                 }
-                print("stage appId \(appID) appSecretKey \(appSecretKey)")
+                print("stage appId \(appID) appSecretKey \(appSecretKey) \(PHSelectInit.shared.userKey)")
             default:
                 // error
                 print("stage tag Error")
@@ -150,9 +150,9 @@ class ViewController: UIViewController{
         super.viewDidLoad()
         
         if PHSelectInit.shared.userKey == nil {
-            pointHomeService = AvatyePHService(rootViewController: self, appId: appID, appSecretKey: appSecretKey, userKey: PHSelectInit.shared.userKey, fullScreen: true)
+            pointHomeService = AvatyePHService(rootViewController: self, appId: appID, appSecretKey: appSecretKey, userKey: PHSelectInit.shared.userKey)
         }else{
-            pointHomeService = AvatyePHService(rootViewController: self, appId: appID, appSecretKey: appSecretKey, userKey: PHSelectInit.shared.userKey, fullScreen: true)
+            pointHomeService = AvatyePHService(rootViewController: self, appId: appID, appSecretKey: appSecretKey, userKey: PHSelectInit.shared.userKey)
         }
         self.pointHomeService.delegate = self
         pointHomeService.setCashButton()
@@ -161,18 +161,6 @@ class ViewController: UIViewController{
         
         pointHomeService.convertFunc(convert: convertClosure)
         pointHomeService.acceptUserFunc(closeure: acceptClosure)
-        
-//        NotificationCenter.default.addObserver(self, selector: #selector(didEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
-        
-    }
-    
-    @objc func didEnterBackground(){
-        print("didEnterBackground")
-    }
-    
-    @objc func willEnterForeground(){
-        print("willEnterForeground")
     }
     
     func replaceLast4DigitsWithTEST(appID: String) -> String {
@@ -203,8 +191,6 @@ class ViewController: UIViewController{
 //            self.pointHomeService = nil
 //        }
         
-//        NotificationCenter.default.removeObserver(self)
-        
     }
     
     override var shouldAutorotate: Bool {
@@ -215,7 +201,6 @@ class ViewController: UIViewController{
         return .portrait
     }
     
-
     @IBAction func phBtnAction(_ sender: Any) {
         self.view.endEditing(true)
         pointHomeService.openPointHome { result in

@@ -6,7 +6,7 @@
 //  Copyright (c) 2023년 Adpopcorn All rights reserved.
 //
 
-// compatible with AdFit v3.14.2
+// compatible with AdFit v3.15.4
 #import "AdFitAdapter.h"
 
 static inline NSString *SSPErrorString(SSPErrorCode code)
@@ -176,20 +176,26 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
         if (_integrationKey != nil)
         {
             NSString *clientId = [_integrationKey valueForKey:[[_integrationKey allKeys] firstObject]];
-        
-            [_adpopcornSSPNativeAd addSubview:adfitNativeAdRenderer.adfitBizBoardTemplate];
-            
-            CGFloat width = _adpopcornSSPNativeAd.frame.size.width;
-            CGFloat leftRightMargin = BizBoardTemplate.defaultEdgeInset.left +
-            BizBoardTemplate.defaultEdgeInset.right;
-            CGFloat topBottomMargin = BizBoardTemplate.defaultEdgeInset.top
-            + BizBoardTemplate.defaultEdgeInset.bottom;
-            CGFloat bizBoardWidth = width - leftRightMargin;
-            CGFloat bizBoardRatio = 1029.0 / 258.0;
-            CGFloat bizBoardHeight = bizBoardWidth / bizBoardRatio;
-            CGFloat height = bizBoardHeight + topBottomMargin;
-            
-            adfitNativeAdRenderer.adfitBizBoardTemplate.frame = CGRectMake(0, 0, width, height);
+            if(adfitNativeAdRenderer.useBizBoardTemplate)
+            {
+                [_adpopcornSSPNativeAd addSubview:adfitNativeAdRenderer.adfitBizBoardTemplate];
+                
+                CGFloat width = _adpopcornSSPNativeAd.frame.size.width;
+                CGFloat leftRightMargin = BizBoardTemplate.defaultEdgeInset.left +
+                BizBoardTemplate.defaultEdgeInset.right;
+                CGFloat topBottomMargin = BizBoardTemplate.defaultEdgeInset.top
+                + BizBoardTemplate.defaultEdgeInset.bottom;
+                CGFloat bizBoardWidth = width - leftRightMargin;
+                CGFloat bizBoardRatio = 1029.0 / 258.0;
+                CGFloat bizBoardHeight = bizBoardWidth / bizBoardRatio;
+                CGFloat height = bizBoardHeight + topBottomMargin;
+                
+                adfitNativeAdRenderer.adfitBizBoardTemplate.frame = CGRectMake(0, 0, width, height);
+            }
+            else
+            {
+                [_adpopcornSSPNativeAd addSubview:adfitNativeAdRenderer.adfitNativeAdUIView];
+            }
             _adFitNativeAdLoader = [[AdFitNativeAdLoader alloc] initWithClientId:clientId count:1 userObject:nil contentObject:nil];
             _adFitNativeAdLoader.delegate = self;
             
@@ -311,9 +317,17 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
         _adFitNativeAd.infoIconRightConstant = adfitNativeAdRenderer.bizBoardInfoIconRightConstant;
         _adFitNativeAd.infoIconBottomConstant = adfitNativeAdRenderer.bizBoardInfoIconBottomConstant;
         _adFitNativeAd.infoIconLeftConstant = adfitNativeAdRenderer.bizBoardInfoIconLeftConstant;
-        [_adFitNativeAd bind:adfitNativeAdRenderer.adfitBizBoardTemplate];
-        _adFitNativeAd.delegate = self;
-        adfitNativeAdRenderer.adfitBizBoardTemplate.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        if(adfitNativeAdRenderer.useBizBoardTemplate)
+        {
+            [_adFitNativeAd bind:adfitNativeAdRenderer.adfitBizBoardTemplate];
+            _adFitNativeAd.delegate = self;
+            adfitNativeAdRenderer.adfitBizBoardTemplate.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        }
+        else
+        {
+            [_adFitNativeAd bind:adfitNativeAdRenderer.adfitNativeAdUIView];
+            _adFitNativeAd.delegate = self;
+        }
     }
     else if(_adType == SSPReactNativeAdType)
     {
@@ -422,5 +436,15 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
 
 @implementation APAdFitNativeAdRenderer
 {
+}
+
+- (instancetype)init
+{
+    self = [super init];
+    if(self)
+    {
+        _useBizBoardTemplate = YES;
+    }
+    return self;
 }
 @end

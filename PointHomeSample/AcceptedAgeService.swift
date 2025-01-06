@@ -22,11 +22,18 @@ class AcceptedAgeService{
         
         try await Task.sleep(nanoseconds: 1 * 1_000_000_000) // 5초 단위로 변환.
     
-        if let firstCharacter = userKey.first, firstCharacter.isNumber{
+//        if let firstCharacter = userKey.first, firstCharacter.isNumber{
+//            let model = acceptedUserModel(usable: true)
+//            return model
+//        } else {
+//            let model = acceptedUserModel(usable: false, message: "14세 미만입니다.")
+//            return model
+//        }
+        if PHSelectInit.shared.acceptUser {
             let model = acceptedUserModel(usable: true)
             return model
         } else {
-            let model = acceptedUserModel(usable: true)
+            let model = acceptedUserModel(usable: false, message: "14세 미만입니다.")
             return model
         }
     }

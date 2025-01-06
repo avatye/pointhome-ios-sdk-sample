@@ -6,7 +6,7 @@
 //  Copyright (c) 2019년 igaworks All rights reserved.
 //
 
-// compatible with Vungle v7.1.0
+// compatible with Vungle v7.4.1
 #import "VungleAdapter.h"
 
 static inline NSString *SSPErrorString(SSPErrorCode code)
@@ -49,21 +49,23 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
     }
 }
 
-@interface VungleAdapter () <VungleBannerDelegate, VungleRewardedDelegate, VungleInterstitialDelegate>
+@interface VungleAdapter () <VungleBannerDelegate, VungleRewardedDelegate, VungleInterstitialDelegate, VungleNativeDelegate>
 {
     BOOL _isCurrentRunningAdapter;
-    NSString *vungleAppId, *vungleBannerPlacementId, *vungleRVPlacementId, *vungleIVPlacementId;
+    NSString *vungleAppId, *vungleBannerPlacementId, *vungleRVPlacementId, *vungleIVPlacementId, *vungleNativePlacementId;
     NSTimer *networkScheduleTimer;
     NSInteger adNetworkNo;
-    BOOL _isMute;
     NSMutableArray *_impTrackersListArray, *_clickTrackersListArray;
     NSString *_biddingData;
     BOOL _isInAppBidding;
+    APVungleNativeAdRenderer *vungleNativeAdRenderer;
 }
 
 @property (nonatomic, strong) VungleBanner *bannerAd;
 @property (nonatomic, strong) VungleRewarded *rewardedAd;
 @property (nonatomic, strong) VungleInterstitial *interstitialAd;
+@property (nonatomic, strong) VungleNative *nativeAd;
+
 @end
 
 @implementation VungleAdapter
@@ -72,6 +74,7 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
 @synthesize integrationKey = _integrationKey;
 @synthesize viewController = _viewController;
 @synthesize bannerView = _bannerView;
+@synthesize adpopcornSSPNativeAd = _adpopcornSSPNativeAd;
 
 - (instancetype)init
 {
@@ -109,6 +112,15 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
     _adType = SSPInterstitialVideoAdType;
 }
 
+- (void)setNativeAdViewController:(UIViewController *)viewController nativeAdRenderer:(id)nativeAdRenderer rootNativeAdView:(AdPopcornSSPNativeAd *)adpopcornSSPNativeAd
+{
+    _viewController = viewController;
+    _adType = SSPNativeAdType;
+    if([nativeAdRenderer isKindOfClass:[APVungleNativeAdRenderer class]])
+        vungleNativeAdRenderer = nativeAdRenderer;
+    _adpopcornSSPNativeAd = adpopcornSSPNativeAd;
+}
+
 - (BOOL)isSupportInterstitialAd
 {
     return NO;
@@ -124,16 +136,16 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
     return YES;
 }
 
+- (BOOL)isSupportNativeAd
+{
+    return YES;
+}
+
 - (void)setBiddingData:(NSString *)biddingData impressionList:(NSMutableArray *)impTrackersListArray clickList: (NSMutableArray *)clickTrackersListArray
 {
     _biddingData = biddingData;
     _impTrackersListArray = impTrackersListArray;
     _clickTrackersListArray =  clickTrackersListArray;
-}
-
-- (void)setMute:(bool)mute
-{
-    _isMute = mute;
 }
 
 - (void)setInAppBiddingMode:(bool)isInAppBiddingMode
@@ -387,6 +399,39 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
             [self invalidateNetworkTimer];
         }
     }
+    else if(_adType == SSPNativeAdType)
+    {
+        if (_integrationKey != nil)
+        {
+            if(_isInAppBidding)
+            {
+                vungleAppId = @"";
+                vungleNativePlacementId = [_integrationKey valueForKey:@"vungle_placement_id"];
+            }
+            else
+            {
+                vungleAppId = [_integrationKey valueForKey:@"VungleAppId"];
+                vungleNativePlacementId = [_integrationKey valueForKey:@"VunglePlacementId"];
+            }
+            if (self.nativeAd != nil)
+            {
+                self.nativeAd.delegate = nil;
+                self.nativeAd = nil;
+            }
+              
+            self.nativeAd = [[VungleNative alloc] initWithPlacementId:vungleNativePlacementId];
+            self.nativeAd.delegate = self;
+            [self.nativeAd load:nil];
+        }
+        else{
+            NSLog(@"VungleAdapter nativeAd no integrationKey");
+            if (_isCurrentRunningAdapter && [_delegate respondsToSelector:@selector(AdPopcornSSPAdapterNativeAdLoadFailError:adapter:)])
+            {
+                [_delegate AdPopcornSSPAdapterNativeAdLoadFailError:[NSError errorWithDomain:kAdPopcornSSPErrorDomain code:AdPopcornSSPMediationInvalidIntegrationKey userInfo:@{NSLocalizedDescriptionKey: SSPErrorString(AdPopcornSSPMediationInvalidIntegrationKey)}] adapter:self];
+            }
+            [self invalidateNetworkTimer];
+        }
+    }
 }
 
 - (void)showAd
@@ -412,6 +457,10 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
         }
         self.bannerAd.delegate = nil;
         self.bannerAd = nil;
+    }
+    else if(_adType == SSPNativeAdType)
+    {
+        [self.nativeAd unregisterView];
     }
     else{
         _isCurrentRunningAdapter = NO;
@@ -638,9 +687,11 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
         }
     }
 }
+
 - (void)interstitialAdWillLeaveApplication:(VungleInterstitial *)interstitial {
     NSLog(@"VungleAdapter interstitialAdWillLeaveApplication");
 }
+
 - (void)interstitialAdDidClose:(VungleInterstitial *)interstitial {
     NSLog(@"VungleAdapter interstitialAdDidClose");
     _isCurrentRunningAdapter = NO;
@@ -650,9 +701,102 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
     }
 }
 
+#pragma mark - VungleNative Deleagate Methods
+- (void)nativeAdDidLoad:(VungleNative *)native {
+    NSLog(@"VungleAdapter nativeAdDidLoad");
+    if(vungleNativeAdRenderer.titleLbl != nil)
+    {
+        vungleNativeAdRenderer.titleLbl.text = self.nativeAd.title;
+    }
+    
+    if(vungleNativeAdRenderer.ratingLbl != nil)
+    {
+        vungleNativeAdRenderer.ratingLbl.text = [NSString stringWithFormat:@"Rating: %f", self.nativeAd.adStarRating > 0 ? self.nativeAd.adStarRating : 0];
+    }
+    
+    if(vungleNativeAdRenderer.sponsorLbl != nil)
+    {
+        vungleNativeAdRenderer.sponsorLbl.text = self.nativeAd.sponsoredText;
+    }
+    
+    if(vungleNativeAdRenderer.adTextLbl != nil)
+    {
+        vungleNativeAdRenderer.adTextLbl.text = self.nativeAd.bodyText;
+    }
+    
+    if(vungleNativeAdRenderer.downloadBtn != nil)
+    {
+        [vungleNativeAdRenderer.downloadBtn setTitle:self.nativeAd.callToAction forState:UIControlStateNormal];
+    }
+
+    self.nativeAd.adOptionsPosition = NativeAdOptionsPositionTopRight;
+    [self.nativeAd registerViewForInteractionWithView:vungleNativeAdRenderer.nativeAdView
+                                              mediaView:vungleNativeAdRenderer.mediaView
+                                          iconImageView:vungleNativeAdRenderer.iconView
+                                         viewController:_viewController
+                                         clickableViews:@[vungleNativeAdRenderer.iconView,
+                                                          vungleNativeAdRenderer.downloadBtn,
+                                                          vungleNativeAdRenderer.titleLbl,
+                                                          vungleNativeAdRenderer.adTextLbl,
+                                                          vungleNativeAdRenderer.nativeAdView]];
+    
+    if ([_delegate respondsToSelector:@selector(AdPopcornSSPAdapterNativeAdLoadSuccess:)])
+    {
+        [_delegate AdPopcornSSPAdapterNativeAdLoadSuccess:self];
+    }
+}
+
+- (void)nativeAdDidFailToLoad:(VungleNative *)native
+                    withError:(NSError *)withError {
+    NSLog(@"VungleAdapter nativeAdDidFailToLoad : %@", withError);
+    if ([_delegate respondsToSelector:@selector(AdPopcornSSPAdapterNativeAdLoadFailError:adapter:)])
+    {
+        [_delegate AdPopcornSSPAdapterNativeAdLoadFailError:withError adapter:self];
+    }
+}
+
+- (void)nativeAdDidFailToPresent:(VungleNative *)native
+                       withError:(NSError *)withError {
+    NSLog(@"Vungle5dapter nativeAdDidFailToPresent : %@", withError);
+    if ([_delegate respondsToSelector:@selector(AdPopcornSSPAdapterNativeAdLoadFailError:adapter:)])
+    {
+        [_delegate AdPopcornSSPAdapterNativeAdLoadFailError:withError adapter:self];
+    }
+}
+
+- (void)nativeAdDidTrackImpression:(VungleNative *)native {
+    NSLog(@"VungleAdapter nativeAdDidTrackImpression");
+    if ([_delegate respondsToSelector:@selector(AdPopcornSSPAdapterNativeAdImpression:)])
+    {
+        [_delegate AdPopcornSSPAdapterNativeAdImpression:self];
+    }
+}
+
+- (void)nativeAdDidClick:(VungleNative *)native {
+    NSLog(@"VungleAdapter nativeAdDidClick");
+    if ([_delegate respondsToSelector:@selector(AdPopcornSSPAdapterNativeAdClicked:)])
+    {
+        [_delegate AdPopcornSSPAdapterNativeAdClicked:self];
+    }
+}
+
 - (NSString *)getBiddingToken
 {
     return [VungleAds getBiddingToken];
 }
 
+@end
+
+@implementation APVungleNativeAdRenderer
+{
+}
+
+- (instancetype)init
+{
+    self = [super init];
+    if(self)
+    {
+    }
+    return self;
+}
 @end

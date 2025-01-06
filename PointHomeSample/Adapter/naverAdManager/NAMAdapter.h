@@ -16,7 +16,7 @@
 @interface NAMAdapter : AdPopcornSSPAdapter
 {
     GFPAdLoader *adLoader;
-    GFPBannerView *gfpBannerView, *gfpNativeBannerView;
+    GFPBannerView *gfpBannerView, *gfpModalBannerView;
     GFPNativeSimpleAd *gfpNativeSimpleAd;
 }
 
