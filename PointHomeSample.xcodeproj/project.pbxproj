@@ -7,16 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0B09C3802D193D5C00D93DCB /* CaulyAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B09C3612D193D5C00D93DCB /* CaulyAdapter.m */; };
-		0B09C3812D193D5C00D93DCB /* AppLovinAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B09C3642D193D5C00D93DCB /* AppLovinAdapter.m */; };
-		0B09C3822D193D5C00D93DCB /* UnityAdsAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B09C3672D193D5C00D93DCB /* UnityAdsAdapter.m */; };
 		0B09C3832D193D5C00D93DCB /* FANAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B09C36A2D193D5C00D93DCB /* FANAdapter.m */; };
-		0B09C3842D193D5C00D93DCB /* MintegralAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B09C36D2D193D5C00D93DCB /* MintegralAdapter.m */; };
-		0B09C3852D193D5C00D93DCB /* GFPNativeSimpleAdView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B09C36F2D193D5C00D93DCB /* GFPNativeSimpleAdView.xib */; };
-		0B09C3862D193D5C00D93DCB /* NAMAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B09C3722D193D5C00D93DCB /* NAMAdapter.m */; };
-		0B09C3872D193D5C00D93DCB /* PangleAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B09C3752D193D5C00D93DCB /* PangleAdapter.m */; };
-		0B09C3882D193D5C00D93DCB /* VungleAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B09C3782D193D5C00D93DCB /* VungleAdapter.m */; };
-		0B09C3892D193D5C00D93DCB /* FyberAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B09C37B2D193D5C00D93DCB /* FyberAdapter.m */; };
+		0B1B5A732D6C128900977891 /* AppLovinAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B1B5A402D6C128800977891 /* AppLovinAdapter.m */; };
+		0B1B5A772D6C128900977891 /* CaulyAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B1B5A4E2D6C128900977891 /* CaulyAdapter.m */; };
+		0B1B5A782D6C128900977891 /* FyberAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B1B5A512D6C128900977891 /* FyberAdapter.m */; };
+		0B1B5A792D6C128900977891 /* UnityAdsAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B1B5A542D6C128900977891 /* UnityAdsAdapter.m */; };
+		0B1B5A7A2D6C128900977891 /* VungleAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B1B5A572D6C128900977891 /* VungleAdapter.m */; };
+		0B1B5A7D2D6C128900977891 /* PangleAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B1B5A5E2D6C128900977891 /* PangleAdapter.m */; };
+		0B1B5A812D6C128900977891 /* MintegralAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B1B5A672D6C128900977891 /* MintegralAdapter.m */; };
+		0B1B5A822D6C128900977891 /* NAMAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B1B5A6A2D6C128900977891 /* NAMAdapter.m */; };
+		0B1B5A832D6C128900977891 /* GFPNativeSimpleAdView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B1B5A6C2D6C128900977891 /* GFPNativeSimpleAdView.xib */; };
 		0B44DF6E2C04176300E29BD6 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B44DF6D2C04176300E29BD6 /* WebKit.framework */; };
 		0B5A6FEA2C4916A10062DFE4 /* AcceptedAgeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5A6FE92C4916A10062DFE4 /* AcceptedAgeService.swift */; };
 		0B5D2F4C2BA417D400CECA39 /* ExchangeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5D2F4B2BA417D400CECA39 /* ExchangeService.swift */; };
@@ -36,7 +36,7 @@
 		0BEB3F512A60ED0C005C1C04 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BEB3F4F2A60ED0C005C1C04 /* LaunchScreen.storyboard */; };
 		0BEB3F662A611716005C1C04 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BEB3F652A611715005C1C04 /* AdSupport.framework */; };
 		0BEB3F682A611722005C1C04 /* AppTrackingTransparency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BEB3F672A611722005C1C04 /* AppTrackingTransparency.framework */; };
-		8A72F1EA49E547DE2E12925F /* Pods_PointHomeSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47C444C62A0AB36330BAC7A0 /* Pods_PointHomeSample.framework */; };
+		3FC140F276F4E8F5F4290CD5 /* Pods_PointHomeSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA1A3BA6600B4120B29733A7 /* Pods_PointHomeSample.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -64,25 +64,25 @@
 
 /* Begin PBXFileReference section */
 		0B06BB4E2AE680F600C7539F /* AdServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdServices.framework; path = System/Library/Frameworks/AdServices.framework; sourceTree = SDKROOT; };
-		0B09C3602D193D5C00D93DCB /* CaulyAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaulyAdapter.h; sourceTree = "<group>"; };
-		0B09C3612D193D5C00D93DCB /* CaulyAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaulyAdapter.m; sourceTree = "<group>"; };
-		0B09C3632D193D5C00D93DCB /* AppLovinAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppLovinAdapter.h; sourceTree = "<group>"; };
-		0B09C3642D193D5C00D93DCB /* AppLovinAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppLovinAdapter.m; sourceTree = "<group>"; };
-		0B09C3662D193D5C00D93DCB /* UnityAdsAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnityAdsAdapter.h; sourceTree = "<group>"; };
-		0B09C3672D193D5C00D93DCB /* UnityAdsAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnityAdsAdapter.m; sourceTree = "<group>"; };
 		0B09C3692D193D5C00D93DCB /* FANAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FANAdapter.h; sourceTree = "<group>"; };
 		0B09C36A2D193D5C00D93DCB /* FANAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FANAdapter.m; sourceTree = "<group>"; };
-		0B09C36C2D193D5C00D93DCB /* MintegralAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MintegralAdapter.h; sourceTree = "<group>"; };
-		0B09C36D2D193D5C00D93DCB /* MintegralAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MintegralAdapter.m; sourceTree = "<group>"; };
-		0B09C36F2D193D5C00D93DCB /* GFPNativeSimpleAdView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GFPNativeSimpleAdView.xib; sourceTree = "<group>"; };
-		0B09C3712D193D5C00D93DCB /* NAMAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAMAdapter.h; sourceTree = "<group>"; };
-		0B09C3722D193D5C00D93DCB /* NAMAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NAMAdapter.m; sourceTree = "<group>"; };
-		0B09C3742D193D5C00D93DCB /* PangleAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PangleAdapter.h; sourceTree = "<group>"; };
-		0B09C3752D193D5C00D93DCB /* PangleAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PangleAdapter.m; sourceTree = "<group>"; };
-		0B09C3772D193D5C00D93DCB /* VungleAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VungleAdapter.h; sourceTree = "<group>"; };
-		0B09C3782D193D5C00D93DCB /* VungleAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VungleAdapter.m; sourceTree = "<group>"; };
-		0B09C37A2D193D5C00D93DCB /* FyberAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FyberAdapter.h; sourceTree = "<group>"; };
-		0B09C37B2D193D5C00D93DCB /* FyberAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FyberAdapter.m; sourceTree = "<group>"; };
+		0B1B5A3F2D6C128800977891 /* AppLovinAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppLovinAdapter.h; sourceTree = "<group>"; };
+		0B1B5A402D6C128800977891 /* AppLovinAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppLovinAdapter.m; sourceTree = "<group>"; };
+		0B1B5A422D6C128900977891 /* CaulyAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaulyAdapter.h; sourceTree = "<group>"; };
+		0B1B5A4E2D6C128900977891 /* CaulyAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaulyAdapter.m; sourceTree = "<group>"; };
+		0B1B5A502D6C128900977891 /* FyberAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FyberAdapter.h; sourceTree = "<group>"; };
+		0B1B5A512D6C128900977891 /* FyberAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FyberAdapter.m; sourceTree = "<group>"; };
+		0B1B5A532D6C128900977891 /* UnityAdsAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnityAdsAdapter.h; sourceTree = "<group>"; };
+		0B1B5A542D6C128900977891 /* UnityAdsAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnityAdsAdapter.m; sourceTree = "<group>"; };
+		0B1B5A562D6C128900977891 /* VungleAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VungleAdapter.h; sourceTree = "<group>"; };
+		0B1B5A572D6C128900977891 /* VungleAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VungleAdapter.m; sourceTree = "<group>"; };
+		0B1B5A5E2D6C128900977891 /* PangleAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PangleAdapter.m; sourceTree = "<group>"; };
+		0B1B5A5F2D6C128900977891 /* PangleAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PangleAdapter.h; sourceTree = "<group>"; };
+		0B1B5A662D6C128900977891 /* MintegralAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MintegralAdapter.h; sourceTree = "<group>"; };
+		0B1B5A672D6C128900977891 /* MintegralAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MintegralAdapter.m; sourceTree = "<group>"; };
+		0B1B5A692D6C128900977891 /* NAMAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAMAdapter.h; sourceTree = "<group>"; };
+		0B1B5A6A2D6C128900977891 /* NAMAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NAMAdapter.m; sourceTree = "<group>"; };
+		0B1B5A6C2D6C128900977891 /* GFPNativeSimpleAdView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GFPNativeSimpleAdView.xib; sourceTree = "<group>"; };
 		0B44DF6D2C04176300E29BD6 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		0B44DF7A2C04BB8E00E29BD6 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		0B44DF7C2C04BB8E00E29BD6 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -110,9 +110,9 @@
 		0BEB3F522A60ED0C005C1C04 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0BEB3F652A611715005C1C04 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		0BEB3F672A611722005C1C04 /* AppTrackingTransparency.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppTrackingTransparency.framework; path = System/Library/Frameworks/AppTrackingTransparency.framework; sourceTree = SDKROOT; };
-		47C444C62A0AB36330BAC7A0 /* Pods_PointHomeSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PointHomeSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4DB71715C4461A8C8A09CB08 /* Pods-PointHomeSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PointHomeSample.debug.xcconfig"; path = "Target Support Files/Pods-PointHomeSample/Pods-PointHomeSample.debug.xcconfig"; sourceTree = "<group>"; };
-		EC52DC0EB8D10A4CFA29A966 /* Pods-PointHomeSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PointHomeSample.release.xcconfig"; path = "Target Support Files/Pods-PointHomeSample/Pods-PointHomeSample.release.xcconfig"; sourceTree = "<group>"; };
+		0DFBD9477C8BC3EE145FC0FC /* Pods-PointHomeSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PointHomeSample.release.xcconfig"; path = "Target Support Files/Pods-PointHomeSample/Pods-PointHomeSample.release.xcconfig"; sourceTree = "<group>"; };
+		85919432FAE74121BC620D59 /* Pods-PointHomeSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PointHomeSample.debug.xcconfig"; path = "Target Support Files/Pods-PointHomeSample/Pods-PointHomeSample.debug.xcconfig"; sourceTree = "<group>"; };
+		EA1A3BA6600B4120B29733A7 /* Pods_PointHomeSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PointHomeSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,40 +123,13 @@
 				0B44DF6E2C04176300E29BD6 /* WebKit.framework in Frameworks */,
 				0BEB3F682A611722005C1C04 /* AppTrackingTransparency.framework in Frameworks */,
 				0BEB3F662A611716005C1C04 /* AdSupport.framework in Frameworks */,
-				8A72F1EA49E547DE2E12925F /* Pods_PointHomeSample.framework in Frameworks */,
+				3FC140F276F4E8F5F4290CD5 /* Pods_PointHomeSample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0B09C3622D193D5C00D93DCB /* cauly */ = {
-			isa = PBXGroup;
-			children = (
-				0B09C3602D193D5C00D93DCB /* CaulyAdapter.h */,
-				0B09C3612D193D5C00D93DCB /* CaulyAdapter.m */,
-			);
-			path = cauly;
-			sourceTree = "<group>";
-		};
-		0B09C3652D193D5C00D93DCB /* applovin */ = {
-			isa = PBXGroup;
-			children = (
-				0B09C3632D193D5C00D93DCB /* AppLovinAdapter.h */,
-				0B09C3642D193D5C00D93DCB /* AppLovinAdapter.m */,
-			);
-			path = applovin;
-			sourceTree = "<group>";
-		};
-		0B09C3682D193D5C00D93DCB /* unityads */ = {
-			isa = PBXGroup;
-			children = (
-				0B09C3662D193D5C00D93DCB /* UnityAdsAdapter.h */,
-				0B09C3672D193D5C00D93DCB /* UnityAdsAdapter.m */,
-			);
-			path = unityads;
-			sourceTree = "<group>";
-		};
 		0B09C36B2D193D5C00D93DCB /* facebook */ = {
 			isa = PBXGroup;
 			children = (
@@ -166,72 +139,99 @@
 			path = facebook;
 			sourceTree = "<group>";
 		};
-		0B09C36E2D193D5C00D93DCB /* mintegral */ = {
+		0B1B5A3E2D6C128800977891 /* applovin */ = {
 			isa = PBXGroup;
 			children = (
-				0B09C36C2D193D5C00D93DCB /* MintegralAdapter.h */,
-				0B09C36D2D193D5C00D93DCB /* MintegralAdapter.m */,
+				0B1B5A3F2D6C128800977891 /* AppLovinAdapter.h */,
+				0B1B5A402D6C128800977891 /* AppLovinAdapter.m */,
 			);
-			path = mintegral;
+			path = applovin;
 			sourceTree = "<group>";
 		};
-		0B09C3702D193D5C00D93DCB /* native sample view */ = {
+		0B1B5A412D6C128900977891 /* cauly */ = {
 			isa = PBXGroup;
 			children = (
-				0B09C36F2D193D5C00D93DCB /* GFPNativeSimpleAdView.xib */,
+				0B1B5A422D6C128900977891 /* CaulyAdapter.h */,
+				0B1B5A4E2D6C128900977891 /* CaulyAdapter.m */,
 			);
-			path = "native sample view";
+			path = cauly;
 			sourceTree = "<group>";
 		};
-		0B09C3732D193D5C00D93DCB /* naverAdManager */ = {
+		0B1B5A4F2D6C128900977891 /* fyber */ = {
 			isa = PBXGroup;
 			children = (
-				0B09C3702D193D5C00D93DCB /* native sample view */,
-				0B09C3712D193D5C00D93DCB /* NAMAdapter.h */,
-				0B09C3722D193D5C00D93DCB /* NAMAdapter.m */,
+				0B1B5A502D6C128900977891 /* FyberAdapter.h */,
+				0B1B5A512D6C128900977891 /* FyberAdapter.m */,
 			);
-			path = naverAdManager;
+			path = fyber;
 			sourceTree = "<group>";
 		};
-		0B09C3762D193D5C00D93DCB /* pangle */ = {
+		0B1B5A522D6C128900977891 /* unityads */ = {
 			isa = PBXGroup;
 			children = (
-				0B09C3742D193D5C00D93DCB /* PangleAdapter.h */,
-				0B09C3752D193D5C00D93DCB /* PangleAdapter.m */,
+				0B1B5A532D6C128900977891 /* UnityAdsAdapter.h */,
+				0B1B5A542D6C128900977891 /* UnityAdsAdapter.m */,
 			);
-			path = pangle;
+			path = unityads;
 			sourceTree = "<group>";
 		};
-		0B09C3792D193D5C00D93DCB /* vungle */ = {
+		0B1B5A552D6C128900977891 /* vungle */ = {
 			isa = PBXGroup;
 			children = (
-				0B09C3772D193D5C00D93DCB /* VungleAdapter.h */,
-				0B09C3782D193D5C00D93DCB /* VungleAdapter.m */,
+				0B1B5A562D6C128900977891 /* VungleAdapter.h */,
+				0B1B5A572D6C128900977891 /* VungleAdapter.m */,
 			);
 			path = vungle;
 			sourceTree = "<group>";
 		};
-		0B09C37C2D193D5C00D93DCB /* fyber */ = {
+		0B1B5A5D2D6C128900977891 /* pangle */ = {
 			isa = PBXGroup;
 			children = (
-				0B09C37A2D193D5C00D93DCB /* FyberAdapter.h */,
-				0B09C37B2D193D5C00D93DCB /* FyberAdapter.m */,
+				0B1B5A5E2D6C128900977891 /* PangleAdapter.m */,
+				0B1B5A5F2D6C128900977891 /* PangleAdapter.h */,
 			);
-			path = fyber;
+			path = pangle;
+			sourceTree = "<group>";
+		};
+		0B1B5A652D6C128900977891 /* mintegral */ = {
+			isa = PBXGroup;
+			children = (
+				0B1B5A662D6C128900977891 /* MintegralAdapter.h */,
+				0B1B5A672D6C128900977891 /* MintegralAdapter.m */,
+			);
+			path = mintegral;
+			sourceTree = "<group>";
+		};
+		0B1B5A682D6C128900977891 /* naverAdManager */ = {
+			isa = PBXGroup;
+			children = (
+				0B1B5A692D6C128900977891 /* NAMAdapter.h */,
+				0B1B5A6A2D6C128900977891 /* NAMAdapter.m */,
+				0B1B5A6B2D6C128900977891 /* native sample view */,
+			);
+			path = naverAdManager;
+			sourceTree = "<group>";
+		};
+		0B1B5A6B2D6C128900977891 /* native sample view */ = {
+			isa = PBXGroup;
+			children = (
+				0B1B5A6C2D6C128900977891 /* GFPNativeSimpleAdView.xib */,
+			);
+			path = "native sample view";
 			sourceTree = "<group>";
 		};
 		0BBD85092C8AA155005C7944 /* Adapter */ = {
 			isa = PBXGroup;
 			children = (
-				0B09C3652D193D5C00D93DCB /* applovin */,
-				0B09C3622D193D5C00D93DCB /* cauly */,
+				0B1B5A3E2D6C128800977891 /* applovin */,
+				0B1B5A412D6C128900977891 /* cauly */,
+				0B1B5A4F2D6C128900977891 /* fyber */,
+				0B1B5A652D6C128900977891 /* mintegral */,
+				0B1B5A682D6C128900977891 /* naverAdManager */,
+				0B1B5A5D2D6C128900977891 /* pangle */,
+				0B1B5A522D6C128900977891 /* unityads */,
+				0B1B5A552D6C128900977891 /* vungle */,
 				0B09C36B2D193D5C00D93DCB /* facebook */,
-				0B09C37C2D193D5C00D93DCB /* fyber */,
-				0B09C36E2D193D5C00D93DCB /* mintegral */,
-				0B09C3732D193D5C00D93DCB /* naverAdManager */,
-				0B09C3762D193D5C00D93DCB /* pangle */,
-				0B09C3682D193D5C00D93DCB /* unityads */,
-				0B09C3792D193D5C00D93DCB /* vungle */,
 			);
 			path = Adapter;
 			sourceTree = "<group>";
@@ -283,8 +283,8 @@
 		494FE005009341AE24612775 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				4DB71715C4461A8C8A09CB08 /* Pods-PointHomeSample.debug.xcconfig */,
-				EC52DC0EB8D10A4CFA29A966 /* Pods-PointHomeSample.release.xcconfig */,
+				85919432FAE74121BC620D59 /* Pods-PointHomeSample.debug.xcconfig */,
+				0DFBD9477C8BC3EE145FC0FC /* Pods-PointHomeSample.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -299,7 +299,7 @@
 				0BEB3F652A611715005C1C04 /* AdSupport.framework */,
 				0B44DF7A2C04BB8E00E29BD6 /* WidgetKit.framework */,
 				0B44DF7C2C04BB8E00E29BD6 /* SwiftUI.framework */,
-				47C444C62A0AB36330BAC7A0 /* Pods_PointHomeSample.framework */,
+				EA1A3BA6600B4120B29733A7 /* Pods_PointHomeSample.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -311,14 +311,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0BEB3F552A60ED0C005C1C04 /* Build configuration list for PBXNativeTarget "PointHomeSample" */;
 			buildPhases = (
-				863F6F50EF5DAD7BD68001F6 /* [CP] Check Pods Manifest.lock */,
+				6B3BEFBE8289DFC0FBFB70EA /* [CP] Check Pods Manifest.lock */,
 				0BEB3F3D2A60ED0A005C1C04 /* Sources */,
 				0BEB3F3E2A60ED0A005C1C04 /* Frameworks */,
 				0BEB3F3F2A60ED0A005C1C04 /* Resources */,
 				0B44DF902C04BB8F00E29BD6 /* Embed Foundation Extensions */,
 				0B8355A52C2BFB3400003692 /* Embed Frameworks */,
-				067DA6565EAF5BF9ED2E3928 /* [CP] Embed Pods Frameworks */,
-				D51E29FFA5408F5B45EFA336 /* [CP] Copy Pods Resources */,
+				A3F9928ED4B21417C6EA651F /* [CP] Embed Pods Frameworks */,
+				7B0DC1EA891A9415AD7AF9DB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -369,9 +369,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				0BEB3F512A60ED0C005C1C04 /* LaunchScreen.storyboard in Resources */,
-				0B09C3852D193D5C00D93DCB /* GFPNativeSimpleAdView.xib in Resources */,
 				0BEB3F4E2A60ED0C005C1C04 /* Assets.xcassets in Resources */,
 				0BEB3F4C2A60ED0A005C1C04 /* Main.storyboard in Resources */,
+				0B1B5A832D6C128900977891 /* GFPNativeSimpleAdView.xib in Resources */,
 				0B6536E12CF019EB00C49B03 /* PointHomeCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -379,24 +379,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		067DA6565EAF5BF9ED2E3928 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PointHomeSample/Pods-PointHomeSample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PointHomeSample/Pods-PointHomeSample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PointHomeSample/Pods-PointHomeSample-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		863F6F50EF5DAD7BD68001F6 /* [CP] Check Pods Manifest.lock */ = {
+		6B3BEFBE8289DFC0FBFB70EA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -418,7 +401,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D51E29FFA5408F5B45EFA336 /* [CP] Copy Pods Resources */ = {
+		7B0DC1EA891A9415AD7AF9DB /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -435,6 +418,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PointHomeSample/Pods-PointHomeSample-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		A3F9928ED4B21417C6EA651F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PointHomeSample/Pods-PointHomeSample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PointHomeSample/Pods-PointHomeSample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PointHomeSample/Pods-PointHomeSample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -443,26 +443,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B5A6FEA2C4916A10062DFE4 /* AcceptedAgeService.swift in Sources */,
-				0B09C3822D193D5C00D93DCB /* UnityAdsAdapter.m in Sources */,
-				0B09C3862D193D5C00D93DCB /* NAMAdapter.m in Sources */,
 				0BD9C2EF2BC77159009FE46A /* AdCashController.swift in Sources */,
-				0B09C3882D193D5C00D93DCB /* VungleAdapter.m in Sources */,
+				0B1B5A782D6C128900977891 /* FyberAdapter.m in Sources */,
 				0B6536E02CF019EB00C49B03 /* PointHomeCollectionViewCell.swift in Sources */,
 				0B6536DD2CF0191500C49B03 /* CollectionViewController.swift in Sources */,
-				0B09C3802D193D5C00D93DCB /* CaulyAdapter.m in Sources */,
 				0B90C6CF2BFC3E3E00D0D6C1 /* ManualViewController.swift in Sources */,
+				0B1B5A812D6C128900977891 /* MintegralAdapter.m in Sources */,
+				0B1B5A7A2D6C128900977891 /* VungleAdapter.m in Sources */,
 				0B746BC72B46425000F571DC /* TestWebViewController.swift in Sources */,
 				0BBD844C2C7DA572005C7944 /* CashButtonWebViewController.swift in Sources */,
 				0BEB3F492A60ED0A005C1C04 /* ViewController.swift in Sources */,
+				0B1B5A772D6C128900977891 /* CaulyAdapter.m in Sources */,
+				0B1B5A792D6C128900977891 /* UnityAdsAdapter.m in Sources */,
 				0B5FAD0F2BDA19170059ED10 /* SelectViewController.swift in Sources */,
-				0B09C3812D193D5C00D93DCB /* AppLovinAdapter.m in Sources */,
+				0B1B5A7D2D6C128900977891 /* PangleAdapter.m in Sources */,
 				0B5D2F4C2BA417D400CECA39 /* ExchangeService.swift in Sources */,
-				0B09C3842D193D5C00D93DCB /* MintegralAdapter.m in Sources */,
-				0B09C3892D193D5C00D93DCB /* FyberAdapter.m in Sources */,
+				0B1B5A822D6C128900977891 /* NAMAdapter.m in Sources */,
+				0B1B5A732D6C128900977891 /* AppLovinAdapter.m in Sources */,
 				0B09C3832D193D5C00D93DCB /* FANAdapter.m in Sources */,
 				0BEB3F452A60ED0A005C1C04 /* AppDelegate.swift in Sources */,
 				0BEB3F472A60ED0A005C1C04 /* SceneDelegate.swift in Sources */,
-				0B09C3872D193D5C00D93DCB /* PangleAdapter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -610,10 +610,11 @@
 		};
 		0BEB3F562A60ED0C005C1C04 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4DB71715C4461A8C8A09CB08 /* Pods-PointHomeSample.debug.xcconfig */;
+			baseConfigurationReference = 85919432FAE74121BC620D59 /* Pods-PointHomeSample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -652,10 +653,11 @@
 		};
 		0BEB3F572A60ED0C005C1C04 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EC52DC0EB8D10A4CFA29A966 /* Pods-PointHomeSample.release.xcconfig */;
+			baseConfigurationReference = 0DFBD9477C8BC3EE145FC0FC /* Pods-PointHomeSample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;

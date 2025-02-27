@@ -10,7 +10,6 @@ import AdSupport
 import AvatyePointHome
 import ActivityKit
 import WebKit
-import GFPSDK
 
 class ViewController: UIViewController{
     
@@ -73,7 +72,8 @@ class ViewController: UIViewController{
     
     var adBool: Bool = false
     
-    override func viewDidLoad() {        
+    override func viewDidLoad() {
+        print("uuid \(uuid)")
         // test
         if PHSelectInit.shared.modTage == 0 {
             self.modeLabel.text = "대역 : TEST"
@@ -105,12 +105,12 @@ class ViewController: UIViewController{
             switch PHSelectInit.shared.tag{
             case 0:
                 // 채널링
-                self.appID = "844a3ea8c7a548dbb42adefd4fb0db87"
-                self.appSecretKey = "3b4e4421d41c4de3"
+                self.appID = "38d562c948274074b409b81e48cf8f26"
+                self.appSecretKey = "087bbae957554644"
             case 1:
                 // Default
-                self.appID = "93a584254434475eb9d140986e9da8cb"
-                self.appSecretKey = "03a4998cbcce4ca8"
+                self.appID = "b2034cfe205d49f59667ca58f1193041"
+                self.appSecretKey = "d6c6674bf31544fa"
             case 2:
                 // manual
                 self.appID = PHSelectInit.shared.appId ?? ""
@@ -150,9 +150,10 @@ class ViewController: UIViewController{
         super.viewDidLoad()
         
         if PHSelectInit.shared.userKey == nil {
-            pointHomeService = AvatyePHService(rootViewController: self, appId: appID, appSecretKey: appSecretKey, userKey: PHSelectInit.shared.userKey)
+            pointHomeService = AvatyePHService(rootViewController: self, appId: appID, appSecretKey: appSecretKey, userKey: PHSelectInit.shared.userKey, openKey: PHSelectInit.shared.openKey, fullScreen: false)
         }else{
-            pointHomeService = AvatyePHService(rootViewController: self, appId: appID, appSecretKey: appSecretKey, userKey: PHSelectInit.shared.userKey)
+            print("PHSelectInit openkey \(PHSelectInit.shared.openKey)")
+            pointHomeService = AvatyePHService(rootViewController: self, appId: appID, appSecretKey: appSecretKey, userKey: PHSelectInit.shared.userKey, openKey: PHSelectInit.shared.openKey, fullScreen: false)
         }
         self.pointHomeService.delegate = self
         pointHomeService.setCashButton()
@@ -266,9 +267,10 @@ class ViewController: UIViewController{
                 print("getUserProfile notAgreed")
             }
         }
+        
     }
 
-
+    
 }
 
 extension ViewController: AvatyePHDelegate{

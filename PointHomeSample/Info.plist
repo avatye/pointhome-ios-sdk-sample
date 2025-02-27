@@ -32,7 +32,7 @@
 		<false/>
 	</dict>
 	<key>PointHomeMode</key>
-	<string>test</string>
+	<real>0.0</real>
 	<key>SKAdNetworkItems</key>
 	<array>
 		<dict>
@@ -233,7 +233,7 @@
 		</dict>
 	</array>
 	<key>TestPointHome</key>
-	<false/>
+	<string>0</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

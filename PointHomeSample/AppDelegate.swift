@@ -38,8 +38,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        let appId = "7686ed203d5546f093f5be626833a24d"
-        let appSecretKey = "994bb30d95f840fb"
+        let appId = "b2034cfe205d49f59667ca58f1193041"
+        let appSecretKey = "d6c6674bf31544fa"
         
         // mult appID
         AvatyePH.initialize(appId: appId, appSecretKey: appSecretKey, logLevel: .debug)

@@ -21,12 +21,16 @@ class PHSelectInit{
     var appSecretKey: String? = nil
     var userKey: String? = nil
     
+    var openKey: String = "pointhome"
+    
     private init(){}
 }
 
 class SelectViewController: UIViewController, UITextFieldDelegate{
     
     @IBOutlet weak var userKeyTextFiled: UITextField!
+    
+    @IBOutlet weak var openKeyTextFiled: UITextField!
     
     @IBOutlet var modeButtons: [UIButton]!
     
@@ -51,13 +55,7 @@ class SelectViewController: UIViewController, UITextFieldDelegate{
         
         userKeyTextFiled.resignFirstResponder()
         
-        appIdStackView.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            appIdStackView.topAnchor.constraint(equalTo: appIdLabel.bottomAnchor),
-            appIdStackView.bottomAnchor.constraint(equalTo: userKeyLabel.topAnchor, constant: 10),
-            appIdStackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
-        ])
+//        appIdStackView.translatesAutoresizingMaskIntoConstraints = false
         
         userKeyTextFiled.delegate = self
         
@@ -133,9 +131,14 @@ class SelectViewController: UIViewController, UITextFieldDelegate{
     }
     
     @IBAction func openAction(_ sender: Any) {
-
         PHSelectInit.shared.appId = nil
         PHSelectInit.shared.appSecretKey = nil
+        if openKeyTextFiled.text != ""{
+            PHSelectInit.shared.openKey = openKeyTextFiled.text!
+        }else{
+            PHSelectInit.shared.openKey = "pointhome"
+        }
+        
         
         // userKey
         if PHSelectInit.shared.tag == 1{
@@ -156,6 +159,7 @@ class SelectViewController: UIViewController, UITextFieldDelegate{
             }
         }
     }
+    
     
     // userKey trashbtn
     @IBAction func trashBtn(_ sender: Any) {

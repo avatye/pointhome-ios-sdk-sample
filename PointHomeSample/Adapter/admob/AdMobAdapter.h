@@ -9,9 +9,9 @@
 #import <GoogleMobileAds/GoogleMobileAds.h>
 
 // Using pod install / unity
-//#import <AdPopcornSSP/AdPopcornSSPAdapter.h>
+#import <AdPopcornSSP/AdPopcornSSPAdapter.h>
 // else
-#import "AdPopcornSSPAdapter.h"
+//#import "AdPopcornSSPAdapter.h"
 
 @interface AdMobAdapter : AdPopcornSSPAdapter
 {

@@ -12,19 +12,20 @@ target 'PointHomeSample' do
 
   # Pods for PointHomeSample
   
-#  pod 'AdCashFramework', :path => '../AvatyeFrameworks/sdk-ad-library-ios-src/'
-#  pod 'AvatyePointHome', :path => '../AvatyeFrameworks/sdk-point-home-ios-src'
+  pod 'AdCashFramework', :path => '../AvatyeFrameworks/sdk-ad-library-ios-src/'
+  pod 'AvatyePointHome', :path => '../AvatyeFrameworks/sdk-point-home-ios-src'
 
     # AvatyePointHome cloudsmith Test
-  pod 'AvatyePointHome', '1.7.14'
-#  pod 'AdPopcornSSP', '2.6.5'
+#  pod 'AvatyePointHome', '1.8.2'
+#  pod 'AdPopcornSSP', '2.9.1'
 
 #  pod 'AvatyeAdCash', :path => '../AvatyeFrameworks/sdk_adcash_ios/'
 #  pod 'AvatyePointHome', :path => '../AvatyeFrameworks/sdk_pointhome_ios'
 
-    # mediation
-  pod "NAMSDK" , '7.10.1'
-  pod "NAMSDK/MediationNDA", '7.10.1'
+  # mediation
+  # NAM
+  pod "NAMSDK" , '7.5.3'
+  pod "NAMSDK/MediationNDA", '7.5.3'
 
   # AppLovin
   pod 'AppLovinSDK', '13.0.1'
@@ -39,7 +40,7 @@ target 'PointHomeSample' do
   # FaceBook Audience Network
   pod 'FBAudienceNetwork', '6.14.0'
   # GoogleAds / AdMob
-#  pod 'Google-Mobile-Ads-SDK', '10.13.0'
+  pod 'Google-Mobile-Ads-SDK', '10.13.0'
   # Fyber
   pod 'FairBidSDK', '3.47.0'
   # cauly
@@ -47,7 +48,7 @@ target 'PointHomeSample' do
 
   pod 'AdFitSDK', '~> 3.14.0'
 
-    # 기타
+  # 기타
 #  pod 'BuzzvilSDK', '= 5.3.1'
   
 end
@@ -62,7 +63,7 @@ post_install do |installer|
       end
    end
 
-   installer.pods_project.build_configuration_list.build_configurations.each do |configuration|
-    configuration.build_settings['CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES'] = 'YES'
-  end
+#   installer.pods_project.build_configuration_list.build_configurations.each do |configuration|
+#    configuration.build_settings['CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES'] = 'YES'
+#  end
 end

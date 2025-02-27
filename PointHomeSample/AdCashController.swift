@@ -24,7 +24,25 @@ class AdCashController: UIViewController{
     
     let adCashAppId: String = "0ff121d0b7b24d04b27b0efa9d162656"
     let adCashAppSecretKey: String = "9f30be8f57b34e44"
-    let adCashBanner: String = "1a652ca9-8fbb-4b64-b13c-af431319e549"
+    let adCashBanner: String = "055ce116-e36a-4476-a85d-f76b5c00f4aa"
+    
+    let pointHomeAppId: String = "1cd2e20a33e941dd942940ac03891562"
+    let pointHomeAppSecretKey: String = "c4b642121ee94d01"
+    let pointHomeBanner: String = "55782ef7-68ac-4c1a-9342-929fe671fbbb"
+    
+    let dgAppId: String = "3b0d2a6fd8b74cd4a13c02b8079462c3"
+    let dgAppSecretKey: String = "9ea781258f924e15"
+    let dgImageNAM: String = "96b8102b-5eb1-4ca9-90be-72214071c881"
+    let dgSmartNAM: String = "5a81a9c7-8e43-42c5-a49e-92bf844adb90"
+    
+    // 마이홈플러스 iOS Live Image 배너 - smart?
+    let myHomePlusAppId: String = "68b388c0247e45c3afde2f14066d1d66"
+    let myHomePlusAppSecretKey: String = "a6df264fbd6d4fec"
+    let myHomePlusImageNAM: String = "6cbc862a-b671-45e5-a919-d58e61197560"
+    
+    let pinkAppId: String = "b2034cfe205d49f59667ca58f1193041"
+    let pinkAppSecretKey: String = "d6c6674bf31544fa"
+    let pink300250: String = "779fd451-f839-4892-a005-f4c7d1c45da0"
     
     var bannerLoader: BannerAdLoader! = nil
     
@@ -41,8 +59,8 @@ class AdCashController: UIViewController{
         self.appSecretKeyLabel.text = "appSecretKey: \(adCashAppSecretKey)"
         self.ApIdLabel.text = "APID: \(adCashBanner)"
         
-        bannerLoader = BannerAdLoader(rootVC: self, placementId: adCashBanner, size: .DYNAMIC)
-            .setConfig(appId: adCashAppId, appSecretKey: adCashAppSecretKey)
+        bannerLoader = BannerAdLoader(rootVC: self, placementId: pink300250, size: .DYNAMIC)
+            .setConfig(appId: pinkAppId, appSecretKey: pinkAppSecretKey)
         bannerLoader.delegate = self
         
         bannerLoader.setNAMNative { adPopcornSSPNativeAd, nib in
@@ -55,7 +73,8 @@ class AdCashController: UIViewController{
                 print("xibView instantiate failed")
             }
         }
-//        bannerLoader.setNAMNative(type: .Image, width: 200) { adPopcornSSPNativeAd, view in
+
+//        bannerLoader.setNAMNative(type: .Image, width: 300) { adPopcornSSPNativeAd, view in
 //            guard let xibView = view as? GFPNativeSimpleAdView else{
 //                print("Failed to cast UIView to GFPNativeSimpleAdView")
 //                return
@@ -65,6 +84,7 @@ class AdCashController: UIViewController{
 //            apNAMNativeAdRenderer.namNativeSimpleAdView = xibView
 //            adPopcornSSPNativeAd.setNAMRenderer(apNAMNativeAdRenderer, superView: xibView)
 //        }
+        
         
         
         bannerAdView = BannerAdView(frame: .zero).setConfig(appId: adCashAppId, appSecretKey: adCashAppSecretKey)
@@ -97,13 +117,13 @@ class AdCashController: UIViewController{
     }
     
     @IBAction func testBtnAction(_ sender: Any) {
-//        bannerAdView.requestAd()
-        bannerLoader.removeAd()
+        bannerAdView.requestAd()
+//        bannerLoader.removeAd()
     }
     
 
     @IBAction func stopAdBtnAction(_ sender: Any) {
-//        bannerLoader.removeAd()
+        bannerLoader.removeAd()
     }
     
     func showAlert(message: String){
