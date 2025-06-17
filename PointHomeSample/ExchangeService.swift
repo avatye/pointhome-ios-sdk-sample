@@ -32,17 +32,9 @@ class ExchangeService {
         let urlString: String
         switch type {
         case .verify:
-            if PHSelectInit.shared.modTage == 0{
-                urlString = "https://api-qa.reward.avatye.com/shop/exchange/verifyV3"
-            }else{
-                urlString = "https://api.reward.avatye.com/shop/exchange/verifyV3"
-            }
+            urlString = "https://\(PHSelectInit.shared.modTag == 0 ? "api-qa" : "api").reward.avatye.com/shop/exchange/verifyV3"
         case .rollback:
-            if PHSelectInit.shared.modTage == 0 {
-                urlString = "https://api-qa.reward.avatye.com/shop/exchange/rollbackV2"
-            }else{
-                urlString = "https://api.reward.avatye.com/shop/exchange/rollbackV2"
-            }
+            urlString = "https://\(PHSelectInit.shared.modTag == 0 ? "api-qa" : "api").reward.avatye.com/shop/exchange/rollbackV2"
         }
         guard let url = URL(string: urlString) else {
             throw NSError(domain: "transacionID Parsing Error", code: 0, userInfo: nil)
@@ -100,17 +92,9 @@ class ExchangeService {
         let urlString: String
         switch type {
         case .verify:
-            if PHSelectInit.shared.modTage == 0 {
-                urlString = "https://api-qa.reward.avatye.com/shop/exchange/verifyV3"
-            } else {
-                urlString = "https://api.reward.avatye.com/shop/exchange/verifyV3"
-            }
+            urlString = "https://\(PHSelectInit.shared.modTag == 0 ? "api-qa" : "api").reward.avatye.com/shop/exchange/verifyV3"
         case .rollback:
-            if PHSelectInit.shared.modTage == 0 {
-                urlString = "https://api-qa.reward.avatye.com/shop/exchange/rollbackV2"
-            } else {
-                urlString = "https://api.reward.avatye.com/shop/exchange/rollbackV2"
-            }
+            urlString = "https://\(PHSelectInit.shared.modTag == 0 ? "api-qa" : "api").reward.avatye.com/shop/exchange/rollbackV2"
         }
         
         guard let url = URL(string: urlString) else {

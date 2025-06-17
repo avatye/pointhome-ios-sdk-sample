@@ -11,6 +11,9 @@ import AppTrackingTransparency
 import AvatyePointHome
 import BackgroundTasks
 import AdCashFramework
+#if canImport(CaulySDK)
+import CaulySDK
+#endif
 #if canImport(GFPSDK)
 import GFPSDK
 #endif
@@ -38,23 +41,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        let appId = "b2034cfe205d49f59667ca58f1193041"
-        let appSecretKey = "d6c6674bf31544fa"
+        let appId = "1cd2e20a33e941dd942940ac03891562"
+        let appSecretKey = "c4b642121ee94d01"
         
         // mult appID
         AvatyePH.initialize(appId: appId, appSecretKey: appSecretKey, logLevel: .debug)
         
         AdCashInit.setting(appId: appId, appSecretKey: appSecretKey, logLevel: .debug)
         
-        // test appId
-//        AvatyePH.initialize(appId: "1cd2e20a33e941dd942940ac03891562", appSecretKey: "c4b642121ee94d01",logLevel: .debug)
+//        AdCashMediation().initializeGAM()
         
-        // stage appID
-//        AvatyePH.initialize(appId: "93a584254434475eb9d140986e9da8cb", appSecretKey: "03a4998cbcce4ca8", logLevel: .debug)
-        
-        
-//        AdCashInit.setting(appId: adCashAppId, appSecretKey: adCashAppSecretKey, logLevel: .debug)
-        
+//        MobileAds.shared.requestConfiguration.testDeviceIdentifiers = ["B3152E49-63B3-4013-9144-2157D74CCD0B"]
         
         if #available(iOS 14, *) {
             ATTrackingManager.requestTrackingAuthorization { status in
@@ -75,16 +72,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
             // Fallback on earlier versions
         }
         
-        if let adSetting = CaulyAdSetting.global() {
-            CaulyAdSetting.setLogLevel(CaulyLogLevelDebug)
-            adSetting.appId = "868410196"
-            adSetting.appCode = "wAsKi1r6"
-            adSetting.animType = CaulyAnimNone
-            adSetting.closeOnLanding = true
-        } else {
-            print("Cauly Setting none")
-        }
-
+        AvatyePH.initializeAppLovin("nPNmWdnX7aDsJQd7yPG7w-rzdTAJJ3qcBNpgSoWzDrm4bUMSmHZJsv-2XRTSiOItVTm7FWZ7PrkUEKeVvlomd1")
+        
+        AvatyePH.initializePangle("8108172")
+        
+        AvatyePH.initializeVungle("63db2422c08b2ab6cfe8cd58")
+        
         #if canImport(GFPSDK)
         GFPAdManager.setup(withPublisherCd: "7976096509", target: self) { error in
             if let error = error {
@@ -95,66 +88,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         }
         #endif
         
-        #if canImport(AppLovinSDK)
-        let sdkKey = "nPNmWdnX7aDsJQd7yPG7w-rzdTAJJ3qcBNpgSoWzDrm4bUMSmHZJsv-2XRTSiOItVTm7FWZ7PrkUEKeVvlomd1"
-        let initConfig = ALSdkInitializationConfiguration(sdkKey: sdkKey) { builder in
-            builder.mediationProvider = ALMediationProviderMAX
-        }
-        ALSdk.shared().initialize(with: initConfig) { sdkConfig in
-        }
-        #endif
-        
-        #if canImport(PAGAdSDK)
-        let config = PAGConfig.share()
-        config.appID = "8108172"
-        PAGSdk.start(with: config) { pSuccess, error in
-            if pSuccess {
-                print("PAG Success")
-            }
-        }
-        #endif
-        
-        #if canImport(VungleAdsSDK)
-        VungleAds.initWithAppId("63db2422c08b2ab6cfe8cd58") { error in
-            if let error = error {
-                print("vungle error")
-            }else {
-                print("vungle init success")
-            }
-        }
-        
-        if VungleAds.isInitialized(){
-            print("Vungle SDK is initialized")
-        }else{
-            print("Vungle SDK is Not initialized")
-        }
-        #endif
-            
-        #if canImport(MTGSDK)
-        MTGSDK.sharedInstance().setAppID("292050", apiKey: "2f23f5c5f0cc24455e0b5a73067c96ff")
-        #endif
-        
-        #if canImport(GoogleMobileAds)
-        GADMobileAds.sharedInstance().start { result in
-            print("googleAdManager initalize \(result)")
-        }
-        
-        GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers = ["00beb564b8cd75ddf87d3f8cf852cd0c"]
-        #endif
-        
         return true
     }
 
     // MARK: UISceneSession Lifecycle
-
-    @available(iOS 13.0, *)
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         // Called when a new scene session is being created.
         // Use this method to select a configuration to create the new scene with.
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
 
-    @available(iOS 13.0, *)
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
         // Called when the user discards a scene session.
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.

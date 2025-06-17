@@ -6,7 +6,7 @@
 //  Copyright (c) 2022년 adpopcorn All rights reserved.
 //
 
-// compatible with NAMManger v7.10.1
+// compatible with NAMManger v8.4.0
 #import "NAMAdapter.h"
 
 static inline NSString *SSPErrorString(SSPErrorCode code)
@@ -45,7 +45,7 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
     }
 }
 
-@interface NAMAdapter () <GFPAdLoaderDelegate, GFPBannerViewDelegate, GFPNativeSimpleAdDelegate>
+@interface NAMAdapter () <GFPAdLoaderDelegate, GFPBannerViewDelegate, GFPNativeSimpleAdDelegate, GFPNativeAdDelegate>
 {
     NSString *_rewardVideoAdUnitId, *_interstitialVideoAdUnitId;
     BOOL _isCurrentRunningAdapter;
@@ -53,6 +53,7 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
     NSTimer *networkScheduleTimer;
     NSInteger adNetworkNo;
     GFPNativeSimpleAdView *gfpNativeSimpleAdVew;
+    GFPNativeAdView *gfpNativeAdVew;
     int _closeBtnType, _adGravity;
     UILabel *_closeLabel;
     UITapGestureRecognizer *_closeGestureRecognizer;
@@ -199,18 +200,32 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
     {
         if(_integrationKey != nil)
         {
+            
+            // Native Simple
             NSString *adUnitID = [_integrationKey valueForKey:@"NamUnitId"];
             NSLog(@"NAMAdapter SSPNativeAdType adUnitID : %@", adUnitID);
             GFPAdParam *adParam = [[GFPAdParam alloc] init];
             
-            adLoader = [[GFPAdLoader alloc] initWithUnitID:adUnitID rootViewController:_viewController adParam:adParam];
+            adLoader = [[GFPAdLoader alloc] initWithUnitID:adUnitID
+                                        rootViewController:_viewController
+                                                   adParam:adParam];
             
+            // native 심플형
             GFPNativeSimpleAdRenderingSetting *simpleRenderingSetting = [[GFPNativeSimpleAdRenderingSetting alloc] init];
             simpleRenderingSetting.adChoicesPositionInFullAdView = YES;
             
             GFPAdNativeSimpleOptions *nativeSimpleOptions =  [[GFPAdNativeSimpleOptions alloc] init];
             nativeSimpleOptions.simpleAdRenderingSetting = simpleRenderingSetting;
             [adLoader setNativeSimpleDelegate:self nativeSimpleOptions:nativeSimpleOptions];
+            
+            // Native 일반형
+            GFPNativeAdRenderingSetting *setting = [[GFPNativeAdRenderingSetting alloc] init];
+//            setting.hasMediaView = NO;
+            
+            GFPAdNativeOptions *nativeOptions = [[GFPAdNativeOptions alloc] init];
+            nativeOptions.renderingSetting = setting; // 로드될 네이티브 일반형 광고 렌더링 설정
+            
+            [adLoader setNativeDelegate:self nativeOptions:nativeOptions];
             
             adLoader.delegate = self;
             [adLoader loadAd];
@@ -465,13 +480,26 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
     {
         if(namNativeAdRenderer != nil && namNativeAdRenderer.namNativeSimpleAdView != nil)
         {
+            if (namNativeAdRenderer.namNativeSuperView.subviews != nil) {
+                for (UIView *subview in namNativeAdRenderer.namNativeSuperView.subviews) {
+                    [subview removeFromSuperview];
+                }
+            }
             // 네이티브 광고객체 및 delegate 등록
             gfpNativeSimpleAd = nativeSimpleAd;
             gfpNativeSimpleAd.delegate = self;
             
             // 뷰 객체에 네이티브 광고를 세팅하면, mediaView 렌더링 및 뷰 트래킹이 시작됨.
             namNativeAdRenderer.namNativeSimpleAdView.nativeAd = nativeSimpleAd;
-            [_adpopcornSSPNativeAd addSubview:namNativeAdRenderer.namNativeSimpleAdView];
+            
+            // <= v2.9.5 에서는 namNativeSuperView를 사용하지 않았으므로
+            if (namNativeAdRenderer.namNativeSuperView != nil) {
+                [namNativeAdRenderer.namNativeSuperView addSubview:namNativeAdRenderer.namNativeSimpleAdView];
+            }
+            else {
+                [_adpopcornSSPNativeAd addSubview:namNativeAdRenderer.namNativeSimpleAdView];
+            }
+            
             if ([_delegate respondsToSelector:@selector(AdPopcornSSPAdapterNativeAdLoadSuccess:)])
             {
                 [_delegate AdPopcornSSPAdapterNativeAdLoadSuccess:self];
@@ -513,6 +541,73 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
             [_delegate AdPopcornSSPAdapterReactNativeAdLoadSuccess:self adSize:CGSizeMake(gfpNativeSimpleAdVew.frame.size.width, gfpNativeSimpleAdVew.frame.size.height)];
         }
         
+    }
+}
+
+- (void)adLoader:(GFPAdLoader *)unifiedAdLoader didReceiveNativeAd:(GFPNativeAd *)nativeAd
+{
+    NSLog(@"NAMAdapter didReceiveNativeAd");
+    if(_adType == SSPNativeAdType)
+    {
+        if(namNativeAdRenderer != nil && namNativeAdRenderer.namNativeAdView != nil)
+        {
+            if (namNativeAdRenderer.namNativeSuperView.subviews != nil) {
+                for (UIView *subview in namNativeAdRenderer.namNativeSuperView.subviews) {
+                    [subview removeFromSuperview];
+                }
+            }
+            if (namNativeAdRenderer.namNativeAdView.bodyLabel == nil || namNativeAdRenderer.namNativeAdView.mediaView == nil) {
+                if ([_delegate respondsToSelector:@selector(AdPopcornSSPAdapterNativeAdLoadFailError:adapter:)])
+                {
+                    NSLog(@"NAM Normal Native mediaView and bodyLabel is not connect");
+                    [_delegate AdPopcornSSPAdapterNativeAdLoadFailError:[NSError errorWithDomain:kAdPopcornSSPErrorDomain code:AdPopcornSSPInvalidNativeAssetsConfig userInfo:@{NSLocalizedDescriptionKey: SSPErrorString(AdPopcornSSPInvalidNativeAssetsConfig)}] adapter:self];
+                }
+                return;
+            }
+            // 네이티브 광고객체 및 delegate 등록
+            gfpNativeAd = nativeAd;
+            gfpNativeAd.delegate = self;
+            
+            // 뷰 객체에 네이티브 광고를 세팅하면, mediaView 렌더링 및 뷰 트래킹이 시작됨.
+            if (namNativeAdRenderer.namNativeAdView.callToActionLabel != nil) {
+                namNativeAdRenderer.namNativeAdView.callToActionLabel.text = gfpNativeAd.callToAction;
+            }
+            if (namNativeAdRenderer.namNativeAdView.advertiserLabel != nil) {
+                namNativeAdRenderer.namNativeAdView.advertiserLabel.text = gfpNativeAd.advertiser;
+            }
+            if (namNativeAdRenderer.namNativeAdView.bodyLabel != nil) {
+                namNativeAdRenderer.namNativeAdView.bodyLabel.text = gfpNativeAd.body;
+            }
+            if (namNativeAdRenderer.namNativeAdView.titleLabel != nil) {
+                namNativeAdRenderer.namNativeAdView.titleLabel.text = gfpNativeAd.title;
+            }
+            if (namNativeAdRenderer.namNativeAdView.adBadgeLabel != nil) {
+                namNativeAdRenderer.namNativeAdView.adBadgeLabel.text = gfpNativeAd.badge;
+            }
+            
+            // 뷰 객체에 네이티브 광고를 세팅하면, mediaView 렌더링 및 뷰 트래킹이 시작됨.
+            namNativeAdRenderer.namNativeAdView.nativeAd = gfpNativeAd;
+        
+            // <= v2.9.5 에서는 namNativeSuperView를 사용하지 않았으므로
+            if (namNativeAdRenderer.namNativeSuperView != nil) {
+                [namNativeAdRenderer.namNativeSuperView addSubview:namNativeAdRenderer.namNativeAdView];
+            }
+            else {
+                [_adpopcornSSPNativeAd addSubview:namNativeAdRenderer.namNativeAdView];
+            }
+            
+            if ([_delegate respondsToSelector:@selector(AdPopcornSSPAdapterNativeAdLoadSuccess:)])
+            {
+                [_delegate AdPopcornSSPAdapterNativeAdLoadSuccess:self];
+            }
+        }
+        else
+        {
+            if ([_delegate respondsToSelector:@selector(AdPopcornSSPAdapterNativeAdLoadFailError:adapter:)])
+            {
+                [_delegate AdPopcornSSPAdapterNativeAdLoadFailError:[NSError errorWithDomain:kAdPopcornSSPErrorDomain code:AdPopcornSSPInvalidNativeAssetsConfig userInfo:@{NSLocalizedDescriptionKey: SSPErrorString(AdPopcornSSPInvalidNativeAssetsConfig)}] adapter:self];
+            }
+        }
     }
 }
 
@@ -592,9 +687,37 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
     }
 }
 
+#pragma mark GFPNativeAdDelegate
 - (void)bannerView:(GFPBannerView *)bannerView didChangeWith:(GFPBannerAdSize *)size
 {
     NSLog(@"NAMAdapter didChangeWith : %@", size);
+}
+
+
+-(void)nativeAd:(GFPNativeAd *)nativeAd didFailWithError:(GFPError *)error {
+    // Rendering error
+    NSLog(@"NAMAdapter GFPNativeAdDelegate didFailWithError : %@", error);
+    if ([_delegate respondsToSelector:@selector(AdPopcornSSPAdapterNativeAdLoadFailError:adapter:)])
+    {
+        [_delegate AdPopcornSSPAdapterNativeAdLoadFailError:error adapter:self];
+    }
+}
+
+-(void)nativeAdWasClicked:(GFPNativeAd *)nativeAd {
+    NSLog(@"NAMAdapter nativeAdWasClicked");
+    if ([_delegate respondsToSelector:@selector(AdPopcornSSPAdapterNativeAdClicked:)])
+    {
+        [_delegate AdPopcornSSPAdapterNativeAdClicked:self];
+    }
+}
+
+-(void) nativeAdWasSeen:(GFPNativeAd *)nativeAd {
+    NSLog(@"NAMAdapter nativeAdWasSeen");
+    if ([_delegate respondsToSelector:@selector(AdPopcornSSPAdapterNativeAdImpression:)])
+    {
+        [_delegate AdPopcornSSPAdapterNativeAdImpression:self];
+    }
+
 }
 
 #pragma mark GFPNativeSimpleAdDelegate

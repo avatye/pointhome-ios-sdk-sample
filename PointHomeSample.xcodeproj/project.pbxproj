@@ -7,16 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0B09C3832D193D5C00D93DCB /* FANAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B09C36A2D193D5C00D93DCB /* FANAdapter.m */; };
-		0B1B5A732D6C128900977891 /* AppLovinAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B1B5A402D6C128800977891 /* AppLovinAdapter.m */; };
-		0B1B5A772D6C128900977891 /* CaulyAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B1B5A4E2D6C128900977891 /* CaulyAdapter.m */; };
-		0B1B5A782D6C128900977891 /* FyberAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B1B5A512D6C128900977891 /* FyberAdapter.m */; };
-		0B1B5A792D6C128900977891 /* UnityAdsAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B1B5A542D6C128900977891 /* UnityAdsAdapter.m */; };
-		0B1B5A7A2D6C128900977891 /* VungleAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B1B5A572D6C128900977891 /* VungleAdapter.m */; };
-		0B1B5A7D2D6C128900977891 /* PangleAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B1B5A5E2D6C128900977891 /* PangleAdapter.m */; };
-		0B1B5A812D6C128900977891 /* MintegralAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B1B5A672D6C128900977891 /* MintegralAdapter.m */; };
-		0B1B5A822D6C128900977891 /* NAMAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B1B5A6A2D6C128900977891 /* NAMAdapter.m */; };
-		0B1B5A832D6C128900977891 /* GFPNativeSimpleAdView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B1B5A6C2D6C128900977891 /* GFPNativeSimpleAdView.xib */; };
 		0B44DF6E2C04176300E29BD6 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B44DF6D2C04176300E29BD6 /* WebKit.framework */; };
 		0B5A6FEA2C4916A10062DFE4 /* AcceptedAgeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5A6FE92C4916A10062DFE4 /* AcceptedAgeService.swift */; };
 		0B5D2F4C2BA417D400CECA39 /* ExchangeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5D2F4B2BA417D400CECA39 /* ExchangeService.swift */; };
@@ -25,9 +15,22 @@
 		0B6536E02CF019EB00C49B03 /* PointHomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6536DE2CF019EB00C49B03 /* PointHomeCollectionViewCell.swift */; };
 		0B6536E12CF019EB00C49B03 /* PointHomeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B6536DF2CF019EB00C49B03 /* PointHomeCollectionViewCell.xib */; };
 		0B746BC72B46425000F571DC /* TestWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B746BC62B46425000F571DC /* TestWebViewController.swift */; };
-		0B90C6CF2BFC3E3E00D0D6C1 /* ManualViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B90C6CE2BFC3E3E00D0D6C1 /* ManualViewController.swift */; };
+		0B81FC412D8426B700BE8B0A /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B44DF7C2C04BB8E00E29BD6 /* SwiftUI.framework */; };
 		0BBD844C2C7DA572005C7944 /* CashButtonWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBD844B2C7DA572005C7944 /* CashButtonWebViewController.swift */; };
 		0BD9C2EF2BC77159009FE46A /* AdCashController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD9C2EE2BC77159009FE46A /* AdCashController.swift */; };
+		0BE3381B2DB7832F0017D018 /* UnityAdsAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE338152DB7832F0017D018 /* UnityAdsAdapter.m */; };
+		0BE3381C2DB7832F0017D018 /* VungleAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE338182DB7832F0017D018 /* VungleAdapter.m */; };
+		0BE3381D2DB7832F0017D018 /* FANAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE338032DB7832F0017D018 /* FANAdapter.m */; };
+		0BE3381E2DB7832F0017D018 /* CaulyAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE338002DB7832F0017D018 /* CaulyAdapter.m */; };
+		0BE3381F2DB7832F0017D018 /* NAMAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE3380F2DB7832F0017D018 /* NAMAdapter.m */; };
+		0BE338222DB7832F0017D018 /* AppLovinAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE337F22DB7832F0017D018 /* AppLovinAdapter.m */; };
+		0BE338232DB7832F0017D018 /* AdFitAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE337E72DB7832F0017D018 /* AdFitAdapter.m */; };
+		0BE338242DB7832F0017D018 /* PangleAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE338122DB7832F0017D018 /* PangleAdapter.m */; };
+		0BE338252DB7832F0017D018 /* MintegralAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE338092DB7832F0017D018 /* MintegralAdapter.m */; };
+		0BE338262DB7832F0017D018 /* APSSPAdfitNativeAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE337E92DB7832F0017D018 /* APSSPAdfitNativeAdView.m */; };
+		0BE3382A2DB7832F0017D018 /* GFPNativeAdView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BE3380B2DB7832F0017D018 /* GFPNativeAdView.xib */; };
+		0BE3382C2DB7832F0017D018 /* GFPNativeSimpleAdView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BE3380C2DB7832F0017D018 /* GFPNativeSimpleAdView.xib */; };
+		0BE3382D2DB7832F0017D018 /* APSSPAdfitNativeAdView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BE337EA2DB7832F0017D018 /* APSSPAdfitNativeAdView.xib */; };
 		0BEB3F452A60ED0A005C1C04 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BEB3F442A60ED0A005C1C04 /* AppDelegate.swift */; };
 		0BEB3F472A60ED0A005C1C04 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BEB3F462A60ED0A005C1C04 /* SceneDelegate.swift */; };
 		0BEB3F492A60ED0A005C1C04 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BEB3F482A60ED0A005C1C04 /* ViewController.swift */; };
@@ -36,7 +39,7 @@
 		0BEB3F512A60ED0C005C1C04 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BEB3F4F2A60ED0C005C1C04 /* LaunchScreen.storyboard */; };
 		0BEB3F662A611716005C1C04 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BEB3F652A611715005C1C04 /* AdSupport.framework */; };
 		0BEB3F682A611722005C1C04 /* AppTrackingTransparency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BEB3F672A611722005C1C04 /* AppTrackingTransparency.framework */; };
-		3FC140F276F4E8F5F4290CD5 /* Pods_PointHomeSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA1A3BA6600B4120B29733A7 /* Pods_PointHomeSample.framework */; };
+		BA1C96E03146B36544FA5A27 /* Pods_PointHomeSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7F686DA4CF6F647A777927F /* Pods_PointHomeSample.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -64,42 +67,44 @@
 
 /* Begin PBXFileReference section */
 		0B06BB4E2AE680F600C7539F /* AdServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdServices.framework; path = System/Library/Frameworks/AdServices.framework; sourceTree = SDKROOT; };
-		0B09C3692D193D5C00D93DCB /* FANAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FANAdapter.h; sourceTree = "<group>"; };
-		0B09C36A2D193D5C00D93DCB /* FANAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FANAdapter.m; sourceTree = "<group>"; };
-		0B1B5A3F2D6C128800977891 /* AppLovinAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppLovinAdapter.h; sourceTree = "<group>"; };
-		0B1B5A402D6C128800977891 /* AppLovinAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppLovinAdapter.m; sourceTree = "<group>"; };
-		0B1B5A422D6C128900977891 /* CaulyAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaulyAdapter.h; sourceTree = "<group>"; };
-		0B1B5A4E2D6C128900977891 /* CaulyAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaulyAdapter.m; sourceTree = "<group>"; };
-		0B1B5A502D6C128900977891 /* FyberAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FyberAdapter.h; sourceTree = "<group>"; };
-		0B1B5A512D6C128900977891 /* FyberAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FyberAdapter.m; sourceTree = "<group>"; };
-		0B1B5A532D6C128900977891 /* UnityAdsAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnityAdsAdapter.h; sourceTree = "<group>"; };
-		0B1B5A542D6C128900977891 /* UnityAdsAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnityAdsAdapter.m; sourceTree = "<group>"; };
-		0B1B5A562D6C128900977891 /* VungleAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VungleAdapter.h; sourceTree = "<group>"; };
-		0B1B5A572D6C128900977891 /* VungleAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VungleAdapter.m; sourceTree = "<group>"; };
-		0B1B5A5E2D6C128900977891 /* PangleAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PangleAdapter.m; sourceTree = "<group>"; };
-		0B1B5A5F2D6C128900977891 /* PangleAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PangleAdapter.h; sourceTree = "<group>"; };
-		0B1B5A662D6C128900977891 /* MintegralAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MintegralAdapter.h; sourceTree = "<group>"; };
-		0B1B5A672D6C128900977891 /* MintegralAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MintegralAdapter.m; sourceTree = "<group>"; };
-		0B1B5A692D6C128900977891 /* NAMAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAMAdapter.h; sourceTree = "<group>"; };
-		0B1B5A6A2D6C128900977891 /* NAMAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NAMAdapter.m; sourceTree = "<group>"; };
-		0B1B5A6C2D6C128900977891 /* GFPNativeSimpleAdView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GFPNativeSimpleAdView.xib; sourceTree = "<group>"; };
 		0B44DF6D2C04176300E29BD6 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		0B44DF7A2C04BB8E00E29BD6 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		0B44DF7C2C04BB8E00E29BD6 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		0B50454C2B844D2B0065CFAA /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
-		0B50454D2B844D2B0065CFAA /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		0B5A6FE92C4916A10062DFE4 /* AcceptedAgeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptedAgeService.swift; sourceTree = "<group>"; };
 		0B5D2F4B2BA417D400CECA39 /* ExchangeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeService.swift; sourceTree = "<group>"; };
 		0B5FAD0E2BDA19170059ED10 /* SelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectViewController.swift; sourceTree = "<group>"; };
-		0B6534122CDB2A5600C49B03 /* PointHomeSample-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PointHomeSample-Bridging-Header.h"; sourceTree = "<group>"; };
 		0B6536DC2CF0191500C49B03 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		0B6536DE2CF019EB00C49B03 /* PointHomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointHomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		0B6536DF2CF019EB00C49B03 /* PointHomeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PointHomeCollectionViewCell.xib; sourceTree = "<group>"; };
 		0B746BC62B46425000F571DC /* TestWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestWebViewController.swift; sourceTree = "<group>"; };
-		0B90C6CE2BFC3E3E00D0D6C1 /* ManualViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualViewController.swift; sourceTree = "<group>"; };
+		0BA7F8042DFAAC9A004B3759 /* PointHomeSample-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PointHomeSample-Bridging-Header.h"; sourceTree = "<group>"; };
 		0BBD844B2C7DA572005C7944 /* CashButtonWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashButtonWebViewController.swift; sourceTree = "<group>"; };
 		0BD9C2EE2BC77159009FE46A /* AdCashController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdCashController.swift; sourceTree = "<group>"; };
 		0BD9C3BC2BD2B27C009FE46A /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
+		0BE337E62DB7832F0017D018 /* AdFitAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdFitAdapter.h; sourceTree = "<group>"; };
+		0BE337E72DB7832F0017D018 /* AdFitAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AdFitAdapter.m; sourceTree = "<group>"; };
+		0BE337E82DB7832F0017D018 /* APSSPAdfitNativeAdView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APSSPAdfitNativeAdView.h; sourceTree = "<group>"; };
+		0BE337E92DB7832F0017D018 /* APSSPAdfitNativeAdView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APSSPAdfitNativeAdView.m; sourceTree = "<group>"; };
+		0BE337EA2DB7832F0017D018 /* APSSPAdfitNativeAdView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = APSSPAdfitNativeAdView.xib; sourceTree = "<group>"; };
+		0BE337F12DB7832F0017D018 /* AppLovinAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppLovinAdapter.h; sourceTree = "<group>"; };
+		0BE337F22DB7832F0017D018 /* AppLovinAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppLovinAdapter.m; sourceTree = "<group>"; };
+		0BE337FF2DB7832F0017D018 /* CaulyAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CaulyAdapter.h; sourceTree = "<group>"; };
+		0BE338002DB7832F0017D018 /* CaulyAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CaulyAdapter.m; sourceTree = "<group>"; };
+		0BE338022DB7832F0017D018 /* FANAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FANAdapter.h; sourceTree = "<group>"; };
+		0BE338032DB7832F0017D018 /* FANAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FANAdapter.m; sourceTree = "<group>"; };
+		0BE338082DB7832F0017D018 /* MintegralAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MintegralAdapter.h; sourceTree = "<group>"; };
+		0BE338092DB7832F0017D018 /* MintegralAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MintegralAdapter.m; sourceTree = "<group>"; };
+		0BE3380B2DB7832F0017D018 /* GFPNativeAdView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GFPNativeAdView.xib; sourceTree = "<group>"; };
+		0BE3380C2DB7832F0017D018 /* GFPNativeSimpleAdView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GFPNativeSimpleAdView.xib; sourceTree = "<group>"; };
+		0BE3380E2DB7832F0017D018 /* NAMAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NAMAdapter.h; sourceTree = "<group>"; };
+		0BE3380F2DB7832F0017D018 /* NAMAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NAMAdapter.m; sourceTree = "<group>"; };
+		0BE338112DB7832F0017D018 /* PangleAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PangleAdapter.h; sourceTree = "<group>"; };
+		0BE338122DB7832F0017D018 /* PangleAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PangleAdapter.m; sourceTree = "<group>"; };
+		0BE338142DB7832F0017D018 /* UnityAdsAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnityAdsAdapter.h; sourceTree = "<group>"; };
+		0BE338152DB7832F0017D018 /* UnityAdsAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UnityAdsAdapter.m; sourceTree = "<group>"; };
+		0BE338172DB7832F0017D018 /* VungleAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VungleAdapter.h; sourceTree = "<group>"; };
+		0BE338182DB7832F0017D018 /* VungleAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VungleAdapter.m; sourceTree = "<group>"; };
 		0BEB3F412A60ED0A005C1C04 /* PointHomeSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PointHomeSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BEB3F442A60ED0A005C1C04 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0BEB3F462A60ED0A005C1C04 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -110,9 +115,9 @@
 		0BEB3F522A60ED0C005C1C04 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0BEB3F652A611715005C1C04 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		0BEB3F672A611722005C1C04 /* AppTrackingTransparency.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppTrackingTransparency.framework; path = System/Library/Frameworks/AppTrackingTransparency.framework; sourceTree = SDKROOT; };
-		0DFBD9477C8BC3EE145FC0FC /* Pods-PointHomeSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PointHomeSample.release.xcconfig"; path = "Target Support Files/Pods-PointHomeSample/Pods-PointHomeSample.release.xcconfig"; sourceTree = "<group>"; };
-		85919432FAE74121BC620D59 /* Pods-PointHomeSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PointHomeSample.debug.xcconfig"; path = "Target Support Files/Pods-PointHomeSample/Pods-PointHomeSample.debug.xcconfig"; sourceTree = "<group>"; };
-		EA1A3BA6600B4120B29733A7 /* Pods_PointHomeSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PointHomeSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D4D764845A5BBDD70C171F6 /* Pods-PointHomeSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PointHomeSample.release.xcconfig"; path = "Target Support Files/Pods-PointHomeSample/Pods-PointHomeSample.release.xcconfig"; sourceTree = "<group>"; };
+		E794ED74212CF3123CC12BA5 /* Pods-PointHomeSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PointHomeSample.debug.xcconfig"; path = "Target Support Files/Pods-PointHomeSample/Pods-PointHomeSample.debug.xcconfig"; sourceTree = "<group>"; };
+		F7F686DA4CF6F647A777927F /* Pods_PointHomeSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PointHomeSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,118 +125,123 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B81FC412D8426B700BE8B0A /* SwiftUI.framework in Frameworks */,
 				0B44DF6E2C04176300E29BD6 /* WebKit.framework in Frameworks */,
 				0BEB3F682A611722005C1C04 /* AppTrackingTransparency.framework in Frameworks */,
 				0BEB3F662A611716005C1C04 /* AdSupport.framework in Frameworks */,
-				3FC140F276F4E8F5F4290CD5 /* Pods_PointHomeSample.framework in Frameworks */,
+				BA1C96E03146B36544FA5A27 /* Pods_PointHomeSample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0B09C36B2D193D5C00D93DCB /* facebook */ = {
+		0BE337EB2DB7832F0017D018 /* adfit */ = {
 			isa = PBXGroup;
 			children = (
-				0B09C3692D193D5C00D93DCB /* FANAdapter.h */,
-				0B09C36A2D193D5C00D93DCB /* FANAdapter.m */,
+				0BE337E62DB7832F0017D018 /* AdFitAdapter.h */,
+				0BE337E72DB7832F0017D018 /* AdFitAdapter.m */,
+				0BE337E82DB7832F0017D018 /* APSSPAdfitNativeAdView.h */,
+				0BE337E92DB7832F0017D018 /* APSSPAdfitNativeAdView.m */,
+				0BE337EA2DB7832F0017D018 /* APSSPAdfitNativeAdView.xib */,
 			);
-			path = facebook;
+			path = adfit;
 			sourceTree = "<group>";
 		};
-		0B1B5A3E2D6C128800977891 /* applovin */ = {
+		0BE337F32DB7832F0017D018 /* applovin */ = {
 			isa = PBXGroup;
 			children = (
-				0B1B5A3F2D6C128800977891 /* AppLovinAdapter.h */,
-				0B1B5A402D6C128800977891 /* AppLovinAdapter.m */,
+				0BE337F12DB7832F0017D018 /* AppLovinAdapter.h */,
+				0BE337F22DB7832F0017D018 /* AppLovinAdapter.m */,
 			);
 			path = applovin;
 			sourceTree = "<group>";
 		};
-		0B1B5A412D6C128900977891 /* cauly */ = {
+		0BE338012DB7832F0017D018 /* cauly */ = {
 			isa = PBXGroup;
 			children = (
-				0B1B5A422D6C128900977891 /* CaulyAdapter.h */,
-				0B1B5A4E2D6C128900977891 /* CaulyAdapter.m */,
+				0BE337FF2DB7832F0017D018 /* CaulyAdapter.h */,
+				0BE338002DB7832F0017D018 /* CaulyAdapter.m */,
 			);
 			path = cauly;
 			sourceTree = "<group>";
 		};
-		0B1B5A4F2D6C128900977891 /* fyber */ = {
+		0BE338042DB7832F0017D018 /* facebook */ = {
 			isa = PBXGroup;
 			children = (
-				0B1B5A502D6C128900977891 /* FyberAdapter.h */,
-				0B1B5A512D6C128900977891 /* FyberAdapter.m */,
+				0BE338022DB7832F0017D018 /* FANAdapter.h */,
+				0BE338032DB7832F0017D018 /* FANAdapter.m */,
 			);
-			path = fyber;
+			path = facebook;
 			sourceTree = "<group>";
 		};
-		0B1B5A522D6C128900977891 /* unityads */ = {
+		0BE3380A2DB7832F0017D018 /* mintegral */ = {
 			isa = PBXGroup;
 			children = (
-				0B1B5A532D6C128900977891 /* UnityAdsAdapter.h */,
-				0B1B5A542D6C128900977891 /* UnityAdsAdapter.m */,
-			);
-			path = unityads;
-			sourceTree = "<group>";
-		};
-		0B1B5A552D6C128900977891 /* vungle */ = {
-			isa = PBXGroup;
-			children = (
-				0B1B5A562D6C128900977891 /* VungleAdapter.h */,
-				0B1B5A572D6C128900977891 /* VungleAdapter.m */,
-			);
-			path = vungle;
-			sourceTree = "<group>";
-		};
-		0B1B5A5D2D6C128900977891 /* pangle */ = {
-			isa = PBXGroup;
-			children = (
-				0B1B5A5E2D6C128900977891 /* PangleAdapter.m */,
-				0B1B5A5F2D6C128900977891 /* PangleAdapter.h */,
-			);
-			path = pangle;
-			sourceTree = "<group>";
-		};
-		0B1B5A652D6C128900977891 /* mintegral */ = {
-			isa = PBXGroup;
-			children = (
-				0B1B5A662D6C128900977891 /* MintegralAdapter.h */,
-				0B1B5A672D6C128900977891 /* MintegralAdapter.m */,
+				0BE338082DB7832F0017D018 /* MintegralAdapter.h */,
+				0BE338092DB7832F0017D018 /* MintegralAdapter.m */,
 			);
 			path = mintegral;
 			sourceTree = "<group>";
 		};
-		0B1B5A682D6C128900977891 /* naverAdManager */ = {
+		0BE3380D2DB7832F0017D018 /* native sample view */ = {
 			isa = PBXGroup;
 			children = (
-				0B1B5A692D6C128900977891 /* NAMAdapter.h */,
-				0B1B5A6A2D6C128900977891 /* NAMAdapter.m */,
-				0B1B5A6B2D6C128900977891 /* native sample view */,
-			);
-			path = naverAdManager;
-			sourceTree = "<group>";
-		};
-		0B1B5A6B2D6C128900977891 /* native sample view */ = {
-			isa = PBXGroup;
-			children = (
-				0B1B5A6C2D6C128900977891 /* GFPNativeSimpleAdView.xib */,
+				0BE3380B2DB7832F0017D018 /* GFPNativeAdView.xib */,
+				0BE3380C2DB7832F0017D018 /* GFPNativeSimpleAdView.xib */,
 			);
 			path = "native sample view";
 			sourceTree = "<group>";
 		};
-		0BBD85092C8AA155005C7944 /* Adapter */ = {
+		0BE338102DB7832F0017D018 /* naverAdManager */ = {
 			isa = PBXGroup;
 			children = (
-				0B1B5A3E2D6C128800977891 /* applovin */,
-				0B1B5A412D6C128900977891 /* cauly */,
-				0B1B5A4F2D6C128900977891 /* fyber */,
-				0B1B5A652D6C128900977891 /* mintegral */,
-				0B1B5A682D6C128900977891 /* naverAdManager */,
-				0B1B5A5D2D6C128900977891 /* pangle */,
-				0B1B5A522D6C128900977891 /* unityads */,
-				0B1B5A552D6C128900977891 /* vungle */,
-				0B09C36B2D193D5C00D93DCB /* facebook */,
+				0BE3380D2DB7832F0017D018 /* native sample view */,
+				0BE3380E2DB7832F0017D018 /* NAMAdapter.h */,
+				0BE3380F2DB7832F0017D018 /* NAMAdapter.m */,
+			);
+			path = naverAdManager;
+			sourceTree = "<group>";
+		};
+		0BE338132DB7832F0017D018 /* pangle */ = {
+			isa = PBXGroup;
+			children = (
+				0BE338112DB7832F0017D018 /* PangleAdapter.h */,
+				0BE338122DB7832F0017D018 /* PangleAdapter.m */,
+			);
+			path = pangle;
+			sourceTree = "<group>";
+		};
+		0BE338162DB7832F0017D018 /* unityads */ = {
+			isa = PBXGroup;
+			children = (
+				0BE338142DB7832F0017D018 /* UnityAdsAdapter.h */,
+				0BE338152DB7832F0017D018 /* UnityAdsAdapter.m */,
+			);
+			path = unityads;
+			sourceTree = "<group>";
+		};
+		0BE338192DB7832F0017D018 /* vungle */ = {
+			isa = PBXGroup;
+			children = (
+				0BE338172DB7832F0017D018 /* VungleAdapter.h */,
+				0BE338182DB7832F0017D018 /* VungleAdapter.m */,
+			);
+			path = vungle;
+			sourceTree = "<group>";
+		};
+		0BE3381A2DB7832F0017D018 /* Adapter */ = {
+			isa = PBXGroup;
+			children = (
+				0BE337EB2DB7832F0017D018 /* adfit */,
+				0BE337F32DB7832F0017D018 /* applovin */,
+				0BE338012DB7832F0017D018 /* cauly */,
+				0BE338042DB7832F0017D018 /* facebook */,
+				0BE3380A2DB7832F0017D018 /* mintegral */,
+				0BE338102DB7832F0017D018 /* naverAdManager */,
+				0BE338132DB7832F0017D018 /* pangle */,
+				0BE338162DB7832F0017D018 /* unityads */,
+				0BE338192DB7832F0017D018 /* vungle */,
 			);
 			path = Adapter;
 			sourceTree = "<group>";
@@ -257,14 +267,12 @@
 		0BEB3F432A60ED0A005C1C04 /* PointHomeSample */ = {
 			isa = PBXGroup;
 			children = (
-				0B6534122CDB2A5600C49B03 /* PointHomeSample-Bridging-Header.h */,
-				0BBD85092C8AA155005C7944 /* Adapter */,
+				0BE3381A2DB7832F0017D018 /* Adapter */,
 				0BEB3F442A60ED0A005C1C04 /* AppDelegate.swift */,
 				0BEB3F482A60ED0A005C1C04 /* ViewController.swift */,
 				0B5D2F4B2BA417D400CECA39 /* ExchangeService.swift */,
 				0BEB3F462A60ED0A005C1C04 /* SceneDelegate.swift */,
 				0B746BC62B46425000F571DC /* TestWebViewController.swift */,
-				0B90C6CE2BFC3E3E00D0D6C1 /* ManualViewController.swift */,
 				0BD9C2EE2BC77159009FE46A /* AdCashController.swift */,
 				0BBD844B2C7DA572005C7944 /* CashButtonWebViewController.swift */,
 				0B5A6FE92C4916A10062DFE4 /* AcceptedAgeService.swift */,
@@ -276,6 +284,7 @@
 				0BEB3F4D2A60ED0C005C1C04 /* Assets.xcassets */,
 				0BEB3F4F2A60ED0C005C1C04 /* LaunchScreen.storyboard */,
 				0BEB3F522A60ED0C005C1C04 /* Info.plist */,
+				0BA7F8042DFAAC9A004B3759 /* PointHomeSample-Bridging-Header.h */,
 			);
 			path = PointHomeSample;
 			sourceTree = "<group>";
@@ -283,8 +292,8 @@
 		494FE005009341AE24612775 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				85919432FAE74121BC620D59 /* Pods-PointHomeSample.debug.xcconfig */,
-				0DFBD9477C8BC3EE145FC0FC /* Pods-PointHomeSample.release.xcconfig */,
+				E794ED74212CF3123CC12BA5 /* Pods-PointHomeSample.debug.xcconfig */,
+				9D4D764845A5BBDD70C171F6 /* Pods-PointHomeSample.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -299,7 +308,7 @@
 				0BEB3F652A611715005C1C04 /* AdSupport.framework */,
 				0B44DF7A2C04BB8E00E29BD6 /* WidgetKit.framework */,
 				0B44DF7C2C04BB8E00E29BD6 /* SwiftUI.framework */,
-				EA1A3BA6600B4120B29733A7 /* Pods_PointHomeSample.framework */,
+				F7F686DA4CF6F647A777927F /* Pods_PointHomeSample.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -311,14 +320,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0BEB3F552A60ED0C005C1C04 /* Build configuration list for PBXNativeTarget "PointHomeSample" */;
 			buildPhases = (
-				6B3BEFBE8289DFC0FBFB70EA /* [CP] Check Pods Manifest.lock */,
+				2A8F32B14F1F5BD6A0D91757 /* [CP] Check Pods Manifest.lock */,
 				0BEB3F3D2A60ED0A005C1C04 /* Sources */,
 				0BEB3F3E2A60ED0A005C1C04 /* Frameworks */,
 				0BEB3F3F2A60ED0A005C1C04 /* Resources */,
 				0B44DF902C04BB8F00E29BD6 /* Embed Foundation Extensions */,
 				0B8355A52C2BFB3400003692 /* Embed Frameworks */,
-				A3F9928ED4B21417C6EA651F /* [CP] Embed Pods Frameworks */,
-				7B0DC1EA891A9415AD7AF9DB /* [CP] Copy Pods Resources */,
+				8676293AEF69B77766049F1D /* [CP] Embed Pods Frameworks */,
+				45B3C9F93E8C70AB198C3A06 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -369,9 +378,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				0BEB3F512A60ED0C005C1C04 /* LaunchScreen.storyboard in Resources */,
+				0BE3382A2DB7832F0017D018 /* GFPNativeAdView.xib in Resources */,
+				0BE3382C2DB7832F0017D018 /* GFPNativeSimpleAdView.xib in Resources */,
+				0BE3382D2DB7832F0017D018 /* APSSPAdfitNativeAdView.xib in Resources */,
 				0BEB3F4E2A60ED0C005C1C04 /* Assets.xcassets in Resources */,
 				0BEB3F4C2A60ED0A005C1C04 /* Main.storyboard in Resources */,
-				0B1B5A832D6C128900977891 /* GFPNativeSimpleAdView.xib in Resources */,
 				0B6536E12CF019EB00C49B03 /* PointHomeCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -379,7 +390,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		6B3BEFBE8289DFC0FBFB70EA /* [CP] Check Pods Manifest.lock */ = {
+		2A8F32B14F1F5BD6A0D91757 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -401,7 +412,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7B0DC1EA891A9415AD7AF9DB /* [CP] Copy Pods Resources */ = {
+		45B3C9F93E8C70AB198C3A06 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -418,7 +429,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PointHomeSample/Pods-PointHomeSample-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A3F9928ED4B21417C6EA651F /* [CP] Embed Pods Frameworks */ = {
+		8676293AEF69B77766049F1D /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -444,24 +455,24 @@
 			files = (
 				0B5A6FEA2C4916A10062DFE4 /* AcceptedAgeService.swift in Sources */,
 				0BD9C2EF2BC77159009FE46A /* AdCashController.swift in Sources */,
-				0B1B5A782D6C128900977891 /* FyberAdapter.m in Sources */,
 				0B6536E02CF019EB00C49B03 /* PointHomeCollectionViewCell.swift in Sources */,
 				0B6536DD2CF0191500C49B03 /* CollectionViewController.swift in Sources */,
-				0B90C6CF2BFC3E3E00D0D6C1 /* ManualViewController.swift in Sources */,
-				0B1B5A812D6C128900977891 /* MintegralAdapter.m in Sources */,
-				0B1B5A7A2D6C128900977891 /* VungleAdapter.m in Sources */,
 				0B746BC72B46425000F571DC /* TestWebViewController.swift in Sources */,
 				0BBD844C2C7DA572005C7944 /* CashButtonWebViewController.swift in Sources */,
 				0BEB3F492A60ED0A005C1C04 /* ViewController.swift in Sources */,
-				0B1B5A772D6C128900977891 /* CaulyAdapter.m in Sources */,
-				0B1B5A792D6C128900977891 /* UnityAdsAdapter.m in Sources */,
 				0B5FAD0F2BDA19170059ED10 /* SelectViewController.swift in Sources */,
-				0B1B5A7D2D6C128900977891 /* PangleAdapter.m in Sources */,
 				0B5D2F4C2BA417D400CECA39 /* ExchangeService.swift in Sources */,
-				0B1B5A822D6C128900977891 /* NAMAdapter.m in Sources */,
-				0B1B5A732D6C128900977891 /* AppLovinAdapter.m in Sources */,
-				0B09C3832D193D5C00D93DCB /* FANAdapter.m in Sources */,
 				0BEB3F452A60ED0A005C1C04 /* AppDelegate.swift in Sources */,
+				0BE3381B2DB7832F0017D018 /* UnityAdsAdapter.m in Sources */,
+				0BE3381C2DB7832F0017D018 /* VungleAdapter.m in Sources */,
+				0BE3381D2DB7832F0017D018 /* FANAdapter.m in Sources */,
+				0BE3381E2DB7832F0017D018 /* CaulyAdapter.m in Sources */,
+				0BE3381F2DB7832F0017D018 /* NAMAdapter.m in Sources */,
+				0BE338222DB7832F0017D018 /* AppLovinAdapter.m in Sources */,
+				0BE338232DB7832F0017D018 /* AdFitAdapter.m in Sources */,
+				0BE338242DB7832F0017D018 /* PangleAdapter.m in Sources */,
+				0BE338252DB7832F0017D018 /* MintegralAdapter.m in Sources */,
+				0BE338262DB7832F0017D018 /* APSSPAdfitNativeAdView.m in Sources */,
 				0BEB3F472A60ED0A005C1C04 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -482,7 +493,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				0BEB3F502A60ED0C005C1C04 /* Base */,
-				0B50454D2B844D2B0065CFAA /* ko */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -610,7 +620,7 @@
 		};
 		0BEB3F562A60ED0C005C1C04 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 85919432FAE74121BC620D59 /* Pods-PointHomeSample.debug.xcconfig */;
+			baseConfigurationReference = E794ED74212CF3123CC12BA5 /* Pods-PointHomeSample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -618,11 +628,12 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 577QD9HCYQ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PointHomeSample/Info.plist;
-				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "앨범에 접근하려면 접근 권한이 필요함.";
-				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_NSSupportsLiveActivities = NO;
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "개인 맞춤 광고를 제공하기 위해 사용자 식별 정보를 확인합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -653,7 +664,7 @@
 		};
 		0BEB3F572A60ED0C005C1C04 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0DFBD9477C8BC3EE145FC0FC /* Pods-PointHomeSample.release.xcconfig */;
+			baseConfigurationReference = 9D4D764845A5BBDD70C171F6 /* Pods-PointHomeSample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -664,8 +675,8 @@
 				DEVELOPMENT_TEAM = 577QD9HCYQ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PointHomeSample/Info.plist;
-				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "앨범에 접근하려면 접근 권한이 필요함.";
-				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_NSSupportsLiveActivities = NO;
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "개인 맞춤 광고를 제공하기 위해 사용자 식별 정보를 확인합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;

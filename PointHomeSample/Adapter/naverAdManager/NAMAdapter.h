@@ -18,11 +18,14 @@
     GFPAdLoader *adLoader;
     GFPBannerView *gfpBannerView, *gfpModalBannerView;
     GFPNativeSimpleAd *gfpNativeSimpleAd;
+    GFPNativeAd *gfpNativeAd;
 }
 
 @end
 
 @interface APNAMNativeAdRenderer: NSObject
+@property (strong, nonatomic)  UIView *namNativeSuperView;
 @property (strong, nonatomic) GFPNativeSimpleAdView *namNativeSimpleAdView;
+@property (strong, nonatomic) GFPNativeAdView *namNativeAdView;
 @end
 

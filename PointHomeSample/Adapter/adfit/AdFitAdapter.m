@@ -235,16 +235,8 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
             }
             
             bizBoardTemplate = [[BizBoardTemplate alloc] init];
-              
-            CGFloat leftRightMargin = BizBoardTemplate.defaultEdgeInset.left +
-            BizBoardTemplate.defaultEdgeInset.right;
-            CGFloat topBottomMargin = BizBoardTemplate.defaultEdgeInset.top
-            + BizBoardTemplate.defaultEdgeInset.bottom;
-            CGFloat bizBoardWidth = _adpopcornSSPReactNativeAd.frame.size.width - leftRightMargin;
-            CGFloat bizBoardRatio = 1029.0 / 258.0;
-            CGFloat bizBoardHeight = bizBoardWidth / bizBoardRatio;
-            CGFloat height = bizBoardHeight + topBottomMargin;
-            bizBoardTemplate.frame = CGRectMake(0, 0, _adpopcornSSPReactNativeAd.frame.size.width, height);
+            
+            bizBoardTemplate.frame = CGRectMake(0, 0, _adpopcornSSPReactNativeAd.frame.size.width, _adpopcornSSPReactNativeAd.frame.size.height);
               
             [_adpopcornSSPReactNativeAd addSubview:bizBoardTemplate];
           

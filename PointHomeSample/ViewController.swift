@@ -10,6 +10,12 @@ import AdSupport
 import AvatyePointHome
 import ActivityKit
 import WebKit
+import GFPSDK
+
+struct AppCredential{
+    let appId: String
+    let appSecretKey: String
+}
 
 class ViewController: UIViewController{
     
@@ -36,6 +42,38 @@ class ViewController: UIViewController{
     let profileLabel: UILabel = UILabel()
     
     var floatingButton: UIButton! = nil
+    
+    let qaAppCredentials: [AppCredential] = [
+        // 채널링
+        AppCredential(appId: "16a99b26a7f64be4b512f4e82d972a5a", appSecretKey: "a27984cf4bca4194"),
+        // 게스트
+        AppCredential(appId: "1cd2e20a33e941dd942940ac03891562", appSecretKey: "c4b642121ee94d01"),
+        // 하나머니 ( 캐시블럭 )
+        AppCredential(appId: "1fdf009984be47a397bda32873a239ef", appSecretKey: "806e8cfffac34a92")
+    ]
+    
+    let liveAppCredentials: [AppCredential] = [
+        // 채널링
+        AppCredential(appId: "844a3ea8c7a548dbb42adefd4fb0db87", appSecretKey: "3b4e4421d41c4de3"),
+        // 게스트
+        AppCredential(appId: "93a584254434475eb9d140986e9da8cb", appSecretKey: "03a4998cbcce4ca8"),
+        // 하나머니
+        AppCredential(appId: "3bb8b37b85484a66b1b8c9dd61d37efd", appSecretKey: "268a8788740c4a6c"),
+        // 다이렉트
+        AppCredential(appId: "aa51f3d766664030a1b59b950248d586", appSecretKey: "86ae7245943f4166"),
+        // OCB
+        AppCredential(appId: "38d562c948274074b409b81e48cf8f26", appSecretKey: "087bbae957554644"),
+        // Syrup
+        AppCredential(appId: "cccafade179b4c17be03ce7dc45849be", appSecretKey: "08d4cdb14d9e4318"),
+        // 발로소득
+        AppCredential(appId: "d3a74845654442c38a77a1579c94e078", appSecretKey: "cef49849f8474bd7"),
+        // 야핏무브
+        AppCredential(appId: "c6384bfb126d40348501fd35b288e505", appSecretKey: "eeaa794399d74852"),
+        // 머니트리
+        AppCredential(appId: "248290af6356445fb5d53d305122562a", appSecretKey: "4db8ea35e620494d"),
+        // 하루날씨
+        AppCredential(appId: "bf0b6002cfa911e98c2a1ce62f357dd5", appSecretKey: "8c2a1ce62f357dd5"),
+    ]
     
     let convertClosure: (String) async throws -> String = { stringValue in
         do{
@@ -75,54 +113,21 @@ class ViewController: UIViewController{
     override func viewDidLoad() {
         print("uuid \(uuid)")
         // test
-        if PHSelectInit.shared.modTage == 0 {
+        if PHSelectInit.shared.modTag == 0 {
             self.modeLabel.text = "대역 : TEST"
             
-            switch PHSelectInit.shared.tag{
-            case 0:
-                // 채널링
-                self.appID = "16a99b26a7f64be4b512f4e82d972a5a"
-                self.appSecretKey = "a27984cf4bca4194"
-            case 1:
-                // Default
-                self.appID = "1cd2e20a33e941dd942940ac03891562"
-                self.appSecretKey = "c4b642121ee94d01"
-            case 2:
-                // Manual
-                self.appID = PHSelectInit.shared.appId ?? ""
-                self.appSecretKey = PHSelectInit.shared.appSecretKey ?? ""
-                if PHSelectInit.shared.userKey == "" {
-                    PHSelectInit.shared.userKey = nil
-                }
-                print("test appId \(appID) appSecretKey \(appSecretKey)")
-            default:
-                print("test tag Error")
-            }
+            self.appID = qaAppCredentials[PHSelectInit.shared.tag].appId
+            self.appSecretKey = qaAppCredentials[PHSelectInit.shared.tag].appSecretKey
+            
+            print("test appId \(appID) appSecretKey \(appSecretKey)")
         }else{
             // stage
             self.modeLabel.text = "대역 : LIVE"
             
-            switch PHSelectInit.shared.tag{
-            case 0:
-                // 채널링
-                self.appID = "38d562c948274074b409b81e48cf8f26"
-                self.appSecretKey = "087bbae957554644"
-            case 1:
-                // Default
-                self.appID = "b2034cfe205d49f59667ca58f1193041"
-                self.appSecretKey = "d6c6674bf31544fa"
-            case 2:
-                // manual
-                self.appID = PHSelectInit.shared.appId ?? ""
-                self.appSecretKey = PHSelectInit.shared.appSecretKey ?? ""
-                if PHSelectInit.shared.userKey == "" {
-                    PHSelectInit.shared.userKey = nil
-                }
-                print("stage appId \(appID) appSecretKey \(appSecretKey) \(PHSelectInit.shared.userKey)")
-            default:
-                // error
-                print("stage tag Error")
-            }
+            self.appID = liveAppCredentials[PHSelectInit.shared.tag].appId
+            self.appSecretKey = liveAppCredentials[PHSelectInit.shared.tag].appSecretKey
+            
+            print("Live appId \(appID) appSecretKey \(appSecretKey)")
         }
         
         if PHSelectInit.shared.testMode{
@@ -156,12 +161,23 @@ class ViewController: UIViewController{
             pointHomeService = AvatyePHService(rootViewController: self, appId: appID, appSecretKey: appSecretKey, userKey: PHSelectInit.shared.userKey, openKey: PHSelectInit.shared.openKey, fullScreen: false)
         }
         self.pointHomeService.delegate = self
+//        pointHomeService.setCashButton(bottom: 330, trailing: 100)
         pointHomeService.setCashButton()
         
         let _: String = pointHomeService.getUserAgent()
         
         pointHomeService.convertFunc(convert: convertClosure)
-        pointHomeService.acceptUserFunc(closeure: acceptClosure)
+//        pointHomeService.acceptUserFunc(closure: acceptClosure)
+        
+//        pointHomeService.GFPAdManagerRegisterFunc { webView in
+//            PointHomeLogger.debug("pointHomeService GFPAdManagerRegisterFunc")
+//            GFPAdManager.register(webView)
+//            GFPAdManager.examineWebViewStatus(webView) { javaScriptError, results in
+//                let isRegistered = results["isRegistered"] as? Bool ?? false
+//                PointHomeLogger.debug("pointHomeService GFPAdManagerRegisterFunc examineWebViewStatus isRegistered \(isRegistered)")
+//            }
+//            
+//        }
     }
     
     func replaceLast4DigitsWithTEST(appID: String) -> String {
@@ -186,11 +202,6 @@ class ViewController: UIViewController{
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         print("viewDidDisappear dismiss")
-        
-//        if pointHomeService != nil{
-//            self.pointHomeService.removePHService()
-//            self.pointHomeService = nil
-//        }
         
     }
     
@@ -230,7 +241,7 @@ class ViewController: UIViewController{
 
 
     @IBAction func sStriptBanner(_ sender: Any) {
-        AvatyePH.getUserProfile(appId: self.appID, appSecretKey: self.appSecretKey, userKey: "123", resource: "profile") {
+        AvatyePH.getUserProfile(appId: self.appID, appSecretKey: self.appSecretKey, userKey: PHSelectInit.shared.userKey) {
             result in
             switch result {
             case .success(let item):
@@ -269,7 +280,6 @@ class ViewController: UIViewController{
         }
         
     }
-
     
 }
 
@@ -312,44 +322,6 @@ extension ViewController: AvatyePHDelegate{
     func pointHomeSliderOpened(caller: String) {
         PointHomeLogger.debug("pointHome slider Opend \(caller)")
         openBool = false
-        
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 5){
-//            print("pointHomeSlider open alert")
-//            showTopmostAlert()
-//        }
-        
-        func showTopmostAlert() {
-            if let topViewController = getTopViewController() {
-                let alert = UIAlertController(title: "알림", message: "최상위 뷰 컨트롤러에서 표시된 메시지입니다.", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
-                
-                topViewController.present(alert, animated: true, completion: nil)
-            }
-        }
-
-        // 최상위 뷰 컨트롤러를 찾는 함수
-        func getTopViewController() -> UIViewController? {
-            guard let rootViewController = UIApplication.shared.windows.first?.rootViewController else {
-                return nil
-            }
-            return getTopViewController(from: rootViewController)
-        }
-
-        // 재귀적으로 최상위 뷰 컨트롤러를 찾는 함수
-        func getTopViewController(from viewController: UIViewController) -> UIViewController? {
-            if let presentedViewController = viewController.presentedViewController {
-                return getTopViewController(from: presentedViewController)
-            }
-            if let navigationController = viewController as? UINavigationController {
-                return getTopViewController(from: navigationController.visibleViewController ?? viewController)
-            }
-            if let tabBarController = viewController as? UITabBarController {
-                return getTopViewController(from: tabBarController.selectedViewController ?? viewController)
-            }
-            return viewController
-        }
-        
-        
     }
     
 }
