@@ -1,22 +1,25 @@
 PODS:
-  - AdCashFramework (3.1.28):
+  - AdCashFramework (3.3.2):
     - AdPopcornSSP (~> 2.10.2)
   - AdFitSDK (3.14.5)
-  - AdPopcornSSP (2.10.2)
-  - Ads-Global (7.1.0.8):
-    - Ads-Global/BUAdSDK (= 7.1.0.8)
-  - Ads-Global/BUAdSDK (7.1.0.8)
-  - AppLovinSDK (13.1.0)
-  - AvatyePointHome (1.8.7):
-    - AdCashFramework (~> 3.1.28)
+  - AdPopcornSSP (2.10.4)
+  - Ads-Global (7.2.0.6):
+    - Ads-Global/BUAdSDK (= 7.2.0.6)
+  - Ads-Global/BUAdSDK (7.2.0.6)
+  - AppLovinSDK (13.3.1)
+  - AvatyePointHome (1.9.3):
+    - AdCashFramework (~> 3.3.1)
   - CaulySDK (3.1.22)
   - DropDown (2.3.13)
   - FairBidSDK (3.47.0):
     - Fyber_FMPAdapter (= 8.2.6)
-  - FBAudienceNetwork (6.14.0)
+  - FBAudienceNetwork (6.20.1)
   - Fyber_FMPAdapter (8.2.6):
     - Fyber_Marketplace_SDK (= 8.2.6)
   - Fyber_Marketplace_SDK (8.2.6)
+  - Google-Mobile-Ads-SDK (12.8.0):
+    - GoogleUserMessagingPlatform (>= 1.1)
+  - GoogleUserMessagingPlatform (3.0.0)
   - KissXML (5.3.1):
     - KissXML/All (= 5.3.1)
   - KissXML/Additions (5.3.1):
@@ -25,67 +28,68 @@ PODS:
     - KissXML/Additions
     - KissXML/Core
   - KissXML/Core (5.3.1)
-  - MintegralAdSDK (7.7.1):
-    - MintegralAdSDK/BannerAd (= 7.7.1)
-    - MintegralAdSDK/BidBannerAd (= 7.7.1)
-    - MintegralAdSDK/BidInterstitialVideoAd (= 7.7.1)
-    - MintegralAdSDK/BidNativeAd (= 7.7.1)
-    - MintegralAdSDK/BidNewInterstitialAd (= 7.7.1)
-    - MintegralAdSDK/BidRewardVideoAd (= 7.7.1)
-    - MintegralAdSDK/InterstitialVideoAd (= 7.7.1)
-    - MintegralAdSDK/NativeAd (= 7.7.1)
-    - MintegralAdSDK/NewInterstitialAd (= 7.7.1)
-    - MintegralAdSDK/RewardVideoAd (= 7.7.1)
-  - MintegralAdSDK/BannerAd (7.7.1):
+  - MintegralAdSDK (7.7.7):
+    - MintegralAdSDK/BannerAd (= 7.7.7)
+    - MintegralAdSDK/BidBannerAd (= 7.7.7)
+    - MintegralAdSDK/BidInterstitialVideoAd (= 7.7.7)
+    - MintegralAdSDK/BidNativeAd (= 7.7.7)
+    - MintegralAdSDK/BidNewInterstitialAd (= 7.7.7)
+    - MintegralAdSDK/BidRewardVideoAd (= 7.7.7)
+    - MintegralAdSDK/InterstitialVideoAd (= 7.7.7)
+    - MintegralAdSDK/NativeAd (= 7.7.7)
+    - MintegralAdSDK/NewInterstitialAd (= 7.7.7)
+    - MintegralAdSDK/RewardVideoAd (= 7.7.7)
+  - MintegralAdSDK/BannerAd (7.7.7):
     - MintegralAdSDK/NativeAd
-  - MintegralAdSDK/BidBannerAd (7.7.1):
+  - MintegralAdSDK/BidBannerAd (7.7.7):
     - MintegralAdSDK/BannerAd
     - MintegralAdSDK/BidNativeAd
-  - MintegralAdSDK/BidInterstitialVideoAd (7.7.1):
+  - MintegralAdSDK/BidInterstitialVideoAd (7.7.7):
     - MintegralAdSDK/BidNativeAd
     - MintegralAdSDK/InterstitialVideoAd
-  - MintegralAdSDK/BidNativeAd (7.7.1):
+  - MintegralAdSDK/BidNativeAd (7.7.7):
     - MintegralAdSDK/NativeAd
-  - MintegralAdSDK/BidNewInterstitialAd (7.7.1):
+  - MintegralAdSDK/BidNewInterstitialAd (7.7.7):
     - MintegralAdSDK/BidNativeAd
     - MintegralAdSDK/NewInterstitialAd
-  - MintegralAdSDK/BidRewardVideoAd (7.7.1):
+  - MintegralAdSDK/BidRewardVideoAd (7.7.7):
     - MintegralAdSDK/BidNativeAd
     - MintegralAdSDK/RewardVideoAd
-  - MintegralAdSDK/InterstitialVideoAd (7.7.1):
+  - MintegralAdSDK/InterstitialVideoAd (7.7.7):
     - MintegralAdSDK/NativeAd
-  - MintegralAdSDK/NativeAd (7.7.1)
-  - MintegralAdSDK/NewInterstitialAd (7.7.1):
+  - MintegralAdSDK/NativeAd (7.7.7)
+  - MintegralAdSDK/NewInterstitialAd (7.7.7):
     - MintegralAdSDK/InterstitialVideoAd
     - MintegralAdSDK/NativeAd
-  - MintegralAdSDK/RewardVideoAd (7.7.1):
+  - MintegralAdSDK/RewardVideoAd (7.7.7):
     - MintegralAdSDK/NativeAd
-  - NAMSDK (8.4.0):
-    - NAMSDK/GFPSDK (= 8.4.0)
-  - NAMSDK/GFPSDK (8.4.0):
+  - NAMSDK (8.8.0):
+    - NAMSDK/GFPSDK (= 8.8.0)
+  - NAMSDK/GFPSDK (8.8.0):
     - KissXML (~> 5.2)
-    - Naver-Ads-Services (~> 1.0.8)
-  - NAMSDK/MediationNDA (8.4.0):
+    - Naver-Ads-Services (~> 1.1.2)
+  - NAMSDK/MediationNDA (8.8.0):
     - NAMSDK/GFPSDK
-  - Naver-Ads-Services (1.0.9)
-  - UnityAds (4.14.1)
-  - VungleAds (7.4.5)
+  - Naver-Ads-Services (1.1.2)
+  - UnityAds (4.16.0)
+  - VungleAds (7.5.2)
 
 DEPENDENCIES:
-  - AdCashFramework (from `../AvatyeFrameworks/sdk-ad-library-ios-src/`)
+  - AdCashFramework (from `../PointHomeSdk/src_adcash_ios/`)
   - AdFitSDK (~> 3.14.0)
-  - Ads-Global (~> 7.1.0.7)
-  - AppLovinSDK (= 13.1.0)
-  - AvatyePointHome (from `../AvatyeFrameworks/sdk-point-home-ios-src`)
+  - Ads-Global (~> 7.2.0.5)
+  - AppLovinSDK (= 13.3.1)
+  - AvatyePointHome (from `../PointHomeSdk/src_pointhome_ios`)
   - CaulySDK (from `https://github.com/cauly/CaulySDK_iOS.git`, tag `3.1.22`)
   - DropDown
   - FairBidSDK (= 3.47.0)
-  - FBAudienceNetwork (= 6.14.0)
-  - MintegralAdSDK (= 7.7.1)
-  - NAMSDK (= 8.4.0)
-  - NAMSDK/MediationNDA (= 8.4.0)
-  - UnityAds (= 4.14.1)
-  - VungleAds (= 7.4.5)
+  - FBAudienceNetwork (= 6.20.1)
+  - Google-Mobile-Ads-SDK (= 12.8.0)
+  - MintegralAdSDK (= 7.7.7)
+  - NAMSDK (= 8.8.0)
+  - NAMSDK/MediationNDA (= 8.8.0)
+  - UnityAds (= 4.16.0)
+  - VungleAds (= 7.5.2)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -98,6 +102,8 @@ SPEC REPOS:
     - FBAudienceNetwork
     - Fyber_FMPAdapter
     - Fyber_Marketplace_SDK
+    - Google-Mobile-Ads-SDK
+    - GoogleUserMessagingPlatform
     - KissXML
     - MintegralAdSDK
     - NAMSDK
@@ -107,9 +113,9 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   AdCashFramework:
-    :path: "../AvatyeFrameworks/sdk-ad-library-ios-src/"
+    :path: "../PointHomeSdk/src_adcash_ios/"
   AvatyePointHome:
-    :path: "../AvatyeFrameworks/sdk-point-home-ios-src"
+    :path: "../PointHomeSdk/src_pointhome_ios"
   CaulySDK:
     :git: https://github.com/cauly/CaulySDK_iOS.git
     :tag: 3.1.22
@@ -120,25 +126,27 @@ CHECKOUT OPTIONS:
     :tag: 3.1.22
 
 SPEC CHECKSUMS:
-  AdCashFramework: dfe557af299b72c988dadddf6f2cb046c5c66d61
+  AdCashFramework: ae91c1779b6770357a59c0713c8e6a516ae61f2d
   AdFitSDK: 421ea48b024d6274ea23d81d188457a21e6348ef
-  AdPopcornSSP: 17a7709a868ccdc21dd49906067c936846082a32
-  Ads-Global: 45b8be89540e1b2e2489f9de832b965f7a676e45
-  AppLovinSDK: 539a0178d8bef4d68b2551a93526e0c1bba06cb2
-  AvatyePointHome: 9e2b07671f632a9c4d7fe08eefeead4ce8197a15
+  AdPopcornSSP: 6d789ca8907121f563cd2fcd7cd4f308e5e514af
+  Ads-Global: 38437160ffbf3c42a3acf7c1ab2ca0614e826342
+  AppLovinSDK: 5075837afdee4fb429121799b8cbcc5918ef3a23
+  AvatyePointHome: 5bc7b4d30493b762f8be92a6b012c0ddf40f0fef
   CaulySDK: 2799452c9923a7e00d145ff9d3f35c4c79bf992d
   DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
   FairBidSDK: 994e949eabd4672cd28541ac1ff62c476ae5d405
-  FBAudienceNetwork: 4d6223a9a88a22e9dca8c9e6c1829a8745b86228
+  FBAudienceNetwork: 08e86d63a05b3a5a59414af12e4af8d756943c80
   Fyber_FMPAdapter: 991eba5f1dec1fc7138c862a1eddb479a9ea407f
   Fyber_Marketplace_SDK: f41cd55ff0d5b257beccc70e5708acd350468b66
+  Google-Mobile-Ads-SDK: ece122bc89b38cab319543bc464a9ceabfe1d307
+  GoogleUserMessagingPlatform: f8d0cdad3ca835406755d0a69aa634f00e76d576
   KissXML: 5c8e0f2e8b9f071d3e1ae123dec3eb5da615c10c
-  MintegralAdSDK: f7d1bebee3758d4c8f9784acef235429a85c4bde
-  NAMSDK: 50bceab13ec959d15869d9fe2e75b18cc298f0d6
-  Naver-Ads-Services: 3982a914de84655b96dbb71404e276ef120d6167
-  UnityAds: b79991b34b0fc648f3b6052274ac8a0a3463cd4f
-  VungleAds: 1da221690dd1a8710d0b6a4c7aeac14cb12d31ab
+  MintegralAdSDK: 190c6cd3d83b31b51833e3341857c58dc430da2e
+  NAMSDK: 7ce2ceb181185e92334f00106f77f452d464d5f1
+  Naver-Ads-Services: f829c19e26e3e07decc2eced67234bc3531bc4b5
+  UnityAds: 8c53660f12855f5f4da100f28709c3d2b4b83dbe
+  VungleAds: 4a157577807c517ebb40cd4d09d34b77532083e1
 
-PODFILE CHECKSUM: 93d46456f61123be9d8bf7adc372794902b03fd1
+PODFILE CHECKSUM: 373a3a0487e442f858d991521694f1f94c9cc6a9
 
 COCOAPODS: 1.16.2

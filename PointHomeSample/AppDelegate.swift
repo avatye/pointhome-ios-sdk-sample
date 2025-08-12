@@ -12,7 +12,7 @@ import AvatyePointHome
 import BackgroundTasks
 import AdCashFramework
 #if canImport(CaulySDK)
-import CaulySDK
+//import CaulySDK
 #endif
 #if canImport(GFPSDK)
 import GFPSDK
@@ -47,7 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         // mult appID
         AvatyePH.initialize(appId: appId, appSecretKey: appSecretKey, logLevel: .debug)
         
-        AdCashInit.setting(appId: appId, appSecretKey: appSecretKey, logLevel: .debug)
+        //AdCashInit.setting(appId: "3b0d2a6fd8b74cd4a13c02b8079462c3", appSecretKey: "9ea781258f924e15", logLevel: .debug)
         
 //        AdCashMediation().initializeGAM()
         
@@ -72,11 +72,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
             // Fallback on earlier versions
         }
         
-        AvatyePH.initializeAppLovin("nPNmWdnX7aDsJQd7yPG7w-rzdTAJJ3qcBNpgSoWzDrm4bUMSmHZJsv-2XRTSiOItVTm7FWZ7PrkUEKeVvlomd1")
+        //AvatyePH.initializeAppLovin("nPNmWdnX7aDsJQd7yPG7w-rzdTAJJ3qcBNpgSoWzDrm4bUMSmHZJsv-2XRTSiOItVTm7FWZ7PrkUEKeVvlomd1")
         
-        AvatyePH.initializePangle("8108172")
+        //AvatyePH.initializePangle("8108172")
         
-        AvatyePH.initializeVungle("63db2422c08b2ab6cfe8cd58")
+        //AvatyePH.initializeVungle("63db2422c08b2ab6cfe8cd58")
         
         #if canImport(GFPSDK)
         GFPAdManager.setup(withPublisherCd: "7976096509", target: self) { error in

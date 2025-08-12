@@ -59,8 +59,8 @@ class AdCashController: UIViewController{
         self.appSecretKeyLabel.text = "appSecretKey: \(adCashAppSecretKey)"
         self.ApIdLabel.text = "APID: \(adCashBanner)"
         
-        bannerLoader = BannerAdLoader(rootVC: self, placementId: dgSmartNAM, size: .DYNAMIC)
-            .setConfig(appId: dgAppId, appSecretKey: dgAppSecretKey)
+        bannerLoader = BannerAdLoader(rootVC: self, placementId: pink300250, size: .DYNAMIC)
+            .setConfig(appId: pinkAppId, appSecretKey: pinkAppSecretKey)
         bannerLoader.delegate = self
         
 //        bannerLoader.setNAMNative { adPopcornSSPNativeAd, nib in
@@ -74,7 +74,7 @@ class AdCashController: UIViewController{
 //            }
 //        }
 
-        bannerLoader.setNAMNative(type: .Smart, width: 300) { adPopcornSSPNativeAd, view in
+        bannerLoader.setNAMNative(type: .Image, width: 300) { adPopcornSSPNativeAd, view in
             guard let xibView = view as? GFPNativeSimpleAdView else{
                 print("Failed to cast UIView to GFPNativeSimpleAdView")
                 return
@@ -93,7 +93,16 @@ class AdCashController: UIViewController{
         
         let width: CGFloat = UIScreen.main.bounds.width
     
-//        bannerAdView?.setNAMNative(type: .Image, width: width)
+        bannerAdView?.setNAMNative(type: .Image,width: 300) { adPopcornSSPNativeAd, view in
+            guard let xibView = view as? GFPNativeSimpleAdView else{
+                print("Failed to cast UIView to GFPNativeSimpleAdView")
+                return
+            }
+            print("xibView frame \(xibView.frame.width) \(xibView.frame.height)")
+            let apNAMNativeAdRenderer = APNAMNativeAdRenderer()
+            apNAMNativeAdRenderer.namNativeSimpleAdView = xibView
+            adPopcornSSPNativeAd.setNAMRenderer(apNAMNativeAdRenderer, superView: xibView)
+        }
         
         if let bannerAdView = self.bannerAdView {
             self.bannerView.addSubview(bannerAdView)

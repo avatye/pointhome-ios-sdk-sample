@@ -12,7 +12,7 @@
 static inline NSString *SSPErrorString(SSPErrorCode code)
 {
     switch (code)
-    { 
+    {
         case AdPopcornSSPException:
             return @"Exception";
         case AdPopcornSSPInvalidParameter:
@@ -53,6 +53,8 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
 {
     BOOL _isCurrentRunningAdapter;
     NSString *vungleAppId, *vungleBannerPlacementId, *vungleRVPlacementId, *vungleIVPlacementId, *vungleNativePlacementId;
+    
+    VideoMixAdType videoMixAdType;
     NSTimer *networkScheduleTimer;
     NSInteger adNetworkNo;
     NSMutableArray *_impTrackersListArray, *_clickTrackersListArray;
@@ -112,6 +114,12 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
     _adType = SSPInterstitialVideoAdType;
 }
 
+- (void)setVideoMixAdViewController:(UIViewController *)viewController
+{
+    _viewController = viewController;
+    _adType = SSPVideoMixAdType;
+}
+
 - (void)setNativeAdViewController:(UIViewController *)viewController nativeAdRenderer:(id)nativeAdRenderer rootNativeAdView:(AdPopcornSSPNativeAd *)adpopcornSSPNativeAd
 {
     _viewController = viewController;
@@ -137,6 +145,11 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
 }
 
 - (BOOL)isSupportNativeAd
+{
+    return YES;
+}
+
+- (BOOL)isSupportVideoMixAd
 {
     return YES;
 }
@@ -258,59 +271,7 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
         _isCurrentRunningAdapter = YES;
         if (_integrationKey != nil)
         {
-            if(_isInAppBidding)
-            {
-                vungleAppId = @"";
-                vungleRVPlacementId = [_integrationKey valueForKey:@"vungle_placement_id"];
-            }
-            else
-            {
-                vungleAppId = [_integrationKey valueForKey:@"VungleAppId"];
-                vungleRVPlacementId = [_integrationKey valueForKey:@"VunglePlacementId"];
-            }
-                
-            if([VungleAds isInitialized])
-            {
-                NSLog(@"VungleAdapter rewardVideo already initialized : %@", vungleRVPlacementId);
-                self.rewardedAd = [[VungleRewarded alloc] initWithPlacementId:vungleRVPlacementId];
-                    self.rewardedAd.delegate = self;
-                
-                if(_isInAppBidding)
-                {
-                    [self.rewardedAd load:_biddingData];
-                }
-                else
-                {
-                    [self.rewardedAd load:nil];
-                }
-            }
-            else
-            {
-                NSLog(@"VungleAdapter rewardVideo initWithAppId");
-                [VungleAds initWithAppId:vungleAppId completion:^(NSError * _Nullable error) {
-                    if (error) {
-                        NSLog(@"VungleAdapter rewardVideo initializing error %@", error);
-                        if (_isCurrentRunningAdapter && [_delegate respondsToSelector:@selector(AdPopcornSSPAdapterRewardVideoAdLoadFailError:adapter:)])
-                        {
-                            [_delegate AdPopcornSSPAdapterRewardVideoAdLoadFailError:[NSError errorWithDomain:kAdPopcornSSPErrorDomain code:AdPopcornSSPLoadAdFailed userInfo:@{NSLocalizedDescriptionKey: SSPErrorString(AdPopcornSSPLoadAdFailed)}] adapter:self];
-                        }
-                        [self invalidateNetworkTimer];
-                    } else {
-                        NSLog(@"VungleAdapter rewardVideo initialized");
-                        self.rewardedAd = [[VungleRewarded alloc] initWithPlacementId:vungleRVPlacementId];
-                        self.rewardedAd.delegate = self;
-                        
-                        if(_isInAppBidding)
-                        {
-                            [self.rewardedAd load:_biddingData];
-                        }
-                        else
-                        {
-                            [self.rewardedAd load:nil];
-                        }
-                    }
-                }];
-            }
+            [self setupRewardVideo:@"rewardVideo"];
         }
         else
         {
@@ -336,58 +297,7 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
         _isCurrentRunningAdapter = YES;
         if (_integrationKey != nil)
         {
-            if(_isInAppBidding)
-            {
-                vungleAppId = @"";
-                vungleIVPlacementId = [_integrationKey valueForKey:@"vungle_placement_id"];
-            }
-            else
-            {
-                vungleAppId = [_integrationKey valueForKey:@"VungleAppId"];
-                vungleIVPlacementId = [_integrationKey valueForKey:@"VunglePlacementId"];
-            }
-            
-            if([VungleAds isInitialized])
-            {
-                NSLog(@"VungleAdapter interstitialVideo already initialized : %@", vungleIVPlacementId);
-                self.interstitialAd = [[VungleInterstitial alloc]     initWithPlacementId:vungleIVPlacementId];
-                self.interstitialAd.delegate = self;
-                if(_isInAppBidding)
-                {
-                    [self.interstitialAd load:_biddingData];
-                }
-                else
-                {
-                    [self.interstitialAd load:nil];
-                }
-            }
-            else
-            {
-                NSLog(@"VungleAdapter interstitialVideo initWithAppId");
-                [VungleAds initWithAppId:vungleAppId completion:^(NSError * _Nullable error) {
-                    if (error) {
-                        NSLog(@"VungleAdapter interstitialVideo initializing error %@", error);
-                        if (_isCurrentRunningAdapter && [_delegate respondsToSelector:@selector(AdPopcornSSPAdapterInterstitialVideoAdLoadFailError:adapter:)])
-                        {
-                            [_delegate AdPopcornSSPAdapterInterstitialVideoAdLoadFailError:[NSError errorWithDomain:kAdPopcornSSPErrorDomain code:AdPopcornSSPLoadAdFailed userInfo:@{NSLocalizedDescriptionKey: SSPErrorString(AdPopcornSSPLoadAdFailed)}] adapter:self];
-                        }
-                        [self invalidateNetworkTimer];
-                    } else {
-                        NSLog(@"VungleAdapter interstitialVideo initialized");
-                        self.interstitialAd = [[VungleInterstitial alloc]     initWithPlacementId:vungleIVPlacementId];
-                        self.interstitialAd.delegate = self;
-                        
-                        if(_isInAppBidding)
-                        {
-                            [self.interstitialAd load:_biddingData];
-                        }
-                        else
-                        {
-                            [self.interstitialAd load:nil];
-                        }
-                    }
-                }];
-            }
+            [self setupInterstitialVideo:@"InterstitialVideo"];
         }
         else
         {
@@ -418,7 +328,7 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
                 self.nativeAd.delegate = nil;
                 self.nativeAd = nil;
             }
-              
+            
             self.nativeAd = [[VungleNative alloc] initWithPlacementId:vungleNativePlacementId];
             self.nativeAd.delegate = self;
             [self.nativeAd load:nil];
@@ -432,18 +342,268 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
             [self invalidateNetworkTimer];
         }
     }
+    else if(_adType == SSPVideoMixAdType) {
+        NSLog(@"VungleAdapter %@ : SSPVideoMixAdType loadAd : %d", self, _isInAppBidding);
+        if(networkScheduleTimer == nil)
+        {
+            networkScheduleTimer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(networkScheduleTimeoutHandler:) userInfo:nil repeats:NO];
+        }
+        else{
+            [self invalidateNetworkTimer];
+            networkScheduleTimer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(networkScheduleTimeoutHandler:) userInfo:nil repeats:NO];
+        }
+        
+        _isCurrentRunningAdapter = YES;
+        if (_integrationKey != nil) {
+            NSNumber *campaignType = [_integrationKey valueForKey:@"CampaignType"];
+            NSInteger campaignValue = [campaignType integerValue];
+            videoMixAdType = SSPVideoMixAdTypeFromInteger(campaignValue);
+            
+            // Video Mix Ad Type
+            switch (videoMixAdType) {
+                case VideoMix_InterstitialType:
+                    [self isNotSupport:_adType];
+                    break;
+                    
+                case VideoMix_InterstitialVideoType:
+                    [self setupInterstitialVideo:@"VideoMix_InterstitialVideo"];
+                    break;
+                    
+                case VideoMix_RewardVideoType:
+                    [self setupRewardVideo:@"VideoMix_RewardVideo"];
+                    break;
+                    
+                default: break;
+            }
+        }
+        else
+        {
+            NSLog(@"VungleAdapter VideoMix_RewardVideo no integrationKey");
+            if (_isCurrentRunningAdapter && [_delegate respondsToSelector:@selector(AdPopcornSSPAdapterVideoMixAdLoadFailError:adapter: videoMixType:)])
+            {
+                [_delegate AdPopcornSSPAdapterVideoMixAdLoadFailError:[NSError errorWithDomain:kAdPopcornSSPErrorDomain code:AdPopcornSSPMediationInvalidIntegrationKey userInfo:@{NSLocalizedDescriptionKey: SSPErrorString(AdPopcornSSPMediationInvalidIntegrationKey)}] adapter:self videoMixType:videoMixAdType];
+            }
+            [self invalidateNetworkTimer];
+        }
+    }
 }
+
+-(void)isNotSupport:(SSPAdType) adType {
+    switch (adType) {
+        case SSPAdBannerType:
+            NSLog(@"VungleAdapter is not support :%u", _adType);
+            if ([_delegate respondsToSelector:@selector(AdPopcornSSPAdapterBannerViewLoadFailError:adapter:)])
+            {
+                [_delegate AdPopcornSSPAdapterBannerViewLoadFailError:[NSError errorWithDomain:kAdPopcornSSPErrorDomain code:AdPopcornSSPLoadAdFailed userInfo:@{NSLocalizedDescriptionKey: SSPErrorString(AdPopcornSSPLoadAdFailed)}] adapter:self];
+            }
+            break;
+        case SSPNativeAdType:
+            NSLog(@"VungleAdapter is not support :%u", _adType);
+            if ([_delegate respondsToSelector:@selector(AdPopcornSSPAdapterNativeAdLoadFailError:adapter:)])
+            {
+                [_delegate AdPopcornSSPAdapterNativeAdLoadFailError:[NSError errorWithDomain:kAdPopcornSSPErrorDomain code:AdPopcornSSPLoadAdFailed userInfo:@{NSLocalizedDescriptionKey: SSPErrorString(AdPopcornSSPLoadAdFailed)}] adapter:self];
+            }
+            break;
+        case SSPAdInterstitialType:
+            NSLog(@"VungleAdapter is not support :%u", _adType);
+            if ([_delegate respondsToSelector:@selector(AdPopcornSSPAdapterInterstitialAdLoadFailError:adapter:)])
+            {
+                [_delegate AdPopcornSSPAdapterInterstitialAdLoadFailError:[NSError errorWithDomain:kAdPopcornSSPErrorDomain code:AdPopcornSSPLoadAdFailed userInfo:@{NSLocalizedDescriptionKey: SSPErrorString(AdPopcornSSPLoadAdFailed)}] adapter:self];
+            }
+            break;
+        case SSPInterstitialVideoAdType:
+            NSLog(@"VungleAdapter is not support :%u", _adType);
+            if ([_delegate respondsToSelector:@selector(AdPopcornSSPAdapterInterstitialVideoAdLoadFailError:adapter:)])
+            {
+                [_delegate AdPopcornSSPAdapterInterstitialVideoAdLoadFailError:[NSError errorWithDomain:kAdPopcornSSPErrorDomain code:AdPopcornSSPLoadAdFailed userInfo:@{NSLocalizedDescriptionKey: SSPErrorString(AdPopcornSSPLoadAdFailed)}] adapter:self];
+            }
+            break;
+        case SSPRewardVideoAdType:
+            NSLog(@"VungleAdapter is not support :%u", _adType);
+            if ([_delegate respondsToSelector:@selector(AdPopcornSSPAdapterRewardVideoAdLoadFailError:adapter:)])
+            {
+                [_delegate AdPopcornSSPAdapterRewardVideoAdLoadFailError:[NSError errorWithDomain:kAdPopcornSSPErrorDomain code:AdPopcornSSPLoadAdFailed userInfo:@{NSLocalizedDescriptionKey: SSPErrorString(AdPopcornSSPLoadAdFailed)}] adapter:self];
+            }
+            break;
+        case SSPVideoMixAdType:
+            NSLog(@"VungleAdapter is not support :%u , videomix: %d", _adType, videoMixAdType);
+            if ([_delegate respondsToSelector:@selector(AdPopcornSSPAdapterVideoMixAdLoadFailError:adapter: videoMixType:)])
+            {
+                [_delegate AdPopcornSSPAdapterVideoMixAdLoadFailError:[NSError errorWithDomain:kAdPopcornSSPErrorDomain code:AdPopcornSSPLoadAdFailed userInfo:@{NSLocalizedDescriptionKey: SSPErrorString(AdPopcornSSPLoadAdFailed)}] adapter:self videoMixType:videoMixAdType];
+            }
+            break;
+        default:
+            break;
+    }
+}
+
+- (void) setupInterstitial:(NSString*) typeName {
+    NSLog(@"dosen't support %@", typeName);
+    if (_adType == SSPVideoMixAdType) {
+        if ([_delegate respondsToSelector:@selector(AdPopcornSSPAdapterVideoMixAdLoadFailError:adapter:videoMixType:)])
+        {
+            [_delegate AdPopcornSSPAdapterVideoMixAdLoadFailError:[NSError errorWithDomain:kAdPopcornSSPErrorDomain code:AdPopcornSSPLoadAdFailed userInfo:@{NSLocalizedDescriptionKey: SSPErrorString(AdPopcornSSPLoadAdFailed)}] adapter:self videoMixType:videoMixAdType];
+        }
+    } else {
+        if ([_delegate respondsToSelector:@selector(AdPopcornSSPAdapterInterstitialVideoAdLoadFailError:adapter:)])
+        {
+            [_delegate AdPopcornSSPAdapterInterstitialVideoAdLoadFailError:[NSError errorWithDomain:kAdPopcornSSPErrorDomain code:AdPopcornSSPLoadAdFailed userInfo:@{NSLocalizedDescriptionKey: SSPErrorString(AdPopcornSSPLoadAdFailed)}] adapter:self];
+        }
+    }
+}
+
+- (void) setupInterstitialVideo:(NSString*) typeName {
+    NSLog(@"VungleAdapter %@ already initialized : %@", typeName, vungleRVPlacementId);
+    
+    if(_isInAppBidding)
+    {
+        vungleAppId = @"";
+        vungleIVPlacementId = [_integrationKey valueForKey:@"vungle_placement_id"];
+    }
+    else
+    {
+        vungleAppId = [_integrationKey valueForKey:@"VungleAppId"];
+        vungleIVPlacementId = [_integrationKey valueForKey:@"VunglePlacementId"];
+    }
+    
+    if([VungleAds isInitialized]) {
+        NSLog(@"VungleAdapter interstitialVideo already initialized : %@", vungleIVPlacementId);
+        self.interstitialAd = [[VungleInterstitial alloc]     initWithPlacementId:vungleIVPlacementId];
+        self.interstitialAd.delegate = self;
+        if(_isInAppBidding)
+        {
+            [self.interstitialAd load:_biddingData];
+        }
+        else
+        {
+            [self.interstitialAd load:nil];
+        }
+    }
+    else {
+        NSLog(@"VungleAdapter interstitialVideo initWithAppId");
+        [VungleAds initWithAppId:vungleAppId completion:^(NSError * _Nullable error) {
+            if (error) {
+                if (_adType == SSPVideoMixAdType) {
+                    NSLog(@"VungleAdapter  %@ initializing error %@", typeName, error);
+                    if (_isCurrentRunningAdapter && [_delegate respondsToSelector:@selector(AdPopcornSSPAdapterVideoMixAdLoadFailError:adapter:videoMixType:)])
+                    {
+                        [_delegate AdPopcornSSPAdapterVideoMixAdLoadFailError:[NSError errorWithDomain:kAdPopcornSSPErrorDomain code:AdPopcornSSPLoadAdFailed userInfo:@{NSLocalizedDescriptionKey: SSPErrorString(AdPopcornSSPLoadAdFailed)}] adapter:self videoMixType:videoMixAdType];
+                    }
+                } else {
+                    NSLog(@"VungleAdapter  %@ initializing error %@", typeName, error);
+                    if (_isCurrentRunningAdapter && [_delegate respondsToSelector:@selector(AdPopcornSSPAdapterInterstitialVideoAdLoadFailError:adapter:)])
+                    {
+                        [_delegate AdPopcornSSPAdapterInterstitialVideoAdLoadFailError:[NSError errorWithDomain:kAdPopcornSSPErrorDomain code:AdPopcornSSPLoadAdFailed userInfo:@{NSLocalizedDescriptionKey: SSPErrorString(AdPopcornSSPLoadAdFailed)}] adapter:self];
+                    }
+                }
+                [self invalidateNetworkTimer];
+            } else {
+                NSLog(@"VungleAdapter interstitialVideo initialized");
+                self.interstitialAd = [[VungleInterstitial alloc]     initWithPlacementId:vungleIVPlacementId];
+                self.interstitialAd.delegate = self;
+                
+                if(_isInAppBidding)
+                {
+                    [self.interstitialAd load:_biddingData];
+                }
+                else
+                {
+                    [self.interstitialAd load:nil];
+                }
+            }
+        }];
+    }
+}
+
+- (void) setupRewardVideo:(NSString*) typeName {
+    if(_isInAppBidding)
+    {
+        vungleAppId = @"";
+        vungleRVPlacementId = [_integrationKey valueForKey:@"vungle_placement_id"];
+    }
+    else
+    {
+        vungleAppId = [_integrationKey valueForKey:@"VungleAppId"];
+        vungleRVPlacementId = [_integrationKey valueForKey:@"VunglePlacementId"];
+    }
+    
+    if([VungleAds isInitialized]) {
+        NSLog(@"VungleAdapter %@ already initialized : %@", typeName, vungleRVPlacementId);
+        self.rewardedAd = [[VungleRewarded alloc] initWithPlacementId:vungleRVPlacementId];
+//        self.rewardedAd = [[VungleRewarded alloc] initWithPlacementId:@"VIDEO_TICKET_OPEN_FRONT_RV_IOS-9382339"];
+            self.rewardedAd.delegate = self;
+        
+        if(_isInAppBidding)
+        {
+            [self.rewardedAd load:_biddingData];
+        }
+        else
+        {
+            [self.rewardedAd load:nil];
+        }
+    }
+    else {
+        NSLog(@"VungleAdapter %@ initWithAppId", typeName);
+        [VungleAds initWithAppId:vungleAppId completion:^(NSError * _Nullable error) {
+            if (error) {
+                if (_adType == SSPVideoMixAdType) {
+                    NSLog(@"VungleAdapter  %@ initializing error %@", typeName, error);
+                    if (_isCurrentRunningAdapter && [_delegate respondsToSelector:@selector(AdPopcornSSPAdapterVideoMixAdLoadFailError:adapter:videoMixType:)])
+                    {
+                        [_delegate AdPopcornSSPAdapterVideoMixAdLoadFailError:[NSError errorWithDomain:kAdPopcornSSPErrorDomain code:AdPopcornSSPLoadAdFailed userInfo:@{NSLocalizedDescriptionKey: SSPErrorString(AdPopcornSSPLoadAdFailed)}] adapter:self videoMixType:videoMixAdType];
+                    }
+                } else {
+                    NSLog(@"VungleAdapter  %@ initializing error %@", typeName, error);
+                    if (_isCurrentRunningAdapter && [_delegate respondsToSelector:@selector(AdPopcornSSPAdapterRewardVideoAdLoadFailError:adapter:)])
+                    {
+                        [_delegate AdPopcornSSPAdapterRewardVideoAdLoadFailError:[NSError errorWithDomain:kAdPopcornSSPErrorDomain code:AdPopcornSSPLoadAdFailed userInfo:@{NSLocalizedDescriptionKey: SSPErrorString(AdPopcornSSPLoadAdFailed)}] adapter:self];
+                    }
+                }
+                [self invalidateNetworkTimer];
+            } else {
+                NSLog(@"VungleAdapter  %@ initialized", typeName);
+                self.rewardedAd = [[VungleRewarded alloc] initWithPlacementId:vungleRVPlacementId];
+                self.rewardedAd.delegate = self;
+                
+                if(_isInAppBidding)
+                {
+                    [self.rewardedAd load:_biddingData];
+                }
+                else
+                {
+                    [self.rewardedAd load:nil];
+                }
+            }
+        }];
+    }
+}
+
 
 - (void)showAd
 {
     NSLog(@"VungleAdapter : showAd : %d", _adType);
-    if (_adType == SSPRewardVideoAdType)
-    {
+    if (_adType == SSPRewardVideoAdType) {
         [self.rewardedAd presentWith:_viewController];
     }
-    else if(_adType == SSPInterstitialVideoAdType)
-    {
+    else if(_adType == SSPInterstitialVideoAdType) {
         [self.interstitialAd presentWith:_viewController];
+    }
+    else if(_adType == SSPVideoMixAdType) {
+        switch (videoMixAdType) {
+            case VideoMix_InterstitialType: // 지원 안함
+                break;
+                
+            case VideoMix_InterstitialVideoType:
+                [self.interstitialAd presentWith:_viewController];
+                break;
+                
+            case VideoMix_RewardVideoType:
+                [self.rewardedAd presentWith:_viewController];
+                break;
+                
+            default: break;
+        }
+        
     }
 }
 
@@ -464,6 +624,7 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
     }
     else{
         _isCurrentRunningAdapter = NO;
+        [self invalidateNetworkTimer];
     }
 }
 
@@ -489,6 +650,21 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
         {
             [_delegate AdPopcornSSPAdapterInterstitialVideoAdLoadFailError:[NSError errorWithDomain:kAdPopcornSSPErrorDomain code:AdPopcornSSPLoadAdFailed userInfo:@{NSLocalizedDescriptionKey: SSPErrorString(AdPopcornSSPLoadAdFailed)}] adapter:self];
         }
+    }
+    else if(_adType == SSPVideoMixAdType) {
+        NSLog(@"VungleAdapter VideoMixAd load timeout");
+        switch (videoMixAdType) {
+            case VideoMix_InterstitialType:
+                break;
+                
+            default:
+                if (_isCurrentRunningAdapter && [_delegate respondsToSelector:@selector(AdPopcornSSPAdapterVideoMixAdLoadFailError:adapter:videoMixType:)])
+                {
+                    [_delegate AdPopcornSSPAdapterVideoMixAdLoadFailError:[NSError errorWithDomain:kAdPopcornSSPErrorDomain code:AdPopcornSSPLoadAdFailed userInfo:@{NSLocalizedDescriptionKey: SSPErrorString(AdPopcornSSPLoadAdFailed)}] adapter:self videoMixType:videoMixAdType];
+                }
+                break;
+        }
+
     }
     [self invalidateNetworkTimer];
 }
@@ -560,130 +736,269 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
 #pragma mark - VungleRewarded Delegate Methods
 // Ad load events
 - (void)rewardedAdDidLoad:(VungleRewarded *)rewarded {
-    NSLog(@"VungleAdapter rewardedAdDidLoad");
-    [self invalidateNetworkTimer];
-    if (_isCurrentRunningAdapter && [_delegate respondsToSelector:@selector(AdPopcornSSPAdapterRewardVideoAdLoadSuccess:)])
-    {
-        [_delegate AdPopcornSSPAdapterRewardVideoAdLoadSuccess:self];
+    if (videoMixAdType == VideoMix_RewardVideoType) {
+        NSLog(@"VungleAdapter VideoMix_RewardVideo DidLoad");
+        [self invalidateNetworkTimer];
+        if (_isCurrentRunningAdapter && [_delegate respondsToSelector:@selector(AdPopcornSSPAdapterVideoMixAdLoadSuccess: videoMixType:)])
+        {
+            [_delegate AdPopcornSSPAdapterVideoMixAdLoadSuccess:self videoMixType:videoMixAdType];
+        }
+    } else {
+        NSLog(@"VungleAdapter rewardedAdDidLoad");
+        [self invalidateNetworkTimer];
+        if (_isCurrentRunningAdapter && [_delegate respondsToSelector:@selector(AdPopcornSSPAdapterRewardVideoAdLoadSuccess:)])
+        {
+            [_delegate AdPopcornSSPAdapterRewardVideoAdLoadSuccess:self];
+        }
     }
 }
 - (void)rewardedAdDidFailToLoad:(VungleRewarded *)rewarded
                       withError:(NSError *)withError {
-    NSLog(@"VungleAdapter rewardedAdDidFailToLoad");
-    [self invalidateNetworkTimer];
-    if (_isCurrentRunningAdapter && [_delegate respondsToSelector:@selector(AdPopcornSSPAdapterRewardVideoAdLoadFailError:adapter:)])
-    {
-        [_delegate AdPopcornSSPAdapterRewardVideoAdLoadFailError:[NSError errorWithDomain:kAdPopcornSSPErrorDomain code:AdPopcornSSPLoadAdFailed userInfo:@{NSLocalizedDescriptionKey: SSPErrorString(AdPopcornSSPLoadAdFailed)}] adapter:self];
+    
+    // VideoMixAd 일 경우
+    if (videoMixAdType == VideoMix_RewardVideoType) {
+        NSLog(@"VungleAdapter VideoMix_RewardVideo DidFailToLoad %@", withError);
+        [self invalidateNetworkTimer];
+        if (_isCurrentRunningAdapter && [_delegate respondsToSelector:@selector(AdPopcornSSPAdapterVideoMixAdLoadFailError:adapter: videoMixType:)])
+        {
+            [_delegate AdPopcornSSPAdapterVideoMixAdLoadFailError:[NSError errorWithDomain:kAdPopcornSSPErrorDomain code:AdPopcornSSPLoadAdFailed userInfo:@{NSLocalizedDescriptionKey: SSPErrorString(AdPopcornSSPLoadAdFailed)}] adapter:self videoMixType:videoMixAdType];
+        }
+    } else {
+        NSLog(@"VungleAdapter rewardedAdDidFailToLoad %@", withError);
+        [self invalidateNetworkTimer];
+        if (_isCurrentRunningAdapter && [_delegate respondsToSelector:@selector(AdPopcornSSPAdapterRewardVideoAdLoadFailError:adapter:)])
+        {
+            [_delegate AdPopcornSSPAdapterRewardVideoAdLoadFailError:[NSError errorWithDomain:kAdPopcornSSPErrorDomain code:AdPopcornSSPLoadAdFailed userInfo:@{NSLocalizedDescriptionKey: SSPErrorString(AdPopcornSSPLoadAdFailed)}] adapter:self];
+        }
     }
 }
 // Ad Lifecycle Events
 - (void)rewardedAdDidPresent:(VungleRewarded *)rewarded {
-    NSLog(@"VungleAdapter rewardedAdDidPresent");
-    if (_isCurrentRunningAdapter && [_delegate respondsToSelector:@selector(AdPopcornSSPAdapterRewardVideoAdShowSuccess:)])
-    {
-        [_delegate AdPopcornSSPAdapterRewardVideoAdShowSuccess:self];
+    if (videoMixAdType == VideoMix_RewardVideoType) {
+        NSLog(@"VungleAdapter VideoMix_RewardVideo DidPresent");
+        if (_isCurrentRunningAdapter && [_delegate respondsToSelector:@selector(AdPopcornSSPAdapterVideoMixAdShowSuccess: videoMixType:)])
+        {
+            [_delegate AdPopcornSSPAdapterVideoMixAdShowSuccess:self videoMixType:videoMixAdType];
+        }
+    } else {
+        NSLog(@"VungleAdapter rewardedAdDidPresent");
+        if (_isCurrentRunningAdapter && [_delegate respondsToSelector:@selector(AdPopcornSSPAdapterRewardVideoAdShowSuccess:)])
+        {
+            [_delegate AdPopcornSSPAdapterRewardVideoAdShowSuccess:self];
+        }
     }
 }
 - (void)rewardedAdDidFailToPresent:(VungleRewarded *)rewarded
                          withError:(NSError *)withError {
-    NSLog(@"VungleAdapter rewardedAdDidFailToPresent");
-    if (_isCurrentRunningAdapter && [_delegate respondsToSelector:@selector(AdPopcornSSPAdapterRewardVideoAdShowFailError:adapter:)])
-    {
-        [_delegate AdPopcornSSPAdapterRewardVideoAdShowFailError:[NSError errorWithDomain:kAdPopcornSSPErrorDomain code:AdPopcornSSPNoRewardVideoAdLoaded userInfo:@{NSLocalizedDescriptionKey: SSPErrorString(AdPopcornSSPNoRewardVideoAdLoaded)}] adapter:self];
-    }
-}
-- (void)rewardedAdDidTrackImpression:(VungleRewarded *)rewarded {
-    NSLog(@"VungleAdapter rewardedAdDidTrackImpression");
-    for(NSString *url in _impTrackersListArray)
-    {
-        if ([_delegate respondsToSelector:@selector(impClickTracking:)])
+    if (videoMixAdType == VideoMix_RewardVideoType) {
+        NSLog(@"VungleAdapter VideoMix_RewardVideo DidFailToPresent");
+        if (_isCurrentRunningAdapter && [_delegate respondsToSelector:@selector(AdPopcornSSPAdapterVideoMixAdShowFailError:adapter: videoMixType:)])
         {
-            [_delegate impClickTracking:url];
+            [_delegate AdPopcornSSPAdapterVideoMixAdShowFailError:[NSError errorWithDomain:kAdPopcornSSPErrorDomain code:AdPopcornSSPNoRewardVideoAdLoaded userInfo:@{NSLocalizedDescriptionKey: SSPErrorString(AdPopcornSSPNoRewardVideoAdLoaded)}] adapter:self videoMixType:videoMixAdType];
+        }
+    } else {
+        NSLog(@"VungleAdapter rewardedAdDidFailToPresent");
+        if (_isCurrentRunningAdapter && [_delegate respondsToSelector:@selector(AdPopcornSSPAdapterRewardVideoAdShowFailError:adapter:)])
+        {
+            [_delegate AdPopcornSSPAdapterRewardVideoAdShowFailError:[NSError errorWithDomain:kAdPopcornSSPErrorDomain code:AdPopcornSSPNoRewardVideoAdLoaded userInfo:@{NSLocalizedDescriptionKey: SSPErrorString(AdPopcornSSPNoRewardVideoAdLoaded)}] adapter:self];
         }
     }
 }
-- (void)rewardedAdDidClick:(VungleRewarded *)rewarded {
-    NSLog(@"VungleAdapter rewardedAdDidClick");
-    for(NSString *url in _clickTrackersListArray)
-    {
-        if ([_delegate respondsToSelector:@selector(impClickTracking:)])
+- (void)rewardedAdDidTrackImpression:(VungleRewarded *)rewarded {
+    if (videoMixAdType == VideoMix_RewardVideoType) {
+        NSLog(@"VungleAdapter VideoMix_RewardVideo DidTrackImpression");
+        for(NSString *url in _impTrackersListArray)
         {
-            [_delegate impClickTracking:url];
+            if ([_delegate respondsToSelector:@selector(impClickTracking:)])
+            {
+                [_delegate impClickTracking:url];
+            }
+        }
+    } else {
+        NSLog(@"VungleAdapter rewardedAdDidTrackImpression");
+        for(NSString *url in _impTrackersListArray)
+        {
+            if ([_delegate respondsToSelector:@selector(impClickTracking:)])
+            {
+                [_delegate impClickTracking:url];
+            }
+        }
+    }
+    
+}
+- (void)rewardedAdDidClick:(VungleRewarded *)rewarded {
+    if (videoMixAdType == VideoMix_RewardVideoType) {
+        NSLog(@"VungleAdapter VideoMix_RewardVideo DidClick");
+        for(NSString *url in _clickTrackersListArray)
+        {
+            if ([_delegate respondsToSelector:@selector(impClickTracking:)])
+            {
+                [_delegate impClickTracking:url];
+            }
+        }
+    } else {
+        NSLog(@"VungleAdapter rewardedAdDidClick");
+        for(NSString *url in _clickTrackersListArray)
+        {
+            if ([_delegate respondsToSelector:@selector(impClickTracking:)])
+            {
+                [_delegate impClickTracking:url];
+            }
         }
     }
 }
 - (void)rewardedAdWillLeaveApplication:(VungleRewarded *)rewarded {
     NSLog(@"VungleAdapter rewardedAdWillLeaveApplication");
 }
+
 - (void)rewardedAdDidRewardUser:(VungleRewarded *)rewarded {
-    NSLog(@"VungleAdapter rewardedAdDidRewardUser");
-    if ([_delegate respondsToSelector:@selector(onCompleteTrackingEvent:isCompleted:)])
-    {
-        [_delegate onCompleteTrackingEvent:adNetworkNo isCompleted:YES];
+    if (videoMixAdType == VideoMix_RewardVideoType) {
+        NSLog(@"VungleAdapter VideoMix_RewardVideo DidRewardUser");
+        if ([_delegate respondsToSelector:@selector(AdPopcornSSPAdapterVideoMixAdCompleteTrackingEvent:isCompleted: videoMixType:)])
+        {
+            [_delegate AdPopcornSSPAdapterVideoMixAdCompleteTrackingEvent:adNetworkNo isCompleted:YES videoMixType:videoMixAdType];
+        }
+    } else {
+        NSLog(@"VungleAdapter rewardedAdDidRewardUser");
+        if ([_delegate respondsToSelector:@selector(onCompleteTrackingEvent:isCompleted:)])
+        {
+            [_delegate onCompleteTrackingEvent:adNetworkNo isCompleted:YES];
+        }
     }
 }
 - (void)rewardedAdDidClose:(VungleRewarded *)rewarded {
-    NSLog(@"VungleAdapter rewardedAdDidClose");
-    _isCurrentRunningAdapter = NO;
-    if ([_delegate respondsToSelector:@selector(AdPopcornSSPAdapterRewardVideoAdClose:)])
-    {
-        [_delegate AdPopcornSSPAdapterRewardVideoAdClose:self];
+    if (videoMixAdType == VideoMix_RewardVideoType) {
+        NSLog(@"VungleAdapter VideoMix_RewardVideo DidClose");
+        _isCurrentRunningAdapter = NO;
+        if ([_delegate respondsToSelector:@selector(AdPopcornSSPAdapterVideoMixAdClose: videoMixType:)])
+        {
+            [_delegate AdPopcornSSPAdapterVideoMixAdClose:self videoMixType:videoMixAdType];
+        }
+    } else {
+        NSLog(@"VungleAdapter rewardedAdDidClose");
+        _isCurrentRunningAdapter = NO;
+        if ([_delegate respondsToSelector:@selector(AdPopcornSSPAdapterRewardVideoAdClose:)])
+        {
+            [_delegate AdPopcornSSPAdapterRewardVideoAdClose:self];
+        }
     }
 }
 
 #pragma mark - VungleInterstitial Delegate Methods
 // Ad load events
 - (void)interstitialAdDidLoad:(VungleInterstitial *)interstitial {
-    NSLog(@"VungleAdapter interstitialAdDidLoad");
-    [self invalidateNetworkTimer];
-    if (_isCurrentRunningAdapter && [_delegate respondsToSelector:@selector(AdPopcornSSPAdapterInterstitialVideoAdLoadSuccess:)])
-    {
-        [_delegate AdPopcornSSPAdapterInterstitialVideoAdLoadSuccess:self];
+    if (videoMixAdType == VideoMix_InterstitialVideoType) {
+        NSLog(@"VungleAdapter VideoMix_InterstitialVideo DidLoad");
+        [self invalidateNetworkTimer];
+        if (_isCurrentRunningAdapter && [_delegate respondsToSelector:@selector(AdPopcornSSPAdapterVideoMixAdLoadSuccess:videoMixType:)])
+        {
+            [_delegate AdPopcornSSPAdapterVideoMixAdLoadSuccess:self videoMixType:videoMixAdType];
+        }
+    } else {
+        NSLog(@"VungleAdapter interstitialAdDidLoad");
+        [self invalidateNetworkTimer];
+        if (_isCurrentRunningAdapter && [_delegate respondsToSelector:@selector(AdPopcornSSPAdapterInterstitialVideoAdLoadSuccess:)])
+        {
+            [_delegate AdPopcornSSPAdapterInterstitialVideoAdLoadSuccess:self];
+        }
     }
 }
+
 - (void)interstitialAdDidFailToLoad:(VungleInterstitial *)interstitial
                           withError:(NSError *)withError {
-    NSLog(@"VungleAdapter interstitialAdDidFailToLoad");
-    [self invalidateNetworkTimer];
-    if (_isCurrentRunningAdapter && [_delegate respondsToSelector:@selector(AdPopcornSSPAdapterInterstitialVideoAdLoadFailError:adapter:)])
-    {
-        [_delegate AdPopcornSSPAdapterInterstitialVideoAdLoadFailError:[NSError errorWithDomain:kAdPopcornSSPErrorDomain code:AdPopcornSSPLoadAdFailed userInfo:@{NSLocalizedDescriptionKey: SSPErrorString(AdPopcornSSPLoadAdFailed)}] adapter:self];
+    if (videoMixAdType == VideoMix_InterstitialVideoType) {
+        NSLog(@"VungleAdapter VideoMix_InterstitialVideoDidFailToLoad");
+        [self invalidateNetworkTimer];
+        if (_isCurrentRunningAdapter && [_delegate respondsToSelector:@selector(AdPopcornSSPAdapterVideoMixAdLoadFailError:adapter:videoMixType:)])
+        {
+            [_delegate AdPopcornSSPAdapterVideoMixAdLoadFailError:[NSError errorWithDomain:kAdPopcornSSPErrorDomain code:AdPopcornSSPLoadAdFailed userInfo:@{NSLocalizedDescriptionKey: SSPErrorString(AdPopcornSSPLoadAdFailed)}] adapter:self videoMixType:videoMixAdType];
+        }
+    } else {
+        NSLog(@"VungleAdapter interstitialAdDidFailToLoad");
+        [self invalidateNetworkTimer];
+        if (_isCurrentRunningAdapter && [_delegate respondsToSelector:@selector(AdPopcornSSPAdapterInterstitialVideoAdLoadFailError:adapter:)])
+        {
+            [_delegate AdPopcornSSPAdapterInterstitialVideoAdLoadFailError:[NSError errorWithDomain:kAdPopcornSSPErrorDomain code:AdPopcornSSPLoadAdFailed userInfo:@{NSLocalizedDescriptionKey: SSPErrorString(AdPopcornSSPLoadAdFailed)}] adapter:self];
+        }
     }
 }
 
 // Ad Lifecycle Events
 - (void)interstitialAdDidPresent:(VungleInterstitial *)interstitial {
-    NSLog(@"VungleAdapter interstitialAdDidPresent");
-    if (_isCurrentRunningAdapter && [_delegate respondsToSelector:@selector(AdPopcornSSPAdapterInterstitialVideoAdShowSuccess:)])
-    {
-        [_delegate AdPopcornSSPAdapterInterstitialVideoAdShowSuccess:self];
+    if (videoMixAdType == VideoMix_InterstitialVideoType) {
+        NSLog(@"VungleAdapter VideoMix_interstitialAdDidPresent");
+        if (_isCurrentRunningAdapter && [_delegate respondsToSelector:@selector(AdPopcornSSPAdapterVideoMixAdShowSuccess:videoMixType:)])
+        {
+            [_delegate AdPopcornSSPAdapterVideoMixAdShowSuccess:self videoMixType:videoMixAdType];
+        }
     }
+    else {
+        NSLog(@"VungleAdapter interstitialAdDidPresent");
+        if (_isCurrentRunningAdapter && [_delegate respondsToSelector:@selector(AdPopcornSSPAdapterInterstitialVideoAdShowSuccess:)])
+        {
+            [_delegate AdPopcornSSPAdapterInterstitialVideoAdShowSuccess:self];
+        }
+    }
+
 }
 - (void)interstitialAdDidFailToPresent:(VungleInterstitial *)interstitial
                              withError:(NSError *)withError {
-    NSLog(@"VungleAdapter interstitialAdDidFailToPresent");
-    if (_isCurrentRunningAdapter && [_delegate respondsToSelector:@selector(AdPopcornSSPAdapterInterstitialVideoAdShowFailError:adapter:)])
-    {
-        [_delegate AdPopcornSSPAdapterInterstitialVideoAdShowFailError:[NSError errorWithDomain:kAdPopcornSSPErrorDomain code:AdPopcornSSPNoInterstitialVideoAdLoaded userInfo:@{NSLocalizedDescriptionKey: SSPErrorString(AdPopcornSSPNoInterstitialVideoAdLoaded)}] adapter:self];
+    if (videoMixAdType == VideoMix_InterstitialVideoType) {
+        NSLog(@"VungleAdapter VideoMix_interstitialAdDidFailToPresent");
+        if (_isCurrentRunningAdapter && [_delegate respondsToSelector:@selector(AdPopcornSSPAdapterVideoMixAdShowFailError:adapter:videoMixType:)])
+        {
+            [_delegate AdPopcornSSPAdapterVideoMixAdShowFailError:[NSError errorWithDomain:kAdPopcornSSPErrorDomain code:AdPopcornSSPNoInterstitialVideoAdLoaded userInfo:@{NSLocalizedDescriptionKey: SSPErrorString(AdPopcornSSPNoInterstitialVideoAdLoaded)}] adapter:self videoMixType:videoMixAdType];
+        }
+    }
+    else {
+        NSLog(@"VungleAdapter interstitialAdDidFailToPresent");
+        if (_isCurrentRunningAdapter && [_delegate respondsToSelector:@selector(AdPopcornSSPAdapterInterstitialVideoAdShowFailError:adapter:)])
+        {
+            [_delegate AdPopcornSSPAdapterInterstitialVideoAdShowFailError:[NSError errorWithDomain:kAdPopcornSSPErrorDomain code:AdPopcornSSPNoInterstitialVideoAdLoaded userInfo:@{NSLocalizedDescriptionKey: SSPErrorString(AdPopcornSSPNoInterstitialVideoAdLoaded)}] adapter:self];
+        }
     }
 }
 - (void)interstitialAdDidTrackImpression:(VungleInterstitial *)interstitial {
-    NSLog(@"VungleAdapter interstitialAdDidTrackImpression");
-    for(NSString *url in _impTrackersListArray)
-    {
-        if ([_delegate respondsToSelector:@selector(impClickTracking:)])
+    if (videoMixAdType == VideoMix_InterstitialVideoType) {
+        NSLog(@"VungleAdapter VideoMix_interstitialAdDidTrackImpression");
+        for(NSString *url in _impTrackersListArray)
         {
-            [_delegate impClickTracking:url];
+            if ([_delegate respondsToSelector:@selector(impClickTracking:)])
+            {
+                [_delegate impClickTracking:url];
+            }
+        }
+    }
+    else {
+        NSLog(@"VungleAdapter interstitialAdDidTrackImpression");
+        for(NSString *url in _impTrackersListArray)
+        {
+            if ([_delegate respondsToSelector:@selector(impClickTracking:)])
+            {
+                [_delegate impClickTracking:url];
+            }
         }
     }
 }
 - (void)interstitialAdDidClick:(VungleInterstitial *)interstitial {
-    NSLog(@"VungleAdapter interstitialAdDidClick");
-    for(NSString *url in _clickTrackersListArray)
-    {
-        if ([_delegate respondsToSelector:@selector(impClickTracking:)])
+    if (videoMixAdType == VideoMix_InterstitialVideoType) {
+        NSLog(@"VungleAdapter interstitialAdDidClick");
+        for(NSString *url in _clickTrackersListArray)
         {
-            [_delegate impClickTracking:url];
+            if ([_delegate respondsToSelector:@selector(impClickTracking:)])
+            {
+                [_delegate impClickTracking:url];
+            }
+        }
+    }
+    else {
+        NSLog(@"VungleAdapter interstitialAdDidClick");
+        for(NSString *url in _clickTrackersListArray)
+        {
+            if ([_delegate respondsToSelector:@selector(impClickTracking:)])
+            {
+                [_delegate impClickTracking:url];
+            }
         }
     }
 }
@@ -693,11 +1008,21 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
 }
 
 - (void)interstitialAdDidClose:(VungleInterstitial *)interstitial {
-    NSLog(@"VungleAdapter interstitialAdDidClose");
-    _isCurrentRunningAdapter = NO;
-    if ([_delegate respondsToSelector:@selector(AdPopcornSSPAdapterInterstitialVideoAdClose:)])
-    {
-        [_delegate AdPopcornSSPAdapterInterstitialVideoAdClose:self];
+    if (videoMixAdType == VideoMix_InterstitialVideoType) {
+        NSLog(@"VungleAdapter interstitialAdDidClose");
+        _isCurrentRunningAdapter = NO;
+        if ([_delegate respondsToSelector:@selector(AdPopcornSSPAdapterVideoMixAdClose:videoMixType:)])
+        {
+            [_delegate AdPopcornSSPAdapterVideoMixAdClose:self videoMixType:videoMixAdType];
+        }
+    }
+    else {
+        NSLog(@"VungleAdapter interstitialAdDidClose");
+        _isCurrentRunningAdapter = NO;
+        if ([_delegate respondsToSelector:@selector(AdPopcornSSPAdapterInterstitialVideoAdClose:)])
+        {
+            [_delegate AdPopcornSSPAdapterInterstitialVideoAdClose:self];
+        }
     }
 }
 

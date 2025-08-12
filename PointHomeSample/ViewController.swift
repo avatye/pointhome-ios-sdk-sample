@@ -53,6 +53,12 @@ class ViewController: UIViewController{
     ]
     
     let liveAppCredentials: [AppCredential] = [
+        // 비플페이 룰렛 iOS
+        AppCredential(appId: "8e1ab5614b5844ac9f8f4c2250dac0bf", appSecretKey: "97b2ee2de1544402"),
+        // 비플페이 오퍼월 iOS
+        AppCredential(appId: "f1248f0b56b74b2a8da4a7ae6cb1db79", appSecretKey: "3f1a0b33fc4943ef"),
+        // 비플페이(포인트홈) iOS
+        AppCredential(appId: "8746aed922984558b1b7ca1e360f7f87", appSecretKey: "cc9c09081f594d2e"),
         // 채널링
         AppCredential(appId: "844a3ea8c7a548dbb42adefd4fb0db87", appSecretKey: "3b4e4421d41c4de3"),
         // 게스트

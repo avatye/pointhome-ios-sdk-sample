@@ -1,6 +1,5 @@
 
 source 'https://github.com/CocoaPods/Specs.git'
-#source 'https://dl.cloudsmith.io/public/avatye/ios-sdk/cocoapods/index.git'
 
 platform :ios, '13.0'
 
@@ -11,46 +10,46 @@ target 'PointHomeSample' do
   # Comment the next line if you don't want to use dynamic frameworks
 
   # Pods for PointHomeSample
-  
-  pod 'AdCashFramework', :path => '../AvatyeFrameworks/sdk-ad-library-ios-src/'
-  pod 'AvatyePointHome', :path => '../AvatyeFrameworks/sdk-point-home-ios-src'
+  pod 'AdCashFramework', :path => '../PointHomeSdk/src_adcash_ios/'
+  #pod 'AvatyeAdCash', :path => '../PointHomeSdk/sdk_adcash_ios/'
+  pod 'AvatyePointHome', :path => '../PointHomeSdk/src_pointhome_ios'
+  #pod 'AvatyePointHome', :path => '../PointHomeSdk/sdk_pointhome_ios'
 
-    # AvatyePointHome cloudsmith Test
-#  pod 'AvatyePointHome', '1.8.6'
-#  pod 'AvatyeAdCash', '3.1.27'
+  # pod 'AvatyePointHome', '1.9.2'
 
-#  pod 'AvatyeAdCash', :path => '../AvatyeFrameworks/sdk_adcash_ios/'
-#  pod 'AvatyePointHome', :path => '../AvatyeFrameworks/sdk_pointhome_ios'
-
-#  pod 'AdPopcornSSP', '2.9.10'
   # mediation
   # NAM
-  pod "NAMSDK" , '8.4.0'
-  pod "NAMSDK/MediationNDA", '8.4.0'
+  pod "NAMSDK" , '8.8.0'
+  pod "NAMSDK/MediationNDA", '8.8.0'
 
   # AppLovin
-  pod 'AppLovinSDK', '13.1.0'
+  pod 'AppLovinSDK', '13.3.1'
+
   # Pangle
-  pod 'Ads-Global', '~> 7.1.0.7'
+  pod 'Ads-Global', '~> 7.2.0.5'
+
   # UnityAds
-  pod 'UnityAds', '4.14.1'
+  pod 'UnityAds', '4.16.0'
+
   # Vungle
-  pod "VungleAds", '7.4.5'
+  pod "VungleAds", '7.5.2'
+
   # Mintegral
-  pod 'MintegralAdSDK', '7.7.1'
+  pod 'MintegralAdSDK', '7.7.7'
+
   # FaceBook Audience Network
-  pod 'FBAudienceNetwork', '6.14.0'
+  pod 'FBAudienceNetwork', '6.20.1'
+
   # GoogleAds / AdMob
-#  pod 'Google-Mobile-Ads-SDK', '12.2.0'
+  pod 'Google-Mobile-Ads-SDK', '12.8.0'
+
   # Fyber
   pod 'FairBidSDK', '3.47.0'
+
   # cauly
   pod 'CaulySDK', :git => 'https://github.com/cauly/CaulySDK_iOS.git', :tag => '3.1.22'
 
   pod 'AdFitSDK', '~> 3.14.0'
-
-  # 기타
-#  pod 'BuzzvilSDK', '= 6.0.1'
 
   pod 'DropDown'
   

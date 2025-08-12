@@ -128,8 +128,7 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
     {
         if (_integrationKey != nil)
         {
-            NSString *clientId = [_integrationKey valueForKey:[[_integrationKey allKeys] firstObject]];
-
+            NSString *clientId =  [_integrationKey valueForKey:@"clientId"];
             if(_adFitBannerAdView != nil)
             {
                 [_adFitBannerAdView removeFromSuperview];
@@ -175,7 +174,7 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
     {
         if (_integrationKey != nil)
         {
-            NSString *clientId = [_integrationKey valueForKey:[[_integrationKey allKeys] firstObject]];
+            NSString *clientId = [_integrationKey valueForKey:@"clientId"];
             if(adfitNativeAdRenderer.useBizBoardTemplate)
             {
                 [_adpopcornSSPNativeAd addSubview:adfitNativeAdRenderer.adfitBizBoardTemplate];
@@ -215,7 +214,7 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
     {
         if (_integrationKey != nil)
         {
-            NSString *clientId = [_integrationKey valueForKey:[[_integrationKey allKeys] firstObject]];
+            NSString *clientId = [_integrationKey valueForKey:@"clientId"];
             
             if(_adpopcornSSPReactNativeAd.subviews)
             {

@@ -18,3 +18,15 @@
 
 }
 @end
+
+@interface APPangleNativeAdRenderer: NSObject
+
+@property (nonatomic, weak) UIView *nativeAdView;
+@property (nonatomic, weak) UIImageView *iconView;
+@property (nonatomic, weak) UILabel *titleLbl;
+@property (nonatomic, weak) UILabel *ratingLbl;
+@property (nonatomic, weak) UILabel *sponsorLbl;
+@property (nonatomic, weak) UILabel *adTextLbl;
+@property (nonatomic, weak) UIButton *downloadBtn;
+
+@end

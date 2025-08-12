@@ -44,7 +44,7 @@ class SelectViewController: UIViewController, UITextFieldDelegate{
     // test대역 DropDown item
     let testAppItems = ["Channeling", "CashButton", "하나머니"]
     // stage대역 DropDown item
-    let stageAppItems = ["Channeling", "CashButton", "하나머니", "다이렉트", "OCB", "Syrup", "발로소득", "야핏무브", "머니트리", "하루날씨"]
+    let stageAppItems = ["비플페이 룰렛 iOS","비플페이 오퍼월 iOS","비플페이(포인트홈) iOS", "Channeling", "CashButton", "하나머니", "다이렉트", "OCB", "Syrup", "발로소득", "야핏무브", "머니트리", "하루날씨"]
     
     // appItem index
     var appIndex = 0
@@ -176,7 +176,7 @@ class SelectViewController: UIViewController, UITextFieldDelegate{
             PHSelectInit.shared.openKey = "pointhome"
         }
         
-        if [1,9].contains(self.appIndex) || userKeyTextFiled.text == ""{
+        if userKeyTextFiled.text == ""{
             PHSelectInit.shared.userKey = nil
         }else{
             PHSelectInit.shared.userKey = userKeyTextFiled.text

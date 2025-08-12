@@ -18,19 +18,6 @@
 		0B81FC412D8426B700BE8B0A /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B44DF7C2C04BB8E00E29BD6 /* SwiftUI.framework */; };
 		0BBD844C2C7DA572005C7944 /* CashButtonWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBD844B2C7DA572005C7944 /* CashButtonWebViewController.swift */; };
 		0BD9C2EF2BC77159009FE46A /* AdCashController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD9C2EE2BC77159009FE46A /* AdCashController.swift */; };
-		0BE3381B2DB7832F0017D018 /* UnityAdsAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE338152DB7832F0017D018 /* UnityAdsAdapter.m */; };
-		0BE3381C2DB7832F0017D018 /* VungleAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE338182DB7832F0017D018 /* VungleAdapter.m */; };
-		0BE3381D2DB7832F0017D018 /* FANAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE338032DB7832F0017D018 /* FANAdapter.m */; };
-		0BE3381E2DB7832F0017D018 /* CaulyAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE338002DB7832F0017D018 /* CaulyAdapter.m */; };
-		0BE3381F2DB7832F0017D018 /* NAMAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE3380F2DB7832F0017D018 /* NAMAdapter.m */; };
-		0BE338222DB7832F0017D018 /* AppLovinAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE337F22DB7832F0017D018 /* AppLovinAdapter.m */; };
-		0BE338232DB7832F0017D018 /* AdFitAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE337E72DB7832F0017D018 /* AdFitAdapter.m */; };
-		0BE338242DB7832F0017D018 /* PangleAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE338122DB7832F0017D018 /* PangleAdapter.m */; };
-		0BE338252DB7832F0017D018 /* MintegralAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE338092DB7832F0017D018 /* MintegralAdapter.m */; };
-		0BE338262DB7832F0017D018 /* APSSPAdfitNativeAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE337E92DB7832F0017D018 /* APSSPAdfitNativeAdView.m */; };
-		0BE3382A2DB7832F0017D018 /* GFPNativeAdView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BE3380B2DB7832F0017D018 /* GFPNativeAdView.xib */; };
-		0BE3382C2DB7832F0017D018 /* GFPNativeSimpleAdView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BE3380C2DB7832F0017D018 /* GFPNativeSimpleAdView.xib */; };
-		0BE3382D2DB7832F0017D018 /* APSSPAdfitNativeAdView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BE337EA2DB7832F0017D018 /* APSSPAdfitNativeAdView.xib */; };
 		0BEB3F452A60ED0A005C1C04 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BEB3F442A60ED0A005C1C04 /* AppDelegate.swift */; };
 		0BEB3F472A60ED0A005C1C04 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BEB3F462A60ED0A005C1C04 /* SceneDelegate.swift */; };
 		0BEB3F492A60ED0A005C1C04 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BEB3F482A60ED0A005C1C04 /* ViewController.swift */; };
@@ -40,6 +27,24 @@
 		0BEB3F662A611716005C1C04 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BEB3F652A611715005C1C04 /* AdSupport.framework */; };
 		0BEB3F682A611722005C1C04 /* AppTrackingTransparency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BEB3F672A611722005C1C04 /* AppTrackingTransparency.framework */; };
 		BA1C96E03146B36544FA5A27 /* Pods_PointHomeSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7F686DA4CF6F647A777927F /* Pods_PointHomeSample.framework */; };
+		BF7B95A22E1B9CB8005F02FF /* AdPopcornSSPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7B95A12E1B9CB8005F02FF /* AdPopcornSSPViewController.swift */; };
+		BFCF59182E4B470000B8D357 /* MintegralAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = BFCF59062E4B470000B8D357 /* MintegralAdapter.m */; };
+		BFCF59192E4B470000B8D357 /* APSSPAdfitNativeAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFCF58E42E4B470000B8D357 /* APSSPAdfitNativeAdView.m */; };
+		BFCF591A2E4B470000B8D357 /* AdFitAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = BFCF58E22E4B470000B8D357 /* AdFitAdapter.m */; };
+		BFCF591B2E4B470000B8D357 /* AppLovinAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = BFCF58ED2E4B470000B8D357 /* AppLovinAdapter.m */; };
+		BFCF591C2E4B470000B8D357 /* FANAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = BFCF58FE2E4B470000B8D357 /* FANAdapter.m */; };
+		BFCF591D2E4B470000B8D357 /* GAMAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = BFCF59032E4B470000B8D357 /* GAMAdapter.m */; };
+		BFCF591E2E4B470000B8D357 /* UnityAdsAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = BFCF59122E4B470000B8D357 /* UnityAdsAdapter.m */; };
+		BFCF591F2E4B470000B8D357 /* PangleAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = BFCF590F2E4B470000B8D357 /* PangleAdapter.m */; };
+		BFCF59202E4B470000B8D357 /* AdMobAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = BFCF58EA2E4B470000B8D357 /* AdMobAdapter.m */; };
+		BFCF59212E4B470000B8D357 /* VungleAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = BFCF59152E4B470000B8D357 /* VungleAdapter.m */; };
+		BFCF59222E4B470000B8D357 /* CaulyAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = BFCF58FB2E4B470000B8D357 /* CaulyAdapter.m */; };
+		BFCF59232E4B470000B8D357 /* NAMAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = BFCF590C2E4B470000B8D357 /* NAMAdapter.m */; };
+		BFCF59242E4B470000B8D357 /* GADNativeAdView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFCF58E72E4B470000B8D357 /* GADNativeAdView.xib */; };
+		BFCF59252E4B470000B8D357 /* GAMNativeAdView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFCF59002E4B470000B8D357 /* GAMNativeAdView.xib */; };
+		BFCF59262E4B470000B8D357 /* APSSPAdfitNativeAdView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFCF58E52E4B470000B8D357 /* APSSPAdfitNativeAdView.xib */; };
+		BFCF59272E4B470000B8D357 /* GFPNativeSimpleAdView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFCF59092E4B470000B8D357 /* GFPNativeSimpleAdView.xib */; };
+		BFCF59282E4B470000B8D357 /* GFPNativeAdView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFCF59082E4B470000B8D357 /* GFPNativeAdView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -82,29 +87,6 @@
 		0BBD844B2C7DA572005C7944 /* CashButtonWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashButtonWebViewController.swift; sourceTree = "<group>"; };
 		0BD9C2EE2BC77159009FE46A /* AdCashController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdCashController.swift; sourceTree = "<group>"; };
 		0BD9C3BC2BD2B27C009FE46A /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
-		0BE337E62DB7832F0017D018 /* AdFitAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdFitAdapter.h; sourceTree = "<group>"; };
-		0BE337E72DB7832F0017D018 /* AdFitAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AdFitAdapter.m; sourceTree = "<group>"; };
-		0BE337E82DB7832F0017D018 /* APSSPAdfitNativeAdView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APSSPAdfitNativeAdView.h; sourceTree = "<group>"; };
-		0BE337E92DB7832F0017D018 /* APSSPAdfitNativeAdView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APSSPAdfitNativeAdView.m; sourceTree = "<group>"; };
-		0BE337EA2DB7832F0017D018 /* APSSPAdfitNativeAdView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = APSSPAdfitNativeAdView.xib; sourceTree = "<group>"; };
-		0BE337F12DB7832F0017D018 /* AppLovinAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppLovinAdapter.h; sourceTree = "<group>"; };
-		0BE337F22DB7832F0017D018 /* AppLovinAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppLovinAdapter.m; sourceTree = "<group>"; };
-		0BE337FF2DB7832F0017D018 /* CaulyAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CaulyAdapter.h; sourceTree = "<group>"; };
-		0BE338002DB7832F0017D018 /* CaulyAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CaulyAdapter.m; sourceTree = "<group>"; };
-		0BE338022DB7832F0017D018 /* FANAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FANAdapter.h; sourceTree = "<group>"; };
-		0BE338032DB7832F0017D018 /* FANAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FANAdapter.m; sourceTree = "<group>"; };
-		0BE338082DB7832F0017D018 /* MintegralAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MintegralAdapter.h; sourceTree = "<group>"; };
-		0BE338092DB7832F0017D018 /* MintegralAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MintegralAdapter.m; sourceTree = "<group>"; };
-		0BE3380B2DB7832F0017D018 /* GFPNativeAdView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GFPNativeAdView.xib; sourceTree = "<group>"; };
-		0BE3380C2DB7832F0017D018 /* GFPNativeSimpleAdView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GFPNativeSimpleAdView.xib; sourceTree = "<group>"; };
-		0BE3380E2DB7832F0017D018 /* NAMAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NAMAdapter.h; sourceTree = "<group>"; };
-		0BE3380F2DB7832F0017D018 /* NAMAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NAMAdapter.m; sourceTree = "<group>"; };
-		0BE338112DB7832F0017D018 /* PangleAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PangleAdapter.h; sourceTree = "<group>"; };
-		0BE338122DB7832F0017D018 /* PangleAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PangleAdapter.m; sourceTree = "<group>"; };
-		0BE338142DB7832F0017D018 /* UnityAdsAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnityAdsAdapter.h; sourceTree = "<group>"; };
-		0BE338152DB7832F0017D018 /* UnityAdsAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UnityAdsAdapter.m; sourceTree = "<group>"; };
-		0BE338172DB7832F0017D018 /* VungleAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VungleAdapter.h; sourceTree = "<group>"; };
-		0BE338182DB7832F0017D018 /* VungleAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VungleAdapter.m; sourceTree = "<group>"; };
 		0BEB3F412A60ED0A005C1C04 /* PointHomeSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PointHomeSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BEB3F442A60ED0A005C1C04 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0BEB3F462A60ED0A005C1C04 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -116,6 +98,36 @@
 		0BEB3F652A611715005C1C04 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		0BEB3F672A611722005C1C04 /* AppTrackingTransparency.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppTrackingTransparency.framework; path = System/Library/Frameworks/AppTrackingTransparency.framework; sourceTree = SDKROOT; };
 		9D4D764845A5BBDD70C171F6 /* Pods-PointHomeSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PointHomeSample.release.xcconfig"; path = "Target Support Files/Pods-PointHomeSample/Pods-PointHomeSample.release.xcconfig"; sourceTree = "<group>"; };
+		BF7B95A12E1B9CB8005F02FF /* AdPopcornSSPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdPopcornSSPViewController.swift; sourceTree = "<group>"; };
+		BFCF58E12E4B470000B8D357 /* AdFitAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdFitAdapter.h; sourceTree = "<group>"; };
+		BFCF58E22E4B470000B8D357 /* AdFitAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AdFitAdapter.m; sourceTree = "<group>"; };
+		BFCF58E32E4B470000B8D357 /* APSSPAdfitNativeAdView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APSSPAdfitNativeAdView.h; sourceTree = "<group>"; };
+		BFCF58E42E4B470000B8D357 /* APSSPAdfitNativeAdView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APSSPAdfitNativeAdView.m; sourceTree = "<group>"; };
+		BFCF58E52E4B470000B8D357 /* APSSPAdfitNativeAdView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = APSSPAdfitNativeAdView.xib; sourceTree = "<group>"; };
+		BFCF58E72E4B470000B8D357 /* GADNativeAdView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GADNativeAdView.xib; sourceTree = "<group>"; };
+		BFCF58E92E4B470000B8D357 /* AdMobAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdMobAdapter.h; sourceTree = "<group>"; };
+		BFCF58EA2E4B470000B8D357 /* AdMobAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AdMobAdapter.m; sourceTree = "<group>"; };
+		BFCF58EC2E4B470000B8D357 /* AppLovinAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppLovinAdapter.h; sourceTree = "<group>"; };
+		BFCF58ED2E4B470000B8D357 /* AppLovinAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppLovinAdapter.m; sourceTree = "<group>"; };
+		BFCF58FA2E4B470000B8D357 /* CaulyAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CaulyAdapter.h; sourceTree = "<group>"; };
+		BFCF58FB2E4B470000B8D357 /* CaulyAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CaulyAdapter.m; sourceTree = "<group>"; };
+		BFCF58FD2E4B470000B8D357 /* FANAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FANAdapter.h; sourceTree = "<group>"; };
+		BFCF58FE2E4B470000B8D357 /* FANAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FANAdapter.m; sourceTree = "<group>"; };
+		BFCF59002E4B470000B8D357 /* GAMNativeAdView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GAMNativeAdView.xib; sourceTree = "<group>"; };
+		BFCF59022E4B470000B8D357 /* GAMAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAMAdapter.h; sourceTree = "<group>"; };
+		BFCF59032E4B470000B8D357 /* GAMAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GAMAdapter.m; sourceTree = "<group>"; };
+		BFCF59052E4B470000B8D357 /* MintegralAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MintegralAdapter.h; sourceTree = "<group>"; };
+		BFCF59062E4B470000B8D357 /* MintegralAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MintegralAdapter.m; sourceTree = "<group>"; };
+		BFCF59082E4B470000B8D357 /* GFPNativeAdView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GFPNativeAdView.xib; sourceTree = "<group>"; };
+		BFCF59092E4B470000B8D357 /* GFPNativeSimpleAdView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GFPNativeSimpleAdView.xib; sourceTree = "<group>"; };
+		BFCF590B2E4B470000B8D357 /* NAMAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NAMAdapter.h; sourceTree = "<group>"; };
+		BFCF590C2E4B470000B8D357 /* NAMAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NAMAdapter.m; sourceTree = "<group>"; };
+		BFCF590E2E4B470000B8D357 /* PangleAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PangleAdapter.h; sourceTree = "<group>"; };
+		BFCF590F2E4B470000B8D357 /* PangleAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PangleAdapter.m; sourceTree = "<group>"; };
+		BFCF59112E4B470000B8D357 /* UnityAdsAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnityAdsAdapter.h; sourceTree = "<group>"; };
+		BFCF59122E4B470000B8D357 /* UnityAdsAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UnityAdsAdapter.m; sourceTree = "<group>"; };
+		BFCF59142E4B470000B8D357 /* VungleAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VungleAdapter.h; sourceTree = "<group>"; };
+		BFCF59152E4B470000B8D357 /* VungleAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VungleAdapter.m; sourceTree = "<group>"; };
 		E794ED74212CF3123CC12BA5 /* Pods-PointHomeSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PointHomeSample.debug.xcconfig"; path = "Target Support Files/Pods-PointHomeSample/Pods-PointHomeSample.debug.xcconfig"; sourceTree = "<group>"; };
 		F7F686DA4CF6F647A777927F /* Pods_PointHomeSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PointHomeSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -136,116 +148,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0BE337EB2DB7832F0017D018 /* adfit */ = {
-			isa = PBXGroup;
-			children = (
-				0BE337E62DB7832F0017D018 /* AdFitAdapter.h */,
-				0BE337E72DB7832F0017D018 /* AdFitAdapter.m */,
-				0BE337E82DB7832F0017D018 /* APSSPAdfitNativeAdView.h */,
-				0BE337E92DB7832F0017D018 /* APSSPAdfitNativeAdView.m */,
-				0BE337EA2DB7832F0017D018 /* APSSPAdfitNativeAdView.xib */,
-			);
-			path = adfit;
-			sourceTree = "<group>";
-		};
-		0BE337F32DB7832F0017D018 /* applovin */ = {
-			isa = PBXGroup;
-			children = (
-				0BE337F12DB7832F0017D018 /* AppLovinAdapter.h */,
-				0BE337F22DB7832F0017D018 /* AppLovinAdapter.m */,
-			);
-			path = applovin;
-			sourceTree = "<group>";
-		};
-		0BE338012DB7832F0017D018 /* cauly */ = {
-			isa = PBXGroup;
-			children = (
-				0BE337FF2DB7832F0017D018 /* CaulyAdapter.h */,
-				0BE338002DB7832F0017D018 /* CaulyAdapter.m */,
-			);
-			path = cauly;
-			sourceTree = "<group>";
-		};
-		0BE338042DB7832F0017D018 /* facebook */ = {
-			isa = PBXGroup;
-			children = (
-				0BE338022DB7832F0017D018 /* FANAdapter.h */,
-				0BE338032DB7832F0017D018 /* FANAdapter.m */,
-			);
-			path = facebook;
-			sourceTree = "<group>";
-		};
-		0BE3380A2DB7832F0017D018 /* mintegral */ = {
-			isa = PBXGroup;
-			children = (
-				0BE338082DB7832F0017D018 /* MintegralAdapter.h */,
-				0BE338092DB7832F0017D018 /* MintegralAdapter.m */,
-			);
-			path = mintegral;
-			sourceTree = "<group>";
-		};
-		0BE3380D2DB7832F0017D018 /* native sample view */ = {
-			isa = PBXGroup;
-			children = (
-				0BE3380B2DB7832F0017D018 /* GFPNativeAdView.xib */,
-				0BE3380C2DB7832F0017D018 /* GFPNativeSimpleAdView.xib */,
-			);
-			path = "native sample view";
-			sourceTree = "<group>";
-		};
-		0BE338102DB7832F0017D018 /* naverAdManager */ = {
-			isa = PBXGroup;
-			children = (
-				0BE3380D2DB7832F0017D018 /* native sample view */,
-				0BE3380E2DB7832F0017D018 /* NAMAdapter.h */,
-				0BE3380F2DB7832F0017D018 /* NAMAdapter.m */,
-			);
-			path = naverAdManager;
-			sourceTree = "<group>";
-		};
-		0BE338132DB7832F0017D018 /* pangle */ = {
-			isa = PBXGroup;
-			children = (
-				0BE338112DB7832F0017D018 /* PangleAdapter.h */,
-				0BE338122DB7832F0017D018 /* PangleAdapter.m */,
-			);
-			path = pangle;
-			sourceTree = "<group>";
-		};
-		0BE338162DB7832F0017D018 /* unityads */ = {
-			isa = PBXGroup;
-			children = (
-				0BE338142DB7832F0017D018 /* UnityAdsAdapter.h */,
-				0BE338152DB7832F0017D018 /* UnityAdsAdapter.m */,
-			);
-			path = unityads;
-			sourceTree = "<group>";
-		};
-		0BE338192DB7832F0017D018 /* vungle */ = {
-			isa = PBXGroup;
-			children = (
-				0BE338172DB7832F0017D018 /* VungleAdapter.h */,
-				0BE338182DB7832F0017D018 /* VungleAdapter.m */,
-			);
-			path = vungle;
-			sourceTree = "<group>";
-		};
-		0BE3381A2DB7832F0017D018 /* Adapter */ = {
-			isa = PBXGroup;
-			children = (
-				0BE337EB2DB7832F0017D018 /* adfit */,
-				0BE337F32DB7832F0017D018 /* applovin */,
-				0BE338012DB7832F0017D018 /* cauly */,
-				0BE338042DB7832F0017D018 /* facebook */,
-				0BE3380A2DB7832F0017D018 /* mintegral */,
-				0BE338102DB7832F0017D018 /* naverAdManager */,
-				0BE338132DB7832F0017D018 /* pangle */,
-				0BE338162DB7832F0017D018 /* unityads */,
-				0BE338192DB7832F0017D018 /* vungle */,
-			);
-			path = Adapter;
-			sourceTree = "<group>";
-		};
 		0BEB3F382A60ED0A005C1C04 = {
 			isa = PBXGroup;
 			children = (
@@ -267,7 +169,6 @@
 		0BEB3F432A60ED0A005C1C04 /* PointHomeSample */ = {
 			isa = PBXGroup;
 			children = (
-				0BE3381A2DB7832F0017D018 /* Adapter */,
 				0BEB3F442A60ED0A005C1C04 /* AppDelegate.swift */,
 				0BEB3F482A60ED0A005C1C04 /* ViewController.swift */,
 				0B5D2F4B2BA417D400CECA39 /* ExchangeService.swift */,
@@ -280,11 +181,13 @@
 				0B5FAD0E2BDA19170059ED10 /* SelectViewController.swift */,
 				0B6536DC2CF0191500C49B03 /* CollectionViewController.swift */,
 				0B6536DE2CF019EB00C49B03 /* PointHomeCollectionViewCell.swift */,
+				BF7B95A12E1B9CB8005F02FF /* AdPopcornSSPViewController.swift */,
 				0B6536DF2CF019EB00C49B03 /* PointHomeCollectionViewCell.xib */,
 				0BEB3F4D2A60ED0C005C1C04 /* Assets.xcassets */,
 				0BEB3F4F2A60ED0C005C1C04 /* LaunchScreen.storyboard */,
 				0BEB3F522A60ED0C005C1C04 /* Info.plist */,
 				0BA7F8042DFAAC9A004B3759 /* PointHomeSample-Bridging-Header.h */,
+				BFCF59172E4B470000B8D357 /* Adapter */,
 			);
 			path = PointHomeSample;
 			sourceTree = "<group>";
@@ -311,6 +214,154 @@
 				F7F686DA4CF6F647A777927F /* Pods_PointHomeSample.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BFCF58E62E4B470000B8D357 /* adfit */ = {
+			isa = PBXGroup;
+			children = (
+				BFCF58E12E4B470000B8D357 /* AdFitAdapter.h */,
+				BFCF58E22E4B470000B8D357 /* AdFitAdapter.m */,
+				BFCF58E32E4B470000B8D357 /* APSSPAdfitNativeAdView.h */,
+				BFCF58E42E4B470000B8D357 /* APSSPAdfitNativeAdView.m */,
+				BFCF58E52E4B470000B8D357 /* APSSPAdfitNativeAdView.xib */,
+			);
+			path = adfit;
+			sourceTree = "<group>";
+		};
+		BFCF58E82E4B470000B8D357 /* native sample view */ = {
+			isa = PBXGroup;
+			children = (
+				BFCF58E72E4B470000B8D357 /* GADNativeAdView.xib */,
+			);
+			path = "native sample view";
+			sourceTree = "<group>";
+		};
+		BFCF58EB2E4B470000B8D357 /* admob */ = {
+			isa = PBXGroup;
+			children = (
+				BFCF58E82E4B470000B8D357 /* native sample view */,
+				BFCF58E92E4B470000B8D357 /* AdMobAdapter.h */,
+				BFCF58EA2E4B470000B8D357 /* AdMobAdapter.m */,
+			);
+			path = admob;
+			sourceTree = "<group>";
+		};
+		BFCF58EE2E4B470000B8D357 /* applovin */ = {
+			isa = PBXGroup;
+			children = (
+				BFCF58EC2E4B470000B8D357 /* AppLovinAdapter.h */,
+				BFCF58ED2E4B470000B8D357 /* AppLovinAdapter.m */,
+			);
+			path = applovin;
+			sourceTree = "<group>";
+		};
+		BFCF58FC2E4B470000B8D357 /* cauly */ = {
+			isa = PBXGroup;
+			children = (
+				BFCF58FA2E4B470000B8D357 /* CaulyAdapter.h */,
+				BFCF58FB2E4B470000B8D357 /* CaulyAdapter.m */,
+			);
+			path = cauly;
+			sourceTree = "<group>";
+		};
+		BFCF58FF2E4B470000B8D357 /* facebook */ = {
+			isa = PBXGroup;
+			children = (
+				BFCF58FD2E4B470000B8D357 /* FANAdapter.h */,
+				BFCF58FE2E4B470000B8D357 /* FANAdapter.m */,
+			);
+			path = facebook;
+			sourceTree = "<group>";
+		};
+		BFCF59012E4B470000B8D357 /* native sample view */ = {
+			isa = PBXGroup;
+			children = (
+				BFCF59002E4B470000B8D357 /* GAMNativeAdView.xib */,
+			);
+			path = "native sample view";
+			sourceTree = "<group>";
+		};
+		BFCF59042E4B470000B8D357 /* gooleAdManager */ = {
+			isa = PBXGroup;
+			children = (
+				BFCF59012E4B470000B8D357 /* native sample view */,
+				BFCF59022E4B470000B8D357 /* GAMAdapter.h */,
+				BFCF59032E4B470000B8D357 /* GAMAdapter.m */,
+			);
+			path = gooleAdManager;
+			sourceTree = "<group>";
+		};
+		BFCF59072E4B470000B8D357 /* mintegral */ = {
+			isa = PBXGroup;
+			children = (
+				BFCF59052E4B470000B8D357 /* MintegralAdapter.h */,
+				BFCF59062E4B470000B8D357 /* MintegralAdapter.m */,
+			);
+			path = mintegral;
+			sourceTree = "<group>";
+		};
+		BFCF590A2E4B470000B8D357 /* native sample view */ = {
+			isa = PBXGroup;
+			children = (
+				BFCF59082E4B470000B8D357 /* GFPNativeAdView.xib */,
+				BFCF59092E4B470000B8D357 /* GFPNativeSimpleAdView.xib */,
+			);
+			path = "native sample view";
+			sourceTree = "<group>";
+		};
+		BFCF590D2E4B470000B8D357 /* naverAdManager */ = {
+			isa = PBXGroup;
+			children = (
+				BFCF590A2E4B470000B8D357 /* native sample view */,
+				BFCF590B2E4B470000B8D357 /* NAMAdapter.h */,
+				BFCF590C2E4B470000B8D357 /* NAMAdapter.m */,
+			);
+			path = naverAdManager;
+			sourceTree = "<group>";
+		};
+		BFCF59102E4B470000B8D357 /* pangle */ = {
+			isa = PBXGroup;
+			children = (
+				BFCF590E2E4B470000B8D357 /* PangleAdapter.h */,
+				BFCF590F2E4B470000B8D357 /* PangleAdapter.m */,
+			);
+			path = pangle;
+			sourceTree = "<group>";
+		};
+		BFCF59132E4B470000B8D357 /* unityads */ = {
+			isa = PBXGroup;
+			children = (
+				BFCF59112E4B470000B8D357 /* UnityAdsAdapter.h */,
+				BFCF59122E4B470000B8D357 /* UnityAdsAdapter.m */,
+			);
+			path = unityads;
+			sourceTree = "<group>";
+		};
+		BFCF59162E4B470000B8D357 /* vungle */ = {
+			isa = PBXGroup;
+			children = (
+				BFCF59142E4B470000B8D357 /* VungleAdapter.h */,
+				BFCF59152E4B470000B8D357 /* VungleAdapter.m */,
+			);
+			path = vungle;
+			sourceTree = "<group>";
+		};
+		BFCF59172E4B470000B8D357 /* Adapter */ = {
+			isa = PBXGroup;
+			children = (
+				BFCF58E62E4B470000B8D357 /* adfit */,
+				BFCF58EB2E4B470000B8D357 /* admob */,
+				BFCF58EE2E4B470000B8D357 /* applovin */,
+				BFCF58FC2E4B470000B8D357 /* cauly */,
+				BFCF58FF2E4B470000B8D357 /* facebook */,
+				BFCF59042E4B470000B8D357 /* gooleAdManager */,
+				BFCF59072E4B470000B8D357 /* mintegral */,
+				BFCF590D2E4B470000B8D357 /* naverAdManager */,
+				BFCF59102E4B470000B8D357 /* pangle */,
+				BFCF59132E4B470000B8D357 /* unityads */,
+				BFCF59162E4B470000B8D357 /* vungle */,
+			);
+			path = Adapter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -378,12 +429,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				0BEB3F512A60ED0C005C1C04 /* LaunchScreen.storyboard in Resources */,
-				0BE3382A2DB7832F0017D018 /* GFPNativeAdView.xib in Resources */,
-				0BE3382C2DB7832F0017D018 /* GFPNativeSimpleAdView.xib in Resources */,
-				0BE3382D2DB7832F0017D018 /* APSSPAdfitNativeAdView.xib in Resources */,
 				0BEB3F4E2A60ED0C005C1C04 /* Assets.xcassets in Resources */,
 				0BEB3F4C2A60ED0A005C1C04 /* Main.storyboard in Resources */,
 				0B6536E12CF019EB00C49B03 /* PointHomeCollectionViewCell.xib in Resources */,
+				BFCF59242E4B470000B8D357 /* GADNativeAdView.xib in Resources */,
+				BFCF59252E4B470000B8D357 /* GAMNativeAdView.xib in Resources */,
+				BFCF59262E4B470000B8D357 /* APSSPAdfitNativeAdView.xib in Resources */,
+				BFCF59272E4B470000B8D357 /* GFPNativeSimpleAdView.xib in Resources */,
+				BFCF59282E4B470000B8D357 /* GFPNativeAdView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,9 +473,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PointHomeSample/Pods-PointHomeSample-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PointHomeSample/Pods-PointHomeSample-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -437,9 +494,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PointHomeSample/Pods-PointHomeSample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PointHomeSample/Pods-PointHomeSample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -453,6 +514,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFCF59182E4B470000B8D357 /* MintegralAdapter.m in Sources */,
+				BFCF59192E4B470000B8D357 /* APSSPAdfitNativeAdView.m in Sources */,
+				BFCF591A2E4B470000B8D357 /* AdFitAdapter.m in Sources */,
+				BFCF591B2E4B470000B8D357 /* AppLovinAdapter.m in Sources */,
+				BFCF591C2E4B470000B8D357 /* FANAdapter.m in Sources */,
+				BFCF591D2E4B470000B8D357 /* GAMAdapter.m in Sources */,
+				BFCF591E2E4B470000B8D357 /* UnityAdsAdapter.m in Sources */,
+				BFCF591F2E4B470000B8D357 /* PangleAdapter.m in Sources */,
+				BFCF59202E4B470000B8D357 /* AdMobAdapter.m in Sources */,
+				BFCF59212E4B470000B8D357 /* VungleAdapter.m in Sources */,
+				BFCF59222E4B470000B8D357 /* CaulyAdapter.m in Sources */,
+				BFCF59232E4B470000B8D357 /* NAMAdapter.m in Sources */,
+				BF7B95A22E1B9CB8005F02FF /* AdPopcornSSPViewController.swift in Sources */,
 				0B5A6FEA2C4916A10062DFE4 /* AcceptedAgeService.swift in Sources */,
 				0BD9C2EF2BC77159009FE46A /* AdCashController.swift in Sources */,
 				0B6536E02CF019EB00C49B03 /* PointHomeCollectionViewCell.swift in Sources */,
@@ -463,16 +537,6 @@
 				0B5FAD0F2BDA19170059ED10 /* SelectViewController.swift in Sources */,
 				0B5D2F4C2BA417D400CECA39 /* ExchangeService.swift in Sources */,
 				0BEB3F452A60ED0A005C1C04 /* AppDelegate.swift in Sources */,
-				0BE3381B2DB7832F0017D018 /* UnityAdsAdapter.m in Sources */,
-				0BE3381C2DB7832F0017D018 /* VungleAdapter.m in Sources */,
-				0BE3381D2DB7832F0017D018 /* FANAdapter.m in Sources */,
-				0BE3381E2DB7832F0017D018 /* CaulyAdapter.m in Sources */,
-				0BE3381F2DB7832F0017D018 /* NAMAdapter.m in Sources */,
-				0BE338222DB7832F0017D018 /* AppLovinAdapter.m in Sources */,
-				0BE338232DB7832F0017D018 /* AdFitAdapter.m in Sources */,
-				0BE338242DB7832F0017D018 /* PangleAdapter.m in Sources */,
-				0BE338252DB7832F0017D018 /* MintegralAdapter.m in Sources */,
-				0BE338262DB7832F0017D018 /* APSSPAdfitNativeAdView.m in Sources */,
 				0BEB3F472A60ED0A005C1C04 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -627,7 +691,7 @@
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 5;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 577QD9HCYQ;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -649,8 +713,9 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/PointHomeSample/Adapter/cauly/CaulyLib",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
+				POINT_HOME_MODE = test;
 				PRODUCT_BUNDLE_IDENTIFIER = com.avatye.PointHomeSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -671,7 +736,7 @@
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 577QD9HCYQ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PointHomeSample/Info.plist;
@@ -692,8 +757,9 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/PointHomeSample/Adapter/cauly/CaulyLib",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
+				POINT_HOME_MODE = production;
 				PRODUCT_BUNDLE_IDENTIFIER = com.avatye.PointHomeSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

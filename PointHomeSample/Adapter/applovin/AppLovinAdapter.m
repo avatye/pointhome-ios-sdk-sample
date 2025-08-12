@@ -52,6 +52,8 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
     NSInteger adNetworkNo;
     BOOL _isRewardVerified;
     BOOL _isMute;
+    
+    VideoMixAdType videoMixAdType;
 }
 
 - (void)addAlignCenterConstraint;
@@ -99,6 +101,12 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
     _adType = SSPInterstitialVideoAdType;
 }
 
+- (void)setVideoMixAdViewController:(UIViewController *)viewController
+{
+    _viewController = viewController;
+    _adType = SSPVideoMixAdType;
+}
+
 - (BOOL)isSupportInterstitialAd
 {
     return YES;
@@ -119,6 +127,11 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
     return YES;
 }
 
+- (BOOL)isSupportVideoMixAd
+{
+    return YES;
+}
+
 - (void)setMute:(bool)mute
 {
     _isMute = mute;
@@ -126,130 +139,183 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
 
 - (void)loadAd
 {
-    if (_adType == SSPAdBannerType)
-    {
-        if (_integrationKey != nil)
-        {
-            NSString *zoneId = [_integrationKey valueForKey:[[_integrationKey allKeys] firstObject]];
-            NSLog(@"AppLovinAdapter SSPAdBannerType zoneId : %@", zoneId);
-            if(_size.width == 320.0f && _size.height == 50.0f)
-            {
-                appLovinBannerAdView = [[ALAdView alloc] initWithSize: [ALAdSize banner] zoneIdentifier:zoneId];
-                appLovinBannerAdView.frame = CGRectMake(0, 0, 320, 50);
-            }
-            else if(_size.width == 300.0f && _size.height == 250.0f)
-            {
-                appLovinBannerAdView = [[ALAdView alloc] initWithSize: [ALAdSize mrec] zoneIdentifier:zoneId];
-                appLovinBannerAdView.frame = CGRectMake(0, 0, 300, 250);
-            }
-            else
-            {
-                NSLog(@"%@ : AppLovinAdapter can not load 320x100", self);
-                if ([_delegate respondsToSelector:@selector(AdPopcornSSPAdapterBannerViewLoadFailError:adapter:)])
-                {
-                    [_delegate AdPopcornSSPAdapterBannerViewLoadFailError:[NSError errorWithDomain:kAdPopcornSSPErrorDomain code:AdPopcornSSPLoadAdFailed userInfo:@{NSLocalizedDescriptionKey: SSPErrorString(AdPopcornSSPLoadAdFailed)}] adapter:self];
-                }
+    if (_adType == SSPAdBannerType) {
+        [self setupBanner:@"Banner"];
+    }
+    else if (_adType == SSPNativeAdType) {
+        
+    }
+    else if (_adType == SSPRewardVideoAdType) {
+        [self setupRewardVideo:@"RewardVideo"];
+    }
+    else if(_adType == SSPInterstitialVideoAdType) {
+        [self setupInterstitialVideo:@"InterstitialVideo"];
+    }
+    else if(_adType == SSPAdInterstitialType) {
+        [self setupInterstitial:@"Interstitial"];
+    }
+    else if (_adType == SSPVideoMixAdType) {
+        NSNumber *campaignType = [_integrationKey valueForKey:@"CampaignType"];
+        NSInteger campaignValue = [campaignType integerValue];
+        videoMixAdType = SSPVideoMixAdTypeFromInteger(campaignValue);
+        
+        switch (videoMixAdType) {
+            case VideoMix_InterstitialType:
+                [self setupInterstitial:@"VideoMix_Interstitial"];
+                break;
                 
-                [self closeAd];
-                return;
-            }
-            appLovinBannerAdView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-            appLovinBannerAdView.adLoadDelegate = self;
-            appLovinBannerAdView.adDisplayDelegate = self;
-            appLovinBannerAdView.adEventDelegate = self;
-            
-            // add banner view
-            [_bannerView addSubview:appLovinBannerAdView];
-            
-            [self addAlignCenterConstraint];
-            
-            // load request
-            [appLovinBannerAdView loadNextAd];
-        }
-        else
-        {
-          if ([_delegate respondsToSelector:@selector(AdPopcornSSPAdapterBannerViewLoadFailError:adapter:)])
-          {
-            [_delegate AdPopcornSSPAdapterBannerViewLoadFailError:[AdPopcornSSPError errorWithDomain:kAdPopcornSSPErrorDomain code:AdPopcornSSPMediationInvalidIntegrationKey userInfo:@{NSLocalizedDescriptionKey: SSPErrorString(AdPopcornSSPMediationInvalidIntegrationKey)}] adapter:self];
-          }
-          
-          [self closeAd];
+            case VideoMix_InterstitialVideoType:
+                [self setupInterstitialVideo:@"VideoMix_InterstitialVIdeo"];
+                break;
+                
+            case VideoMix_RewardVideoType:
+                [self setupRewardVideo:@"VideoMix_RewardVideo"];
+                break;
         }
     }
-    else if (_adType == SSPAdInterstitialType)
+}
+
+-(void)setupBanner:(NSString*) typeName {
+    if (_integrationKey != nil)
     {
-        if (_integrationKey != nil)
+        NSString *zoneId = [_integrationKey valueForKey:@"AppLovinZoneId"];
+        NSLog(@"AppLovinAdapter SSPAdBannerType zoneId : %@", zoneId);
+        if(_size.width == 320.0f && _size.height == 50.0f)
         {
-            NSString *zoneId = [_integrationKey valueForKey:[[_integrationKey allKeys] firstObject]];
-            NSLog(@"AppLovinAdapter SSPAdInterstitialType zoneId : %@", zoneId);
-            
-            //[[ALSdk shared].adService loadNextAd: [ALAdSize interstitial] andNotify: self];
-            [[ALSdk shared].adService loadNextAdForZoneIdentifier:zoneId andNotify:self];
+            appLovinBannerAdView = [[ALAdView alloc] initWithSize: [ALAdSize banner] zoneIdentifier:zoneId];
+            appLovinBannerAdView.frame = CGRectMake(0, 0, 320, 50);
+        }
+        else if(_size.width == 300.0f && _size.height == 250.0f)
+        {
+            appLovinBannerAdView = [[ALAdView alloc] initWithSize: [ALAdSize mrec] zoneIdentifier:zoneId];
+            appLovinBannerAdView.frame = CGRectMake(0, 0, 300, 250);
         }
         else
         {
-            if ([_delegate respondsToSelector:@selector(AdPopcornSSPAdapterInterstitialAdLoadFailError:adapter:)])
+            NSLog(@"%@ : AppLovinAdapter can not load 320x100", self);
+            if ([_delegate respondsToSelector:@selector(AdPopcornSSPAdapterBannerViewLoadFailError:adapter:)])
             {
-              [_delegate AdPopcornSSPAdapterInterstitialAdLoadFailError:[NSError errorWithDomain:kAdPopcornSSPErrorDomain code:AdPopcornSSPMediationInvalidIntegrationKey userInfo:@{NSLocalizedDescriptionKey: SSPErrorString(AdPopcornSSPMediationInvalidIntegrationKey)}] adapter:self];
+                [_delegate AdPopcornSSPAdapterBannerViewLoadFailError:[NSError errorWithDomain:kAdPopcornSSPErrorDomain code:AdPopcornSSPLoadAdFailed userInfo:@{NSLocalizedDescriptionKey: SSPErrorString(AdPopcornSSPLoadAdFailed)}] adapter:self];
             }
-          
+            
             [self closeAd];
+            return;
         }
+        appLovinBannerAdView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        appLovinBannerAdView.adLoadDelegate = self;
+        appLovinBannerAdView.adDisplayDelegate = self;
+        appLovinBannerAdView.adEventDelegate = self;
+        
+        // add banner view
+        [_bannerView addSubview:appLovinBannerAdView];
+        
+        [self addAlignCenterConstraint];
+        
+        // load request
+        [appLovinBannerAdView loadNextAd];
     }
-    else if (_adType == SSPRewardVideoAdType)
+    else
     {
-        if(networkScheduleTimer == nil)
+        if ([_delegate respondsToSelector:@selector(AdPopcornSSPAdapterBannerViewLoadFailError:adapter:)])
         {
-            networkScheduleTimer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(networkScheduleTimeoutHandler:) userInfo:nil repeats:NO];
-        }
-        else{
-            [self invalidateNetworkTimer];
-            networkScheduleTimer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(networkScheduleTimeoutHandler:) userInfo:nil repeats:NO];
+            [_delegate AdPopcornSSPAdapterBannerViewLoadFailError:[AdPopcornSSPError errorWithDomain:kAdPopcornSSPErrorDomain code:AdPopcornSSPMediationInvalidIntegrationKey userInfo:@{NSLocalizedDescriptionKey: SSPErrorString(AdPopcornSSPMediationInvalidIntegrationKey)}] adapter:self];
         }
         
-        _isCurrentRunningAdapter = YES;
-        _isRewardVerified = NO;
-        if (_integrationKey != nil)
-        {
-            NSString *zoneId = [_integrationKey valueForKey:[[_integrationKey allKeys] firstObject]];
-            NSLog(@"AppLovinAdapter SSPRewardVideoAdType zoneId : %@", zoneId);
-            rewardVideoAd = [[ALIncentivizedInterstitialAd alloc] initWithZoneIdentifier: zoneId];
-            [rewardVideoAd preloadAndNotify:self];
+        [self closeAd];
+    }
+}
+
+-(void)setupInterstitial:(NSString*) typeName {
+    if (_integrationKey != nil)
+    {
+        NSString *zoneId = [_integrationKey valueForKey:@"AppLovinZoneId"];
+        NSLog(@"AppLovinAdapter SSPAdInterstitialType zoneId : %@", zoneId);
+        
+        //[[ALSdk shared].adService loadNextAd: [ALAdSize interstitial] andNotify: self];
+        [[ALSdk shared].adService loadNextAdForZoneIdentifier:zoneId andNotify:self];
+    }
+    else
+    {
+        if(_adType == SSPVideoMixAdType) {
+            if ([_delegate respondsToSelector:@selector(AdPopcornSSPAdapterVideoMixAdLoadFailError:adapter:videoMixType:)])
+            {
+                [_delegate AdPopcornSSPAdapterVideoMixAdLoadFailError:[NSError errorWithDomain:kAdPopcornSSPErrorDomain code:AdPopcornSSPMediationInvalidIntegrationKey userInfo:@{NSLocalizedDescriptionKey: SSPErrorString(AdPopcornSSPMediationInvalidIntegrationKey)}] adapter:self videoMixType:videoMixAdType];
+            }
+        } else {
+            if ([_delegate respondsToSelector:@selector(AdPopcornSSPAdapterInterstitialAdLoadFailError:adapter:)])
+            {
+                [_delegate AdPopcornSSPAdapterInterstitialAdLoadFailError:[NSError errorWithDomain:kAdPopcornSSPErrorDomain code:AdPopcornSSPMediationInvalidIntegrationKey userInfo:@{NSLocalizedDescriptionKey: SSPErrorString(AdPopcornSSPMediationInvalidIntegrationKey)}] adapter:self];
+            }
         }
-        else
-        {
+        [self closeAd];
+    }
+}
+-(void)setupInterstitialVideo:(NSString*) typeName {
+    if(networkScheduleTimer == nil)
+        networkScheduleTimer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(networkScheduleTimeoutHandler:) userInfo:nil repeats:NO];
+    _isCurrentRunningAdapter = YES;
+    
+    if (_integrationKey != nil)
+    {
+        NSString *zoneId = [_integrationKey valueForKey:@"AppLovinZoneId"];
+        NSLog(@"AppLovinAdapter SSPInterstitialVideoAdType zoneId : %@", zoneId);
+        
+        //[[ALSdk shared].adService loadNextAd: [ALAdSize interstitial] andNotify: self];
+        [[ALSdk shared].adService loadNextAdForZoneIdentifier:zoneId andNotify: self];
+    }
+    else
+    {
+        if(_adType == SSPVideoMixAdType) {
+            if (_isCurrentRunningAdapter && [_delegate respondsToSelector:@selector(AdPopcornSSPAdapterVideoMixAdLoadFailError:adapter:videoMixType:)])
+            {
+                [_delegate AdPopcornSSPAdapterVideoMixAdLoadFailError:[NSError errorWithDomain:kAdPopcornSSPErrorDomain code:AdPopcornSSPMediationInvalidIntegrationKey userInfo:@{NSLocalizedDescriptionKey: SSPErrorString(AdPopcornSSPMediationInvalidIntegrationKey)}] adapter:self videoMixType:videoMixAdType];
+            }
+        } else {
+            if (_isCurrentRunningAdapter && [_delegate respondsToSelector:@selector(AdPopcornSSPAdapterInterstitialVideoAdLoadFailError:adapter:)])
+            {
+                [_delegate AdPopcornSSPAdapterInterstitialVideoAdLoadFailError:[NSError errorWithDomain:kAdPopcornSSPErrorDomain code:AdPopcornSSPMediationInvalidIntegrationKey userInfo:@{NSLocalizedDescriptionKey: SSPErrorString(AdPopcornSSPMediationInvalidIntegrationKey)}] adapter:self];
+            }
+        }
+        [self closeAd];
+    }
+}
+-(void)setupRewardVideo:(NSString*) typeName {
+    if(networkScheduleTimer == nil)
+    {
+        networkScheduleTimer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(networkScheduleTimeoutHandler:) userInfo:nil repeats:NO];
+    }
+    else{
+        [self invalidateNetworkTimer];
+        networkScheduleTimer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(networkScheduleTimeoutHandler:) userInfo:nil repeats:NO];
+    }
+    
+    _isCurrentRunningAdapter = YES;
+    _isRewardVerified = NO;
+    if (_integrationKey != nil)
+    {
+        NSString *zoneId = [_integrationKey valueForKey:@"AppLovinZoneId"];
+        NSLog(@"AppLovinAdapter SSPRewardVideoAdType zoneId : %@", zoneId);
+        rewardVideoAd = [[ALIncentivizedInterstitialAd alloc] initWithZoneIdentifier: zoneId];
+        [rewardVideoAd preloadAndNotify:self];
+    }
+    else
+    {
+        if(_adType == SSPVideoMixAdType) {
+            if (_isCurrentRunningAdapter && [_delegate respondsToSelector:@selector(AdPopcornSSPAdapterVideoMixAdLoadFailError:adapter:videoMixType:)])
+            {
+                [_delegate AdPopcornSSPAdapterVideoMixAdLoadFailError:[NSError errorWithDomain:kAdPopcornSSPErrorDomain code:AdPopcornSSPMediationInvalidIntegrationKey userInfo:@{NSLocalizedDescriptionKey: SSPErrorString(AdPopcornSSPMediationInvalidIntegrationKey)}] adapter:self videoMixType:videoMixAdType];
+            }
+
+        } else {
             if (_isCurrentRunningAdapter && [_delegate respondsToSelector:@selector(AdPopcornSSPAdapterRewardVideoAdLoadFailError:adapter:)])
             {
                 [_delegate AdPopcornSSPAdapterRewardVideoAdLoadFailError:[NSError errorWithDomain:kAdPopcornSSPErrorDomain code:AdPopcornSSPMediationInvalidIntegrationKey userInfo:@{NSLocalizedDescriptionKey: SSPErrorString(AdPopcornSSPMediationInvalidIntegrationKey)}] adapter:self];
             }
-            [self closeAd];
         }
-    }
-    else if(_adType == SSPInterstitialVideoAdType)
-    {
-        if(networkScheduleTimer == nil)
-            networkScheduleTimer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(networkScheduleTimeoutHandler:) userInfo:nil repeats:NO];
-        _isCurrentRunningAdapter = YES;
-        
-        if (_integrationKey != nil)
-        {
-            NSString *zoneId = [_integrationKey valueForKey:[[_integrationKey allKeys] firstObject]];
-            NSLog(@"AppLovinAdapter SSPInterstitialVideoAdType zoneId : %@", zoneId);
-            
-            //[[ALSdk shared].adService loadNextAd: [ALAdSize interstitial] andNotify: self];
-            [[ALSdk shared].adService loadNextAdForZoneIdentifier:zoneId andNotify: self];
-        }
-        else
-        {
-            if ([_delegate respondsToSelector:@selector(AdPopcornSSPAdapterInterstitialVideoAdLoadFailError:adapter:)])
-            {
-              [_delegate AdPopcornSSPAdapterInterstitialVideoAdLoadFailError:[NSError errorWithDomain:kAdPopcornSSPErrorDomain code:AdPopcornSSPMediationInvalidIntegrationKey userInfo:@{NSLocalizedDescriptionKey: SSPErrorString(AdPopcornSSPMediationInvalidIntegrationKey)}] adapter:self];
-            }
-          
-            [self closeAd];
-        }
+        [self closeAd];
     }
 }
+
 
 - (void)showAd
 {
@@ -288,6 +354,43 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
         [ALInterstitialAd shared].adVideoPlaybackDelegate = self;
         [[ALInterstitialAd shared] showAd:interstitialVideoAd];
     }
+    else if (_adType == SSPVideoMixAdType) {
+        switch (videoMixAdType) {
+            case VideoMix_InterstitialType:
+                [ALInterstitialAd shared].adDisplayDelegate = self;
+                [ALInterstitialAd shared].adVideoPlaybackDelegate = self;
+                [[ALInterstitialAd shared] showAd:interstitialAd];
+                break;
+                
+            case VideoMix_InterstitialVideoType:
+                if(_isMute)
+                    [ALSdk shared].settings.muted = YES;
+                [ALInterstitialAd shared].adDisplayDelegate = self;
+                [ALInterstitialAd shared].adVideoPlaybackDelegate = self;
+                [[ALInterstitialAd shared] showAd:interstitialVideoAd];
+                break;
+                
+            case VideoMix_RewardVideoType:
+                if(_isMute)
+                    [ALSdk shared].settings.muted = YES;
+                // Check to see if an ad is ready before attempting to show
+                if ( [rewardVideoAd isReadyForDisplay] )
+                {
+                    rewardVideoAd.adDisplayDelegate = self;
+                    rewardVideoAd.adVideoPlaybackDelegate = self;
+                    // Show call if using a reward delegate.
+                    [rewardVideoAd showAndNotify:self];
+                }
+                else
+                {
+                    if (_isCurrentRunningAdapter && [_delegate respondsToSelector:@selector(AdPopcornSSPAdapterVideoMixAdShowFailError:adapter:videoMixType:)])
+                    {
+                        [_delegate AdPopcornSSPAdapterVideoMixAdShowFailError:[NSError errorWithDomain:kAdPopcornSSPErrorDomain code:AdPopcornSSPNoRewardVideoAdLoaded userInfo:@{NSLocalizedDescriptionKey: SSPErrorString(AdPopcornSSPNoRewardVideoAdLoaded)}] adapter:self videoMixType:videoMixAdType];
+                    }
+                }
+                break;
+        }
+    }
 }
 
 - (void)closeAd
@@ -302,6 +405,21 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
     {
         _isCurrentRunningAdapter = NO;
         [self invalidateNetworkTimer];
+    } else if(_adType == SSPVideoMixAdType) {
+        switch (videoMixAdType) {
+            case VideoMix_InterstitialType:
+                break;
+                
+            case VideoMix_InterstitialVideoType:
+                _isCurrentRunningAdapter = NO;
+                [self invalidateNetworkTimer];
+                break;
+                
+            case VideoMix_RewardVideoType:
+                _isCurrentRunningAdapter = NO;
+                [self invalidateNetworkTimer];
+                break;
+        }
     }
 }
 
@@ -321,6 +439,28 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
         if (_isCurrentRunningAdapter && [_delegate respondsToSelector:@selector(AdPopcornSSPAdapterInterstitialVideoAdLoadFailError:adapter:)])
         {
             [_delegate AdPopcornSSPAdapterInterstitialVideoAdLoadFailError:[NSError errorWithDomain:kAdPopcornSSPErrorDomain code:AdPopcornSSPLoadAdFailed userInfo:@{NSLocalizedDescriptionKey: SSPErrorString(AdPopcornSSPLoadAdFailed)}] adapter:self];
+        }
+    }
+    else if(_adType == SSPVideoMixAdType) {
+        switch (videoMixAdType) {
+            case VideoMix_InterstitialType:
+                break;
+                
+            case VideoMix_InterstitialVideoType:
+                NSLog(@"AppLovinAdapter VideoMix_InterstitialVideo load timeout");
+                if (_isCurrentRunningAdapter && [_delegate respondsToSelector:@selector(AdPopcornSSPAdapterVideoMixAdLoadFailError:adapter:videoMixType:)])
+                {
+                    [_delegate AdPopcornSSPAdapterVideoMixAdLoadFailError:[NSError errorWithDomain:kAdPopcornSSPErrorDomain code:AdPopcornSSPLoadAdFailed userInfo:@{NSLocalizedDescriptionKey: SSPErrorString(AdPopcornSSPLoadAdFailed)}] adapter:self videoMixType:videoMixAdType];
+                }
+                break;
+                
+            case VideoMix_RewardVideoType:
+                NSLog(@"AppLovinAdapter VideoMix_RewardVideo load timeout");
+                if (_isCurrentRunningAdapter && [_delegate respondsToSelector:@selector(AdPopcornSSPAdapterVideoMixAdLoadFailError:adapter:videoMixType:)])
+                {
+                    [_delegate AdPopcornSSPAdapterVideoMixAdLoadFailError:[NSError errorWithDomain:kAdPopcornSSPErrorDomain code:AdPopcornSSPLoadAdFailed userInfo:@{NSLocalizedDescriptionKey: SSPErrorString(AdPopcornSSPLoadAdFailed)}] adapter:self videoMixType:videoMixAdType];
+                }
+                break;
         }
     }
     [self invalidateNetworkTimer];
@@ -382,6 +522,26 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
             [_delegate AdPopcornSSPAdapterInterstitialVideoAdLoadSuccess:self];
         }
     }
+    else if (_adType == SSPVideoMixAdType)
+    {
+        switch (videoMixAdType) {
+            case VideoMix_InterstitialType:
+                interstitialVideoAd = ad;
+                break;
+                
+            case VideoMix_InterstitialVideoType:
+                interstitialVideoAd = ad;
+                break;
+                
+            case VideoMix_RewardVideoType:
+                break;
+        }
+        
+        if ([_delegate respondsToSelector:@selector(AdPopcornSSPAdapterVideoMixAdLoadSuccess:videoMixType:)])
+        {
+            [_delegate AdPopcornSSPAdapterVideoMixAdLoadSuccess:self videoMixType:videoMixAdType];
+        }
+    }
 }
 
 - (void)adService:(nonnull ALAdService *)adService didFailToLoadAdWithError:(int)code
@@ -421,6 +581,14 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
         }
         [self closeAd];
     }
+    else if (_adType == SSPVideoMixAdType)
+    {
+        if ([_delegate respondsToSelector:@selector(AdPopcornSSPAdapterVideoMixAdLoadFailError:adapter:videoMixType:)])
+        {
+            [_delegate AdPopcornSSPAdapterVideoMixAdLoadFailError:[AdPopcornSSPError errorWithDomain:kAdPopcornSSPErrorDomain code:code userInfo:@{NSLocalizedDescriptionKey: SSPErrorString(AdPopcornSSPLoadAdFailed)}] adapter:self videoMixType:videoMixAdType];
+        }
+        [self closeAd];
+    }
 }
 
 #pragma mark - ALAdDisplayDelegate Methods
@@ -438,6 +606,22 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
         if ([_delegate respondsToSelector:@selector(AdPopcornSSPAdapterInterstitialAdClicked:)])
         {
             [_delegate AdPopcornSSPAdapterInterstitialAdClicked:self];
+        }
+    }
+    else if(_adType == SSPVideoMixAdType){
+        switch (videoMixAdType) {
+            case VideoMix_InterstitialType:
+                if ([_delegate respondsToSelector:@selector(AdPopcornSSPAdapterVideoMixAdClicked:videoMixType:)])
+                {
+                    [_delegate AdPopcornSSPAdapterVideoMixAdClicked:self videoMixType:videoMixAdType];
+                }
+                break;
+                
+            case VideoMix_InterstitialVideoType:
+                break;
+                
+            case VideoMix_RewardVideoType:
+                break;
         }
     }
 }
@@ -466,6 +650,23 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
             [_delegate AdPopcornSSPAdapterInterstitialVideoAdShowSuccess:self];
         }
     }
+    else if(_adType == SSPVideoMixAdType){
+        switch (videoMixAdType) {
+            case VideoMix_InterstitialType:
+                if ([_delegate respondsToSelector:@selector(AdPopcornSSPAdapterVideoMixAdShowSuccess:videoMixType:)])
+                {
+                    [_delegate AdPopcornSSPAdapterVideoMixAdShowSuccess:self videoMixType:videoMixAdType];
+                }
+                break;
+                
+            default:
+                if (_isCurrentRunningAdapter && [_delegate respondsToSelector:@selector(AdPopcornSSPAdapterVideoMixAdShowSuccess:videoMixType:)])
+                {
+                    [_delegate AdPopcornSSPAdapterVideoMixAdShowSuccess:self videoMixType:videoMixAdType];
+                }
+                break;
+        }
+    }
 }
 - (void)ad:(ALAd *)ad wasHiddenIn:(UIView *)view
 {
@@ -491,6 +692,12 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
             [_delegate AdPopcornSSPAdapterInterstitialVideoAdClose:self];
         }
     }
+    else if(_adType == SSPVideoMixAdType){
+        if ([_delegate respondsToSelector:@selector(AdPopcornSSPAdapterVideoMixAdClose:videoMixType:)])
+        {
+            [_delegate AdPopcornSSPAdapterVideoMixAdClose:self videoMixType:videoMixAdType];
+        }
+    }
 }
 #pragma mark ALAdVideoPlaybackDelegate
 - (void)videoPlaybackBeganInAd:(ALAd *)ad
@@ -505,6 +712,22 @@ static inline NSString *SSPErrorString(SSPErrorCode code)
         if ([_delegate respondsToSelector:@selector(onCompleteTrackingEvent:isCompleted:)])
         {
             [_delegate onCompleteTrackingEvent:adNetworkNo isCompleted:_isRewardVerified];
+        }
+    }
+    else if(_adType == SSPVideoMixAdType){
+        switch (videoMixAdType) {
+            case VideoMix_InterstitialType:
+                break;
+                
+            case VideoMix_InterstitialVideoType:
+                break;
+                
+            case VideoMix_RewardVideoType:
+                if ([_delegate respondsToSelector:@selector(AdPopcornSSPAdapterVideoMixAdCompleteTrackingEvent:isCompleted:videoMixType:)])
+                {
+                    [_delegate AdPopcornSSPAdapterVideoMixAdCompleteTrackingEvent:adNetworkNo isCompleted:_isRewardVerified videoMixType:videoMixAdType];
+                }
+                break;
         }
     }
     _isCurrentRunningAdapter = NO;
