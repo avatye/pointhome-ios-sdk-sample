@@ -1,5 +1,13 @@
-# Created by https://www.toptal.com/developers/gitignore/api/swift
-# Edit at https://www.toptal.com/developers/gitignore?templates=swift
+# Created by https://www.toptal.com/developers/gitignore/api/swift,xcode,cocoapods
+# Edit at https://www.toptal.com/developers/gitignore?templates=swift,xcode,cocoapods
+
+### CocoaPods ###
+## CocoaPods GitIgnore Template
+
+# CocoaPods - Only use to conserve bandwidth / Save time on Pushing
+#           - Also handy if you have a large number of dependant pods
+#           - AS PER https://guides.cocoapods.org/using/using-cocoapods.html NEVER IGNORE THE LOCK FILE
+Pods/
 
 ### Swift ###
 # Xcode
@@ -25,7 +33,6 @@ DerivedData/
 !default.mode2v3
 *.perspectivev3
 !default.perspectivev3
-.DS_Store
 
 ## Obj-C/Swift specific
 *.hmap
@@ -55,20 +62,19 @@ playground.xcworkspace
 # We recommend against adding the Pods directory to your .gitignore. However
 # you should judge for yourself, the pros and cons are mentioned at:
 # https://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control
-Pods/
-Pods/**.*
+# Pods/
 # Add this line if you want to avoid checking in source code from the Xcode workspace
-*.xcworkspace
+# *.xcworkspace
 
 # Carthage
 # Add this line if you want to avoid checking in source code from Carthage dependencies.
 # Carthage/Checkouts
 
-# Carthage/Build/
+Carthage/Build/
 
 # Accio dependency management
-# Dependencies/
-# .accio/
+Dependencies/
+.accio/
 
 # fastlane
 # It is recommended to not store the screenshots in the git repo.
@@ -85,9 +91,28 @@ fastlane/test_output
 # After new code Injection tools there's a generated folder /iOSInjectionProject
 # https://github.com/johnno1962/injectionforxcode
 
-# iOSInjectionProject/
+iOSInjectionProject/
 
-#PointHomeSample/Adapter/
-#PointHomeSample/PointHomeSample-Bridging-Header.h
+### Xcode ###
 
-# End of https://www.toptal.com/developers/gitignore/api/swift
+## Xcode 8 and earlier
+
+### Xcode Patch ###
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+!*.xcodeproj/project.xcworkspace/
+!*.xcworkspace/contents.xcworkspacedata
+/*.gcno
+**/xcshareddata/WorkspaceSettings.xcsettings
+
+.DS_Store
+/.build
+/Packages
+xcuserdata/
+DerivedData/
+.swiftpm/configuration/registries.json
+.swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
+.netrc
+/AvatyePointHome/AdPopcornSSP
+/AvatyePointHome/AvatyeAdCash
